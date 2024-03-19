@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  title: NGO Management API
+  version: 1.0.0
+  description: This API is designed for managing NGO/Admin logins and account registrations.
+servers:
+  - url: "https://safeharbouryouth.com/api/v1"
+paths:
+  /v1/auth/login:
+    post:
+      summary: NGO/Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLoginRequest"
+      responses:
+        200:
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserLoginResponse"
+        401:
+          description: Unauthorized - Invalid email or password
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v1/ngos/list/:
+    post:
+      summary: Register/List NGO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NGORegistrationRequest"
+      responses:
+        200:
+          description: NGO listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NGORegistrationResponse"
+        400:
+          description: Bad Request - Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        500:
+          description: Internal Server Error - A server-side error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  schemas:
+    UserLoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    UserLoginResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        streetAddress:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        zipCode:
+          type: string
+        status:
+          type: string
+
+    NGORegistrationRequest:
+      type: object
+      required:
+        - name
+        - streetAddress
+        - city
+        - state
+        - country
+        - email
+        - phone
+        - zipCode
+      properties:
+        name:
+          type: string
+        streetAddress:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        zipCode:
+          type: string
+
+    NGORegistrationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        streetAddress:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        zipCode:
+          type: string
+        status:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
