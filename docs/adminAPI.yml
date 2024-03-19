@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: The SafeYouthHarbour Admin Website API
+  description: REST API for managing NGOs and complaints for the admin of SafeYouthHarbour website.
+  version: 'v1.0'
+servers:
+  - url: http://safeyouthharbour.com/api/v1
+paths:
+  /ngos/list:
+    get:
+      summary: List NGOs
+      description: Retrieves a list of NGOs.
+      responses:
+        '200':
+          description: Successful retrieval of NGOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ngo'
+
+  /ngos/{ngoId}/status:
+    patch:
+      summary: Update NGO Status
+      description: Allows the admin to update the status of an NGO.
+      parameters:
+        - name: ngoId
+          in: path
+          description: ID of the NGO to update
+          required: true
+          schema:
+            type: integer
+            examples: 
+              - 111
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [active, inactive]
+                  examples: 
+                    - active
+      responses:
+        '200':
+          description: NGO status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ngo'
+        '404':
+          description: NGO not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                      - NGO does not exist
+                  code:
+                    type: integer
+                    examples: 
+                      - 404
+
+
+
+components:
+  schemas:
+    Ngo:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples: 
+            - 111
+        name:
+          type: string
+          examples: 
+            - ABC NGO
+        streetAddress:
+            type: string
+            examples: 
+              - Fenway 74
+        city:
+         type: string
+         examples: 
+            - Boston
+        state:
+          type: string
+          examples: 
+            - Masachusetts
+        country:
+          type: string
+          examples: 
+            - USA
+        zipCode:
+          type: string
+          examples: 
+            - 02115
+        phone:
+          type: string
+          examples: 
+            - 987654321
+        email:
+          type: string
+          format: email
+          examples:
+            - abc@gmail.com
+        status:
+          type: string
+          enum: [active, inactive]
+          examples: 
+            - active
