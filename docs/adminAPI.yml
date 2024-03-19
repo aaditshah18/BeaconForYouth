@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: The SafeYouthHarbour Admin Website API
-  description: REST API for managing NGOs and complaints for the admin of SafeYouthHarbour website.
+  title: The SafeHarbourYouth Admin Website API
+  description: REST API for managing NGOs and complaints for the admin of SafeHarbourYouth website.
   version: 'v1.0'
 servers:
-  - url: http://safeyouthharbour.com/api/v1
+  - url: http://safeharbouryouth.com/api/v1
 paths:
   /ngos/list:
     get:
