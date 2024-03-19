@@ -1,0 +1,175 @@
+openapi: 3.0.0
+info:
+  title: Complaint Submission API
+  description: API for submitting complaints to NGOs. This endpoint is specifically designed to capture the complaints from youths, store them, and forward them to the relevant NGO based on the user's location.
+  version: "1.0.0"
+servers:
+  - url: 'https://safeharbouryouth.com/api/v1'
+    description: Main server that hosts the Complaint Submission API
+paths:
+  /submit-Complaint/:
+    post:
+      summary: Submit a complaint form
+      description: This endpoint allows a youth to submit a complaint form to a registered NGO. The NGO is selected based on the provided user location within the complaint form.
+      operationId: submitComplaint
+      tags:
+        - Complaint Submission
+      requestBody:
+        description: The complaint form data to be submitted by the youth.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplaintForm'
+            examples:
+              ComplaintFormExample:
+                value:
+                  firstName: "Jane"
+                  lastName: "Doe"
+                  contactNumber: "+1234567890"
+                  emailId: "jane.doe@example.com"
+                  street: "Park drive st."
+                  city: "Boston"
+                  state: "MA"
+                  country: "US"
+                  zipCode: "02134"
+                  descriptionOfComplaint: "Description of the issue faced by the youth."
+                  ngoId: 42
+      responses:
+        '200':
+          description: Complaint submitted successfully with the details of the complaint returned, including a unique complaint ID and the initial status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintResponse'
+              examples:
+                ComplaintResponseExample:
+                  value:
+                    firstName: "Jane"
+                    lastName: "Doe"
+                    contactNumber: "+1234567890"
+                    emailId: "jane.doe@example.com"
+                    street: "Park drive st."
+                    city: "Boston"
+                    state: "MA"
+                    country: "user"
+                    zipCode: "02134"
+                    descriptionOfComplaint: "Description of the issue faced by the youth."
+                    ngoId: 42
+                    complaintId: "12345"
+                    status: "Pending"
+        '400':
+          description: Invalid input provided in the request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                MissingFieldExample:
+                  value:
+                    message: "Missing required field: lastName"
+                    code: 400
+        '500':
+          description: An error occurred on the server while processing the complaint submission.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                InternalServerErrorExample:
+                  value:
+                    message: "Internal server error, please try again later."
+                    code: 500
+components:
+  schemas:
+    ComplaintForm:
+      type: object
+      description: The schema for the complaint form to be submitted.
+      required:
+        - firstName
+        - lastName
+        - contactNumber
+        - emailId
+        - descriptionOfComplaint
+        - ngoId
+        - street
+        - city
+        - state
+        - country
+        - zipCode
+      properties:
+        firstName:
+          type: string
+          example: "Jane"
+        lastName:
+          type: string
+          example: "Doe"
+        contactNumber:
+          type: string
+          format: phone
+          example: "+1234567890"
+        emailId:
+          type: string
+          format: email
+          example: "jane.doe@google.com"
+        street: 
+          type: string
+          example: "Park drive st."
+        city:
+          type: string
+          example: "Boston"
+        state:
+          type: string
+          example: "MA"
+        country:
+          type: string
+          example: "US"
+        zipCode:
+          type: string
+          example: "02134"
+        descriptionOfComplaint:
+          type: string
+          example: "Description of the issue faced by the youth."
+        ngoId:
+          type: integer
+          format: int64
+          example: 42
+    ComplaintResponse:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        contactNumber:
+          type: string
+        emailId:
+          type: string
+        street:
+          type: string
+        city: 
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zipCode:
+          type: string
+        descriptionOfComplaint:
+          type: string
+        ngoId:
+          type: integer
+          format: int64
+        complaintId:
+          type: string
+        status:
+          type: string
+          example: "Pending"
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32

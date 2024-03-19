@@ -1,99 +1,59 @@
-# Object Model
-
-``` mermaid
+# Object Model 
+ 
+ 
+```mermaid
 ---
 Object Model for SafeHarbourYouth
 ---
 classDiagram
-    class User {
-        +String userId
-        +String password
+    class Person{
+ 
     }
-
-    class Admin {
-        +String userId
-        +String password
-        ListAllNGOs()
-        ListAllComplaints()
-        ApproveNGO()
-        AddRemoveNGO()
+    class Admin{
+        + int ID
+        + String username
+        + String password                           
     }
-
-    class NGO {
-        +String name
-        +String userId
-        +String password
-        +String location
-        +String certificate
-        Register()
-        Login()
-        ViewComplaint()
-        UpdateComplaintStatus()
-        DecideAction()
+    class Ngo{
+        + int ID
+        + String name
+        + Address address
+        + String phone
+        + String email
     }
-
-    class Youth {
-        +FileComplaint()
-        +ViewComplaintStatus()
+    class User{
+        + String firstName
+        + String lastName
+        + String contactNumber
+        + String email
     }
-
-    Admin --|> User : Inherits
-    NGO --|> User : Inherits
-
-    class UserType {
-        <<enumeration>>
-        Admin
-        NGO
-        Youth
+    class ComplainRegister{                        
+        + User user
+        + Ngo ngo
+        + Address address
+        + String description                        
     }
-
-    class LoginScreen {
-        +String userId
-        +String password
-        Login()
+    class Address{
+        + String streetAddress
+        + String city
+        + String state
+        + String country
+        + String postalCode
     }
+    
+    Person <|-- Admin 
+    Person <|-- Ngo 
+    Person <|-- User  
+    
+    ComplainRegister "*" --> "1" Ngo 
+    ComplainRegister "*" --> "1" User 
+    ComplainRegister "*" --> "1" Address 
+    
+    Admin "1" --> "*" Ngo 
+    Admin "*" --> "*" ComplainRegister 
+    
+    Ngo "1" *-- "1" Address 
+    User "*" --> "1" Address 
 
-    class RegistrationScreen {
-        +String name
-        +String userId
-        +String password
-        +String location
-        +String certificate
-        RequestAdminApproval()
-    }
-
-    class Complaint {
-        +String details
-        +String status
-        File()
-        UpdateStatus()
-    }
-
-    class Dashboard {
-        ViewDetails()
-    }
-
-    class AdminDashboard {
-        ListAllNGOs()
-        ListAllComplaints()
-        ApproveNGO()
-    }
-
-    class NGODashboard {
-        ViewComplaints()
-        UpdateComplaintStatus()
-        DecideAction()
-    }
-
-    AdminDashboard --|> Dashboard : Inherits
-    NGODashboard --|> Dashboard : Inherits
-
-    Youth "1" -- "0..*" Complaint : Files > 
-    NGO "1" -- "0..*" Complaint : Views > 
-    Admin "1" -- "0..*" NGO : Approves >
-
-
-
-
-
+ 
 ```
