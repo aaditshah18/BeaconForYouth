@@ -1,10 +1,9 @@
-[5:10 PM] Sushma Kunjangada Arun
-# Object Model
+# Object Model 
  
  
 ```mermaid
 ---
-Object Model for SafeYouthHarbour
+Object Model for SafeHarbourYouth
 ---
 classDiagram
     class Person{
