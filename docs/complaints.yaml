@@ -1,0 +1,353 @@
+openapi: 3.0.0
+
+info:
+
+  title: Complaints and Complaint Dashboard API
+
+  description: API for managing NGOs and their complaints
+
+  version: 1.0.0
+ 
+servers:
+
+  - url: 'https://safeharbouryouth.com/api/v1'
+ 
+paths:
+
+  /complaints/{complaintId}/status/:
+
+    patch:
+
+      summary: Update complaint status
+
+      operationId: updateComplaintStatus
+
+      tags:
+
+        - Complaints
+
+      parameters:
+
+        - name: complaintId
+
+          in: path
+
+          required: true
+
+          schema:
+
+            type: integer
+
+            example: 12345
+
+      requestBody:
+
+        required: true
+
+        content:
+
+          application/json:
+
+            schema:
+
+              type: object
+
+              properties:
+
+                status:
+
+                  type: string
+
+                  example: 'approved'
+
+      responses:
+
+        '200':
+
+          description: Complaint status updated
+
+          content:
+
+            application/json:
+
+              schema:
+
+                $ref: '#/components/schemas/ComplaintResponse'
+ 
+  /complaints:
+
+    get:
+
+      summary: List all complaints
+
+      operationId: listComplaints
+
+      tags:
+
+        - Complaints
+
+      responses:
+
+        '200':
+
+          description: A list of complaints
+
+          content:
+
+            application/json:
+
+              schema:
+
+                type: array
+
+                items:
+
+                  $ref: '#/components/schemas/Complaint'
+ 
+  /ngos/{ngo_id}/complaints/dashboard/:
+
+    get:
+
+      summary: Get complaints dashboard for an NGO
+
+      operationId: getComplaintsDashboard
+
+      tags:
+
+        - Dashboard
+
+      parameters:
+
+        - name: ngo_id
+
+          in: path
+
+          required: true
+
+          schema:
+
+            type: integer
+
+            example: 1
+
+      responses:
+
+        '200':
+
+          description: Dashboard data retrieved successfully
+
+          content:
+
+            application/json:
+
+              schema:
+
+                type: object
+
+                properties:
+
+                  totalComplaints:
+
+                    type: integer
+
+                    example: 10
+
+                  totalPending:
+
+                    type: integer
+
+                    example: 5
+
+                  totalCompleted:
+
+                    type: integer
+
+                    example: 3
+
+                  totalInProgress:
+
+                    type: integer
+
+                    example: 2
+
+                  ngo_id:
+
+                    type: integer
+
+                    example: 1
+ 
+components:
+
+  schemas:
+
+    Ngo:
+
+      type: object
+
+      properties:
+
+        id:
+
+          type: integer
+
+        name:
+
+          type: string
+
+        streetAddress:
+
+          type: string
+
+        city:
+
+          type: string
+
+        state:
+
+          type: string
+
+        country:
+
+          type: string
+
+        email:
+
+          type: string
+
+          format: email
+
+        phone:
+
+          type: string
+
+        zipCode:
+
+          type: integer
+
+        status:
+
+          type: string
+ 
+    ComplaintResponse:
+
+      type: object
+
+      properties:
+
+        firstName:
+
+          type: string
+
+        lastName:
+
+          type: string
+
+        contactNumber:
+
+          type: string
+
+        emailId:
+
+          type: string
+
+          format: email
+
+        street:
+
+          type: string
+
+        city:
+
+          type: string
+
+        state:
+
+          type: string
+
+        country:
+
+          type: string
+
+        zipCode:
+
+          type: string
+
+        descriptionOfComplaint:
+
+          type: string
+
+        ngoId:
+
+          type: integer
+
+        complaintId:
+
+          type: string
+
+        status:
+
+          type: string
+ 
+    Complaint:
+
+      type: object
+
+      properties:
+
+        id:
+
+          type: integer
+
+        firstName:
+
+          type: string
+
+        lastName:
+
+          type: string
+
+        contactNumber:
+
+          type: string
+
+        emailId:
+
+          type: string
+
+          format: email
+
+        street:
+
+          type: string
+
+        city:
+
+          type: string
+
+        state:
+
+          type: string
+
+        country:
+
+          type: string
+
+        zipCode:
+
+          type: integer
+
+        descriptionOfComplaint:
+
+          type: string
+
+        ngoId:
+
+          type: integer
+
+        complaintId:
+
+          type: string
+
+        status:
+
+          type: string
