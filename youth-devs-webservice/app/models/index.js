@@ -1,5 +1,5 @@
-import {ComplaintsModel, AdminModel, UserModel} from './youth-devs-model.js';
+import {ComplaintsModel, AdminModel, UserModel, NgoModel} from './youth-devs-model.js';
 
-export { ComplaintsModel, AdminModel, UserModel };
+export { ComplaintsModel, AdminModel, UserModel, NgoModel };
 
 
