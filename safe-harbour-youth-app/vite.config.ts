@@ -7,4 +7,11 @@ export default defineConfig({
     port: 3002
   },
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/styles/variables.scss";',
+      },
+    },
+  },
 })
