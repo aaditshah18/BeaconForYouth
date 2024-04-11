@@ -1,5 +1,7 @@
-import {ComplaintsModel, AdminModel, UserModel, NgoModel} from './youth-devs-model.js';
+import ComplaintsModel from "./complaints.js";
+import AdminModel from "./admin.js";
+import NgoModel from "./ngos.js";
+import UserModel from "./users.js";
 
-export { ComplaintsModel, AdminModel, UserModel, NgoModel };
-
-
+// Re-export for convenient use in other parts of your application
+export { ComplaintsModel, AdminModel, NgoModel, UserModel };
