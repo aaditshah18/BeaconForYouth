@@ -1,8 +1,7 @@
-import webServiceRouter from './web-service-routes.js';
-
+import complaintsRouter from "./complaints.js";
 
 const initializeRoutes = (app) => {
-    app.use('/api/v1', webServiceRouter);
-}
+  app.use("/complaints", complaintsRouter);
+};
 
 export default initializeRoutes;
