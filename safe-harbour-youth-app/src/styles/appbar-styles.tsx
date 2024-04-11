@@ -24,7 +24,7 @@ export const AppbarContainer = styled(Box)(()=> ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '100px',
+    marginRight: '80px',
   }));
 
   export const MyList = styled(List)<StyledListProps>(({ type }) => ({
