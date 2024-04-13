@@ -1,9 +1,11 @@
 // AboutUs.tsx
-import React from "react";
-import { Grid, Paper, Typography, Grow } from "@material-ui/core";
+import React, { ReactNode } from "react";
+import { Grid, Paper, Typography, Grow } from "@mui/material";
 import { useStyles } from "../styles/aboutus";
 
-const AboutUs: React.FC = () => {
+const AboutUs: React.FC = (): ReactNode => {
+  // import { useStyles } from "../styles/aboutus";
+
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -13,7 +15,7 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={4} alignItems="stretch" justify="center">
+      <Grid container component="div" spacing={4} alignItems="stretch">
         <Grow in={checked} {...(checked ? { timeout: 1000 } : {})}>
           <Grid item xs={12} md={4}>
             <Paper className={classes.paper}>

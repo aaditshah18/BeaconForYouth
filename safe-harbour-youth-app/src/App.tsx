@@ -6,7 +6,9 @@ import theme from "./styles/themes";
 import Appbar from "./components/appbar";
 import AppDrawer from "./components/drawer";
 import { UIProvider } from "./components/ui-context";
-import AboutUs from "./Pages/HomePage.tsx";
+import AboutUs from "./components/Aboutus.tsx";
+import CampaignSection from "./components/campaignsec.tsx";
+// import ComplaintForm from "./components/ComplaintForm.tsx";
 
 function App() {
   console.log("App component is rendering");
@@ -21,7 +23,14 @@ function App() {
       <Container maxWidth="xl" sx={{ background: "#fff" }}>
         <UIProvider>
           <Appbar />
+          {/* <ComplaintForm
+            handleClose={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          /> */}
           <AboutUs />
+          <CampaignSection />
+
           <AppDrawer />
         </UIProvider>
       </Container>
