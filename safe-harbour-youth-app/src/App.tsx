@@ -3,9 +3,9 @@ import './App.css'
 import { useEffect } from 'react'
 import { Container } from '@mui/material';
 import theme from './styles/themes';
-import Appbar from './components/appbar';
-import AppDrawer from './components/drawer';
-import { UIProvider } from './components/ui-context';
+import Appbar from './components/header/appbar';
+import AppDrawer from './components/header/drawer';
+import { UIProvider } from './components/header/ui-context';
 
 function App() {
   console.log("App component is rendering");
