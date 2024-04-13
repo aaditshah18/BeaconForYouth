@@ -9,6 +9,8 @@ import { UIProvider } from './components/header/ui-context';
 import { Outlet } from 'react-router';
 import Footer from './components/Footer/footer';
 import Slider from './components/Slider/hero-slider';
+import AboutUs from './components/Aboutus';
+import CampaignSection from './components/campaignsec';
 
 function App() {
   console.log('App component is rendering');
@@ -27,6 +29,8 @@ function App() {
         <Outlet></Outlet>
         </UIProvider>
         <Slider/>
+        <AboutUs />
+        <CampaignSection />
         <Footer/>
       </Container>
     </ThemeProvider>
