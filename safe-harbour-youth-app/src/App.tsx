@@ -8,6 +8,7 @@ import AppDrawer from './components/header/drawer';
 import { UIProvider } from './components/header/ui-context';
 import { Outlet } from 'react-router';
 import Footer from './components/Footer/footer';
+import Slider from './components/Slider/hero-slider';
 
 function App() {
   console.log('App component is rendering');
@@ -25,6 +26,7 @@ function App() {
         <AppDrawer/>
         <Outlet></Outlet>
         </UIProvider>
+        <Slider/>
         <Footer/>
       </Container>
     </ThemeProvider>
