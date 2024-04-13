@@ -1,7 +1,7 @@
-import { Divider, Drawer, List, ListItemButton, ListItemText } from "@mui/material";
+import { Divider, Drawer, List, ListItemButton, ListItemText, Button } from "@mui/material";
 import {styled} from '@mui/system';
 import { useUIContext } from "./ui-context";
-import { DrawerCloseButton } from "../styles/appbar-styles";
+import { DrawerCloseButton } from "../../styles/appbar-styles";
 import CloseIcon from "@mui/icons-material/Close";
 
 const MiddleDivider = styled((props)=>(
@@ -37,7 +37,7 @@ export default function AppDrawer(){
             </ListItemButton>
             <MiddleDivider />
             <ListItemButton>
-              <ListItemText primary="NGO Dashboard" />
+              <ListItemText primary="NGO" />
             </ListItemButton>
             <MiddleDivider />
             <ListItemButton>
@@ -48,6 +48,22 @@ export default function AppDrawer(){
               <ListItemText primary="Donate" />
             </ListItemButton>
             <MiddleDivider />
+            <Button
+                variant="contained"
+                sx={{
+                    color: 'primary',
+                    backgroundColor: 'var(--white)',
+                    '&:hover': {
+                        backgroundColor: 'var(--orange)',
+                        color: 'var(--white)',
+                    },
+                    marginTop: '10px',
+                    marginLeft: '10px',
+                    paddingLeft: '20px' ,
+                }}
+                >
+                Login
+            </Button>
           </List>
         </Drawer>
         </>

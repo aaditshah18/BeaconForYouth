@@ -1,5 +1,5 @@
-import { AppbarContainer, Logo } from "../styles/appbar-styles";
-import logoImage from '../../public/images/logo.png';
+import { AppbarContainer, Logo } from "../../styles/appbar-styles";
+import logoImage from '../../../public/images/logo.png';
 import { IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useUIContext } from './ui-context';
