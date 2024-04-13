@@ -28,9 +28,9 @@ function App() {
         <AppDrawer/>
         <Outlet></Outlet>
         </UIProvider>
+        <Slider/>
         <AboutUs />
         <CampaignSection />
-        <Slider/>
         <Footer/>
       </Container>
     </ThemeProvider>
