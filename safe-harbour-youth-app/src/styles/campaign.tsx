@@ -1,98 +1,73 @@
-// import React from "react";
-// import {
-//   Grid,
-//   Card,
-//   CardMedia,
-//   CardContent,
-//   Typography,
-//   Button,
-// } from "@mui/material";
-
-// interface CampaignItemProps {
-//   imageUrl: string;
-//   title: string;
-//   buttonText: string;
-// }
-
-// export const CampaignItem: React.FC<CampaignItemProps> = ({
-//   imageUrl,
-//   title,
-//   buttonText,
-// }) => {
-//   return (
-//     <Grid item xs={12} sm={4} sx={{ maxWidth: 345, m: 2 }}>
-//       <Card>
-//         <CardMedia
-//           component="img"
-//           sx={{ height: 140 }}
-//           image={imageUrl}
-//           alt="Campaign Image"
-//         />
-//         <CardContent>
-//           <Typography gutterBottom variant="h6" component="h2">
-//             {title}
-//           </Typography>
-//           <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-//             {buttonText}
-//           </Button>
-//         </CardContent>
-//       </Card>
-//     </Grid>
-//   );
-// };
-
 import React from "react";
 import {
-  Grid,
   Card,
   CardMedia,
   CardContent,
   Typography,
   Button,
+  Stack,
+  useTheme,
 } from "@mui/material";
 
 interface CampaignItemProps {
   imageUrl: string;
   title: string;
-  buttonText: string;
+  description: string;
+  readMoreText: string;
+  joinCampaignText: string;
 }
 
 export const CampaignItem: React.FC<CampaignItemProps> = ({
   imageUrl,
   title,
-  buttonText,
+  description,
+  readMoreText,
+  joinCampaignText,
 }) => {
-  const cardWidth = { xs: "100%", sm: "100%", md: "33.3333%" };
+  const theme = useTheme();
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={4} sx={{ maxWidth: "100%", m: 2 }}>
-      <Card>
-        <CardMedia
-          component="img"
-          sx={{ height: 140 }}
-          image={imageUrl}
-          alt="Campaign Image"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="h2">
-            {title}
-          </Typography>
+    <Card
+      sx={{
+        maxWidth: 345,
+        m: 2,
+        bgcolor: theme.palette.background.paper, // Use a theme color for the background or a custom one
+        boxShadow: 1, // Adjust box shadow as needed
+        "&:hover": {
+          boxShadow: 3, // Adjust hover box shadow as needed
+        },
+      }}
+    >
+      <CardMedia
+        component="img"
+        sx={{ height: 180, objectFit: "cover" }} // 'cover' will ensure the image covers the area without stretching
+        image={imageUrl}
+        alt={title}
+      />
+      <CardContent sx={{ minHeight: 220 }}>
+        <Typography gutterBottom variant="subtitle1" component="div">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          {description}
+        </Typography>
+        <Stack direction="column" spacing={1}>
+          <Button variant="outlined" sx={{ justifyContent: "flex-start" }}>
+            {readMoreText}
+          </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             sx={{
-              mt: 2,
-              backgroundColor: "white",
-              color: "black",
+              backgroundColor: "primary.main",
               "&:hover": {
-                backgroundColor: "primary.main",
-                color: "white",
+                backgroundColor: "primary.dark",
               },
             }}
           >
-            {buttonText}
+            {joinCampaignText}
           </Button>
-        </CardContent>
-      </Card>
-    </Grid>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 };

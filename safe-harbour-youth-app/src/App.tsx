@@ -10,32 +10,32 @@ import { Outlet } from 'react-router';
 import Footer from './components/Footer/footer';
 import Slider from './components/Slider/hero-slider';
 import AboutUs from './components/AboutUs/about-us';
+//import AboutUs from "./components/Aboutus";
 import CampaignSection from './components/campaignsec';
 
 function App() {
-  console.log('App component is rendering');
+  console.log("App component is rendering");
 
   useEffect(() => {
-    console.log('Changing title');
+    console.log("Changing title");
     document.title = "SafeHarbourYouth";
   }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xl" sx={{ background: '#fff' }}>
+      <Container maxWidth="xl" sx={{ background: "#fff" }}>
         <UIProvider>
-        <Appbar />
-        <AppDrawer/>
-        <Outlet></Outlet>
+          <Appbar />
+          <AppDrawer />
+          <Outlet></Outlet>
         </UIProvider>
-        <Slider/>
+        <Slider />
         <AboutUs />
         <CampaignSection />
-        <Footer/>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
 }
 
 export default App;
-
