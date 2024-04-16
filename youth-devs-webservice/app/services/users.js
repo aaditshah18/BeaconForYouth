@@ -1,0 +1,36 @@
+const bcrypt = require("bcrypt");
+import User from "../models/users.js";
+
+const jwt = require("jsonwebtoken");
+const EMAIL_REGEX = /^[a-zA-Z](\.?[a-zA-Z]){2,}@northeastern\.edu$/;
+const NAME_REGEX = /^[a-z ,.'-]+$/i;
+const { generateMongoId, checkPassword } = require("../utils");
+
+export const handleLogin = async (payload) => {
+  if (payload.email === undefined) {
+    throw new Error("Email cannot be undefined");
+  }
+
+  if (payload.password === undefined) {
+    throw new Error("Password cannot be undefined");
+  }
+
+  const existedUsers = await User.find({ email: payload.email });
+
+  if (existedUsers.length === 0) {
+    throw new Error("User does not exist");
+  } else if (!checkPassword(payload.password, existedUsers[0].password)) {
+    throw new Error("Incorrect Password");
+  }
+
+  const result = (
+    await User.findOne({ email: payload.email }).select("-password -image")
+  ).toObject();
+
+  return {
+    firstName: result.firstName,
+    token: jwt.sign(result, process.env.JWT_SECRET, {
+      expiresIn: 60 * 60 * 24 * process.env.JWT_EXPIRES_IN,
+    }),
+  };
+};

@@ -1,55 +1,23 @@
-import {
-  setResponse,
-  setCreateResponse,
-  setError,
-} from "./response-handler.js";
-import NgoModel from "../models/ngo.js";
+import { setResponse } from "./response-handler.js";
 
-export const search = async (request, response) => {
-  try {
-    const queryParams = { ...request.query };
-    const searchQuery = {};
-    const ngos = await NgoModel.find(searchQuery);
-    setResponse(ngos, response);
-  } catch (error) {
-    console.log(error);
-    setError(response);
-  }
-};
+import { handleLogin } from "../services/users.js";
 
-export const post = async (request, response) => {
+export const login = async (request, response) => {
   try {
-    const ngoData = { ...request.body };
-    const newNgo = new NgoModel(ngoData);
-    const savedNgo = await newNgo.save();
-    setCreateResponse(savedNgo, response);
-  } catch (error) {
-    setError(response);
-  }
-};
+    const loginData = await handleLogin(request.body);
+    setResponse(loginData, response);
 
-export const put = async (request, response) => {
-  try {
-    const id = request.params.id;
-    const newData = { ...request.body };
-    const updatedNgo = await NgoModel.findByIdAndUpdate(id, newData, {
-      new: true,
+    response.status(200).json({
+      msg: `Welcome, ${data.firstName}.`,
+      data: {
+        token: data.token,
+      },
+      result: true,
     });
-    setResponse(updatedNgo, response);
-  } catch (error) {
-    setError(response);
-  }
-};
-
-export const patch = async (request, response) => {
-  try {
-    const id = request.params.id;
-    const newData = { ...request.body };
-    const updatedNgo = await NgoModel.findByIdAndUpdate(id, newData, {
-      new: true,
+  } catch (err) {
+    response.status(403).json({
+      msg: err.message,
+      result: false,
     });
-    setResponse(updatedNgo, response);
-  } catch (error) {
-    setError(response);
   }
 };
