@@ -4,36 +4,35 @@ import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import Slider from "react-slick";
-import { CampaignItem } from "../styles/campaign.tsx";
+import { CampaignItem } from "../styles/campaign.tsx"; // Adjust the import path if needed
 import ArrowBackIcon from "@mui/icons-material/ArrowBackIosNew";
-// import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIosNew";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Link } from "react-router-dom";
 
-// This should reflect your actual campaigns data structure including the new button texts
 const campaigns = [
   {
     imageUrl: "../images/campaignban1.jpeg",
     title:
       "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
     description: "Help us bring awareness and support to those in need.",
-    readMoreText: "Learn More",
-    joinCampaignText: "Join Campaign",
-  },
-  {
-    imageUrl: "../images/campban2.jpeg",
-    title: "HUNGER IS THE GREATEST THREAT TO CHILDREN AROUND THE WORLD",
-    description:
-      "Your help can change lives and provide hope for a better future.",
     readMoreText: "Learn How to Help",
-    joinCampaignText: "Join Campaign",
+    // joinCampaignText: "Join Campaign",
   },
   {
     imageUrl: "../images/campban2.jpeg",
-    title: "UKRAINE: FIGHTING AND DISPLACEMENT HAVE BECOME A NEW NORMAL",
-    description:
-      "Stand with Ukraine by joining our campaign to provide relief.",
-    readMoreText: "Read More",
-    joinCampaignText: "Join Campaign",
+    title:
+      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
+    description: "Help us bring awareness and support to those in need.",
+    readMoreText: "Learn How to Help",
+    // joinCampaignText: "Join Campaign",
+  },
+  {
+    imageUrl: "../images/campban2.jpeg",
+    title:
+      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
+    description: "Help us bring awareness and support to those in need.",
+    readMoreText: "Learn How to Help",
+    // joinCampaignText: "Join Campaign",
   },
   // ... Add more campaigns as needed
 ];
@@ -67,17 +66,23 @@ const CampaignSection: React.FC = () => {
   };
 
   return (
-    // <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "background.paper" }}>
-    <Box
-      sx={{
-        overflow: "hidden",
-        padding: 3,
-        bgcolor: "green.100", // This is where you set the light background for the section
-      }}
-    >
+    <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "green.100" }}>
       <Typography variant="h4" component="h1" gutterBottom align="center">
         Our Campaigns
       </Typography>
+      {/* See All Campaigns Link */}
+      <Box textAlign="center" mb={2}>
+        <Link to="/campaigns" style={{ textDecoration: "none" }}>
+          <Typography
+            variant="h6"
+            color="primary"
+            sx={{ display: "inline-flex", alignItems: "center" }}
+          >
+            See all campaigns -&gt;
+          </Typography>
+        </Link>
+      </Box>
+      {/* Slider */}
       <Slider {...settings}>
         {campaigns.map((campaign, index) => (
           <CampaignItem
@@ -86,7 +91,6 @@ const CampaignSection: React.FC = () => {
             title={campaign.title}
             description={campaign.description}
             readMoreText={campaign.readMoreText}
-            joinCampaignText={campaign.joinCampaignText}
           />
         ))}
       </Slider>

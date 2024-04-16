@@ -14,7 +14,7 @@ interface CampaignItemProps {
   title: string;
   description: string;
   readMoreText: string;
-  joinCampaignText: string;
+  // joinCampaignText: string;
 }
 
 export const CampaignItem: React.FC<CampaignItemProps> = ({
@@ -22,7 +22,7 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
   title,
   description,
   readMoreText,
-  joinCampaignText,
+  // joinCampaignText,
 }) => {
   const theme = useTheme();
 
@@ -64,7 +64,7 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
               },
             }}
           >
-            {joinCampaignText}
+            {/* {joinCampaignText} */}
           </Button>
         </Stack>
       </CardContent>
