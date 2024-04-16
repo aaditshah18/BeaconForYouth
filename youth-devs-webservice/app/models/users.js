@@ -2,32 +2,43 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-// Define User model
+// Define User/NGO model
 const UserSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true,
   },
-  NgoID: {
-    type: Schema.Types.ObjectId,
-    ref: "Ngo",
-    required: true,
-    unique: false,
-  },
   createdTs: {
     type: Date,
-    required: true,
     default: Date.now,
+    required: true
   },
   updatedTs: {
     type: Date,
-    required: true,
     default: Date.now,
+    required: true
   },
   status: {
     type: String,
     required: true,
-    default: "pending",
+    default: "pending"
   },
 });
 
