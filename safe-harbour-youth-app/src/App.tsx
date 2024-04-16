@@ -9,7 +9,7 @@ import { UIProvider } from './components/header/ui-context';
 import { Outlet } from 'react-router';
 import Footer from './components/Footer/footer';
 import Slider from './components/Slider/hero-slider';
-import AboutUs from './components/Aboutus';
+import AboutUs from './components/AboutUs/about-us';
 import CampaignSection from './components/campaignsec';
 
 function App() {
