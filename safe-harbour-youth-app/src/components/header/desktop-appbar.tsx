@@ -1,6 +1,6 @@
 import { AppbarContainer, MyList, Logo } from "../../styles/appbar-styles";
 import logoImage from '../../../public/images/logo.png';
-import { ListItemText, Button, styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import { Link } from 'react-router-dom';
 
 const ElevatedButton = styled(Button)({
@@ -8,10 +8,27 @@ const ElevatedButton = styled(Button)({
     padding: '10px 20px', // Add padding for better button appearance
     display: 'flex',
     justifyContent: 'center',
+    color: 'var(--white)',
     marginLeft: '20px', // Added from main branch
     boxShadow: '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)', // Add elevation (shadow)
     '&:hover': {
         backgroundColor: 'green', // Change background color on hover
+    },
+});
+
+const StyledListItemText = styled('span')({
+    display: 'inline-block',
+    padding: '6px 12px',
+    '&:hover': {
+        color: 'var(--primary)',
+        cursor: 'pointer'
+    },
+});
+
+const StyledLoginButton = styled(Button)({
+    '&:hover': {
+        backgroundColor: 'var(--secondary)',
+        color: 'var(--white)',
     },
 });
 
@@ -22,15 +39,15 @@ export default function DesktopAppBar() {
                 <img src={logoImage} alt="Logo" style={{ width: '100%' }} />
             </Logo>
             <MyList type="row">
-                <ListItemText primary="Home" />
-                <ListItemText primary="About" />
-                <ListItemText primary="Complaints" />
-                <ListItemText primary="NGO" />
-                <ListItemText primary="Resources" />
-                <ListItemText primary="Donate" />
+                <StyledListItemText>Home</StyledListItemText>
+                <StyledListItemText>About</StyledListItemText>
+                <StyledListItemText>Complaints</StyledListItemText>
+                <StyledListItemText>NGO</StyledListItemText>
+                <StyledListItemText>Resources</StyledListItemText>
+                <StyledListItemText>Donate</StyledListItemText>
             </MyList>
             <Link to="/login" style={{ textDecoration: 'none' }}>
-                <Button variant="outlined" color="secondary">Login</Button>
+                <StyledLoginButton variant="outlined" color="secondary">Login</StyledLoginButton>
             </Link>
             <ElevatedButton variant="contained" color="secondary">
                 File a complaint
