@@ -14,7 +14,26 @@ export const AppbarContainer = styled(Box)(()=> ({
   width: '100%', 
   padding: '2px 0px',
   margin: '0px',
+  height: '85px',
   boxSizing: 'border-box',
+  position: 'sticky',
+  top: 0, 
+  left: 0,
+  zIndex: 1100,
+  background: 'var(--white)',
+  boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)', 
+    
+}))
+
+export const TopbarContainer = styled(Box)(()=> ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end', 
+  width: '100%', 
+  padding: '2px 0px',
+  margin: '0px',
+  boxSizing: 'border-box',
+  background: 'var(--dark)'
     
 }))
 
@@ -31,10 +50,10 @@ export const AppbarContainer = styled(Box)(()=> ({
 
   export const MyList = styled(List)<StyledListProps>(({ type }) => ({
     display: type === 'row' ? 'flex' : 'block',
-    flexGrow: 3,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: '10px',
+    padding: 0
   }));
 
 export const ActionIconContainerDesktop = styled(Box)(() => ({
