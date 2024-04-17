@@ -13,7 +13,7 @@
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
-  --red: #dc3545;
+  --red: #f7021b;
   --orange: #fd7e14;
   --yellow: #ffc107;
   --green: #28a745;
@@ -25,13 +25,15 @@
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
-  --danger: #dc3545;
+  --danger: #9a0606;
   --light: #f8f9fa;
   --dark: #343a40;
 }
 
 body{
   background-color: var(--white);
+  width: 100%;
+  overflow-x: hidden; /* This hides the horizontal overflow */
 }
 
 

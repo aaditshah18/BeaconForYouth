@@ -10,10 +10,12 @@
   "author": "Vinay Sathe, Aadit Shah, Sohin Rais, Sushma K Arun",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.3"
   }
 }

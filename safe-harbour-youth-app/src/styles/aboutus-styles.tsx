@@ -15,7 +15,7 @@ export const Heading = styled(Typography)({
 });
 
 export const StyledCard = styled(Card)({
-  minHeight: '500px',
+  minHeight: '550px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
