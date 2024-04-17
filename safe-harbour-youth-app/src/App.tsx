@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@mui/system';
 import './App.css'
-import { useEffect } from 'react'
+import { useEffect} from 'react';
 import { Container } from '@mui/material';
 import theme from './styles/themes';
 import Appbar from './components/header/appbar';
@@ -15,6 +15,7 @@ import CampaignSection from './components/campaignsec';
 function App() {
   console.log("App component is rendering");
 
+
   useEffect(() => {
     console.log("Changing title");
     document.title = "SafeHarbourYouth";
@@ -24,9 +25,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Container maxWidth={false}  sx={{ background: "#fff" }} disableGutters>
         <UIProvider>
-          <Appbar />
+          <Appbar/>
           <AppDrawer />
-          <Outlet></Outlet>
+          <Outlet />
         </UIProvider>
         <Slider />
         <AboutUs />
