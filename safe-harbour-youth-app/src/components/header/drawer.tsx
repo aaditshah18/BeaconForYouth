@@ -33,10 +33,6 @@ export default function AppDrawer(){
             </ListItemButton>
             <MiddleDivider />
             <ListItemButton>
-              <ListItemText primary="Complaints" />
-            </ListItemButton>
-            <MiddleDivider />
-            <ListItemButton>
               <ListItemText primary="NGO" />
             </ListItemButton>
             <MiddleDivider />

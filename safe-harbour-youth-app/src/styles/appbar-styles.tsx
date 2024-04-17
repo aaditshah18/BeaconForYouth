@@ -8,11 +8,13 @@ interface StyledListProps extends ListProps {
 
 //container
 export const AppbarContainer = styled(Box)(()=> ({
-    display:'flex',
-    marginTop: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '2px 8px'
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between', 
+  width: '100%', 
+  padding: '2px 0px',
+  margin: '0px',
+  boxSizing: 'border-box',
     
 }))
 

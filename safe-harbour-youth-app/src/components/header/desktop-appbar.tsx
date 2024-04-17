@@ -41,7 +41,6 @@ export default function DesktopAppBar() {
             <MyList type="row">
                 <StyledListItemText>Home</StyledListItemText>
                 <StyledListItemText>About</StyledListItemText>
-                <StyledListItemText>Complaints</StyledListItemText>
                 <StyledListItemText>NGO</StyledListItemText>
                 <StyledListItemText>Resources</StyledListItemText>
                 <StyledListItemText>Donate</StyledListItemText>

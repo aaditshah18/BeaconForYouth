@@ -44,11 +44,6 @@ export default function Footer() {
                         </ListItemText>
                         <ListItemText>
                             <Typography lineHeight={2} variant="caption">
-                                Complaint
-                            </Typography>
-                        </ListItemText>
-                        <ListItemText>
-                            <Typography lineHeight={2} variant="caption">
                                 NGO
                             </Typography>
                         </ListItemText>
