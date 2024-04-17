@@ -40,9 +40,23 @@ export default function AppDrawer(){
               <ListItemText primary="Resources" />
             </ListItemButton>
             <MiddleDivider />
-            <ListItemButton>
-              <ListItemText primary="Donate" />
-            </ListItemButton>
+            <Button
+                variant="contained"
+                sx={{
+                    color: 'primary',
+                    backgroundColor: 'var(--white)',
+                    '&:hover': {
+                        backgroundColor: 'var(--orange)',
+                        color: 'var(--white)',
+                    },
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    marginLeft: '10px',
+                    paddingLeft: '15px' ,
+                }}
+                >
+                Donate
+            </Button>
             <MiddleDivider />
             <Button
                 variant="contained"
@@ -54,12 +68,32 @@ export default function AppDrawer(){
                         color: 'var(--white)',
                     },
                     marginTop: '10px',
+                    marginBottom: '10px',
                     marginLeft: '10px',
-                    paddingLeft: '20px' ,
+                    paddingLeft: '15px' ,
                 }}
                 >
                 Login
             </Button>
+            <MiddleDivider />
+            <Button
+                variant="contained"
+                sx={{
+                    color: 'primary',
+                    backgroundColor: 'var(--white)',
+                    '&:hover': {
+                        backgroundColor: 'var(--orange)',
+                        color: 'var(--white)',
+                    },
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    marginLeft: '10px',
+                    paddingLeft: '15px' ,
+                }}
+                >
+                File a Complaint
+            </Button>
+            <MiddleDivider />
           </List>
         </Drawer>
         </>
