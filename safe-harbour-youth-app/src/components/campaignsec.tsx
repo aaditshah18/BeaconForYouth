@@ -66,22 +66,12 @@ const CampaignSection: React.FC = () => {
   };
 
   return (
-    <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "green.100" }}>
-      <Typography variant="h4" component="h1" gutterBottom align="center">
+    <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "var(--secondary)" }}>
+      <Typography variant="h4" component="h1" gutterBottom 
+          sx={{ color: "var(--white)", textAlign: "center" , fontWeight:'bold'}}
+        >
         Our Campaigns
       </Typography>
-      {/* See All Campaigns Link */}
-      <Box textAlign="center" mb={2}>
-        <Link to="/campaigns" style={{ textDecoration: "none" }}>
-          <Typography
-            variant="h6"
-            color="primary"
-            sx={{ display: "inline-flex", alignItems: "center" }}
-          >
-            See all campaigns -&gt;
-          </Typography>
-        </Link>
-      </Box>
       {/* Slider */}
       <Slider {...settings}>
         {campaigns.map((campaign, index) => (
@@ -94,6 +84,17 @@ const CampaignSection: React.FC = () => {
           />
         ))}
       </Slider>
+      {/* See All Campaigns Link */}
+      <Box textAlign="center" mb={2}>
+        <Link to="/campaigns" style={{ textDecoration: "none" }}>
+          <Typography
+            variant="h6"            
+            sx={{ color: "var(--primary)", display: "inline-flex", alignItems: "center", mt: 4 }}
+          >
+            See all campaigns -&gt;
+          </Typography>
+        </Link>
+      </Box>
     </Box>
   );
 };
