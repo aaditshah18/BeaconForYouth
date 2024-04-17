@@ -6,20 +6,24 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   phone: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
@@ -28,17 +32,17 @@ const UserSchema = new Schema({
   createdTs: {
     type: Date,
     default: Date.now,
-    required: true
+    required: true,
   },
   updatedTs: {
     type: Date,
     default: Date.now,
-    required: true
+    required: true,
   },
   status: {
     type: String,
     required: true,
-    default: "pending"
+    default: "pending",
   },
 });
 
