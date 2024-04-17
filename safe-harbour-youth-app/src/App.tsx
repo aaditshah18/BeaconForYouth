@@ -10,7 +10,6 @@ import { Outlet } from 'react-router';
 import Footer from './components/Footer/footer';
 import Slider from './components/Slider/hero-slider';
 import AboutUs from './components/AboutUs/about-us';
-//import AboutUs from "./components/Aboutus";
 import CampaignSection from './components/campaignsec';
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xl" sx={{ background: "#fff" }}>
+      <Container maxWidth={false}  sx={{ background: "#fff" }} disableGutters>
         <UIProvider>
           <Appbar />
           <AppDrawer />

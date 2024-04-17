@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../../styles/slider.css';
+import '../../styles/scss/slider.scss';
 
 const Slider = () => {
   return (
     <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img className="d-block w-100" src="/images/complaint.jpg" alt="Complaint"/>
+          <img className="d-block w-100" src="/images/complain.png" alt="Complaint"/>
           <div className="carousel-caption">
             <h5>Raise your voice</h5>
             <p>File a complaint if you have experienced or witnessed any form of violence. Your feedback helps us improve our services and support for those in need.</p>

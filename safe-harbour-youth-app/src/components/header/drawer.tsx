@@ -33,19 +33,11 @@ export default function AppDrawer(){
             </ListItemButton>
             <MiddleDivider />
             <ListItemButton>
-              <ListItemText primary="Complaints" />
-            </ListItemButton>
-            <MiddleDivider />
-            <ListItemButton>
               <ListItemText primary="NGO" />
             </ListItemButton>
             <MiddleDivider />
             <ListItemButton>
               <ListItemText primary="Resources" />
-            </ListItemButton>
-            <MiddleDivider />
-            <ListItemButton>
-              <ListItemText primary="Donate" />
             </ListItemButton>
             <MiddleDivider />
             <Button
@@ -58,12 +50,50 @@ export default function AppDrawer(){
                         color: 'var(--white)',
                     },
                     marginTop: '10px',
+                    marginBottom: '10px',
                     marginLeft: '10px',
-                    paddingLeft: '20px' ,
+                    paddingLeft: '15px' ,
+                }}
+                >
+                Donate
+            </Button>
+            <MiddleDivider />
+            <Button
+                variant="contained"
+                sx={{
+                    color: 'primary',
+                    backgroundColor: 'var(--white)',
+                    '&:hover': {
+                        backgroundColor: 'var(--orange)',
+                        color: 'var(--white)',
+                    },
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    marginLeft: '10px',
+                    paddingLeft: '15px' ,
                 }}
                 >
                 Login
             </Button>
+            <MiddleDivider />
+            <Button
+                variant="contained"
+                sx={{
+                    color: 'primary',
+                    backgroundColor: 'var(--white)',
+                    '&:hover': {
+                        backgroundColor: 'var(--orange)',
+                        color: 'var(--white)',
+                    },
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    marginLeft: '10px',
+                    paddingLeft: '15px' ,
+                }}
+                >
+                File a Complaint
+            </Button>
+            <MiddleDivider />
           </List>
         </Drawer>
         </>

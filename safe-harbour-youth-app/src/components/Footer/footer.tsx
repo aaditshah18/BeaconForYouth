@@ -11,40 +11,38 @@ export default function Footer() {
             sx={{ 
                 background: 'var(--dark)',
                 color: 'var(--white)',
-                p: { xs: 4, md: 10 },
-                pt: 12,
-                pb: 12,
+                pt: 8,
+                pb: 2,
+                px: 2,
                 fontSize: { xs: '12px', md: '14px' },
                 width: '100%',
                 borderTop: '1px solid rgba(255, 255, 255, 0.12)',
             }}
         >
             <Grid container spacing={2} justifyContent="center">
-                <Grid item md={6} lg={4}>
-                    <FooterTitle variant="body1">About</FooterTitle>
-                    <Typography variant="caption">
+                <Grid item xs={12} sm={7} md={3}>
+                    <FooterTitle variant="body1" sx={{fontWeight: 'bold'}}>About</FooterTitle>
+                    <Typography variant="caption" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem' } }}>
                     Safe Harbour Youth is committed to empowering youth and preventing violence. Join us in creating a safer future for all.
                     </Typography>
                     <Box sx={{
                         mt: 4,
-                        color: 'var(--white)' 
+                        color: 'var(--primary)', 
+                        '& svg': {
+                          fontSize: { xs: '1.2rem', md: '1.5rem' } // Adjust icon size responsively
+                        }
                     }}>
                         <FacebookIcon sx={{mr: 1}}/>
                         <TwitterIcon sx={{mr: 1}}/>
                         <InstagramIcon sx={{mr: 1}}/>
                     </Box>
                 </Grid>
-                <Grid item md={6} lg={2}>
-                    <FooterTitle variant="body1">Information</FooterTitle>
+                <Grid item xs={12} sm={7} md={3} sx={{ ml: { md: 6 } }}>
+                    <FooterTitle variant="body1" sx={{fontWeight: 'bold'}}>Explore</FooterTitle>
                     <List>
                         <ListItemText>
                             <Typography lineHeight={2} variant="caption">
                                 About
-                            </Typography>
-                        </ListItemText>
-                        <ListItemText>
-                            <Typography lineHeight={2} variant="caption">
-                                Complaint
                             </Typography>
                         </ListItemText>
                         <ListItemText>
@@ -62,11 +60,6 @@ export default function Footer() {
                                 Donation
                             </Typography>
                         </ListItemText>
-                    </List>
-                </Grid>
-                <Grid item md={6} lg={2}>
-                    <FooterTitle variant="body1">Quick Links</FooterTitle>
-                    <List>
                         <ListItemText>
                             <Typography lineHeight={2} variant="caption">
                                 Login
@@ -79,8 +72,8 @@ export default function Footer() {
                         </ListItemText>
                     </List>
                 </Grid>
-                <Grid item md={6} lg={4}>
-                    <FooterTitle variant="body1">Newsletter</FooterTitle>
+                <Grid item xs={12} sm={7} md={3}>
+                    <FooterTitle variant="body1" sx={{fontWeight: 'bold'}}>Newsletter</FooterTitle>
                     <Stack>
                         <SubscrieTF 
                             label="Email address"
@@ -97,6 +90,12 @@ export default function Footer() {
                 </Grid>
 
             </Grid>
+            {/* Copyright Notice */}
+            <Box sx={{ pt: 4, pb: 2, textAlign: 'center' }}>
+                <Typography variant="caption">
+                    © 2024 Youth Devs - Aadit, Sohni, Sushma, Vinay
+                </Typography>
+            </Box>
         </Box>
     );
 }

@@ -4,6 +4,7 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  Box,
   Button,
   Stack,
   useTheme,
@@ -27,20 +28,21 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
   const theme = useTheme();
 
   return (
+    <Box display="flex" justifyContent="center">
     <Card
       sx={{
         maxWidth: 345,
         m: 2,
-        bgcolor: theme.palette.background.paper, // Use a theme color for the background or a custom one
-        boxShadow: 1, // Adjust box shadow as needed
+        background: theme.palette.background.paper, // Use a theme color for the background or a custom one
+        boxShadow: 2,
         "&:hover": {
-          boxShadow: 3, // Adjust hover box shadow as needed
+          boxShadow: 3,
         },
       }}
     >
       <CardMedia
         component="img"
-        sx={{ height: 180, objectFit: "cover" }} // 'cover' will ensure the image covers the area without stretching
+        sx={{ height: 180, objectFit: "cover" }}
         image={imageUrl}
         alt={title}
       />
@@ -69,5 +71,6 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
         </Stack>
       </CardContent>
     </Card>
+  </Box>
   );
 };
