@@ -12,6 +12,7 @@ import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
 import NGOLists from "./components/NGOLists";
+import TrackComplaint from "./components/trackComplaint.tsx";
 
 function App() {
   console.log("App component is rendering");
@@ -33,6 +34,7 @@ function App() {
         <AboutUs />
         <CampaignSection />
         <NGOLists />
+        <TrackComplaint />
         <Footer />
       </Container>
     </ThemeProvider>
