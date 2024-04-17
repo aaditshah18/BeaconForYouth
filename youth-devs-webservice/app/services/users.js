@@ -1,10 +1,10 @@
-const bcrypt = require("bcrypt");
+// import bcrypt from bcrypt;
 import User from "../models/users.js";
 
-const jwt = require("jsonwebtoken");
-const EMAIL_REGEX = /^[a-zA-Z](\.?[a-zA-Z]){2,}@northeastern\.edu$/;
-const NAME_REGEX = /^[a-z ,.'-]+$/i;
-const { generateMongoId, checkPassword } = require("../utils");
+import jwt from "jsonwebtoken";
+// const EMAIL_REGEX = /^[a-zA-Z](\.?[a-zA-Z]){2,}@northeastern\.edu$/;
+// const NAME_REGEX = /^[a-z ,.'-]+$/i;
+import { generateMongoId, checkPassword } from "../utils.js";
 
 export const handleLogin = async (payload) => {
   if (payload.email === undefined) {
@@ -16,7 +16,7 @@ export const handleLogin = async (payload) => {
   }
 
   const existedUsers = await User.find({ email: payload.email });
-
+  console.log("LETSGO");
   if (existedUsers.length === 0) {
     throw new Error("User does not exist");
   } else if (!checkPassword(payload.password, existedUsers[0].password)) {
@@ -24,13 +24,13 @@ export const handleLogin = async (payload) => {
   }
 
   const result = (
-    await User.findOne({ email: payload.email }).select("-password -image")
+    await User.findOne({ email: payload.email }).select("-password")
   ).toObject();
-
+  console.log(result);
   return {
-    firstName: result.firstName,
+    name: result.name,
     token: jwt.sign(result, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60 * 24 * process.env.JWT_EXPIRES_IN,
+      expiresIn: 60 * 60 * process.env.JWT_EXPIRES_IN,
     }),
   };
 };

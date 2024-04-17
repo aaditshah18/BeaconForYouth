@@ -2,15 +2,16 @@ import { setResponse } from "./response-handler.js";
 
 import { handleLogin } from "../services/users.js";
 
-export const login = async (request, response) => {
+export const post = async (request, response) => {
+  console.log(request.body);
   try {
     const loginData = await handleLogin(request.body);
-    setResponse(loginData, response);
+    // setResponse(loginData, response);
 
     response.status(200).json({
-      msg: `Welcome, ${data.firstName}.`,
-      data: {
-        token: data.token,
+      msg: `Welcome, ${loginData.name}.`,
+      loginData: {
+        token: loginData.token,
       },
       result: true,
     });

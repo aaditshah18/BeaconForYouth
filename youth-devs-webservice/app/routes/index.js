@@ -1,5 +1,6 @@
 import complaintsRouter from "./complaints.js";
 import ngoRouter from "./ngo.js";
+import userRouter from "./users.js";
 
 const initializeRoutes = (app) => {
   app.use("/complaints", complaintsRouter);
