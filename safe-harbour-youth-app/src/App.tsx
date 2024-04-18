@@ -11,7 +11,7 @@ import Footer from "./components/Footer/footer";
 import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
-import NGOLists from "./components/NGOLists";
+import NGOLists from "./components/NGOLists";  // Added this line from the main branch
 
 function App() {
   console.log("App component is rendering");
@@ -23,16 +23,16 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth={false}  sx={{ background: "#fff" }} disableGutters>
+      <Container maxWidth={false} sx={{ background: "#fff" }} disableGutters>
         <UIProvider>
           <Appbar />
           <AppDrawer />
-          <Outlet></Outlet>
+          <Outlet />
         </UIProvider>
         <Slider />
         <AboutUs />
         <CampaignSection />
-        <NGOLists />
+        <NGOLists />  // Ensure this component is included in the layout
         <Footer />
       </Container>
     </ThemeProvider>
