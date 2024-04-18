@@ -16,7 +16,6 @@ export const handleLogin = async (payload) => {
   }
 
   const existedUsers = await User.find({ email: payload.email });
-  console.log("LETSGO");
   if (existedUsers.length === 0) {
     throw new Error("User does not exist");
   } else if (!checkPassword(payload.password, existedUsers[0].password)) {
@@ -26,7 +25,6 @@ export const handleLogin = async (payload) => {
   const result = (
     await User.findOne({ email: payload.email }).select("-password")
   ).toObject();
-  console.log(result);
   return {
     name: result.name,
     token: jwt.sign(result, process.env.JWT_SECRET, {
