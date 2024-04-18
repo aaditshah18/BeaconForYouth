@@ -15,14 +15,14 @@ const authMiddleware = (req, res, next) => {
   // protected paths need to be authorized by token
   const authorizationHeader = req.get("Authorization");
 
-  if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+  if (!authorizationHeader || !authorizationHeader.startsWith("JWT ")) {
     return res.status(401).json({
       result: false,
       message: "Invalid authorization header",
     });
   }
 
-  const token = authorizationHeader.replace("Bearer ", "");
+  const token = authorizationHeader.replace("JWT ", "");
 
   if (!token) {
     return res.status(401).json({
@@ -37,7 +37,7 @@ const authMiddleware = (req, res, next) => {
   } catch (err) {
     return res.status(401).json({
       result: false,
-      message: "Invalid token",
+      message: "Invalid Token",
     });
   }
 };
