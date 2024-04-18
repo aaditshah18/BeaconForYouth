@@ -3,7 +3,6 @@ import { setResponse } from "./response-handler.js";
 import { handleLogin } from "../services/users.js";
 
 export const post = async (request, response) => {
-  console.log(request.body);
   try {
     const loginData = await handleLogin(request.body);
     // setResponse(loginData, response);
