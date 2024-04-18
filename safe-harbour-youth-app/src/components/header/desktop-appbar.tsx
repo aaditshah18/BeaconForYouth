@@ -1,20 +1,21 @@
 import React from "react";
-import { AppbarContainer, MyList, Logo } from "../../styles/appbar-styles";
-import logoImage from "../../../public/images/logo.png";
-import { Button, styled } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Button, styled } from "@mui/material";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { AppbarContainer, MyList, Logo, TopbarContainer } from "../../styles/appbar-styles";
+import logoImage from "../../../public/images/logo.png";
 
 const ElevatedButton = styled(Button)({
-  borderRadius: "20px", // Set border radius to make ends rounded
-  padding: "10px 20px", // Add padding for better button appearance
+  borderRadius: "20px",
+  padding: "10px 20px",
   display: "flex",
   justifyContent: "center",
   color: "var(--white)",
-  marginLeft: "20px", // Added from main branch
+  marginLeft: "auto",  // Merged style to align it right as per main branch suggestion
   boxShadow:
-    "0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)", // Add elevation (shadow)
+    "0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)",
   "&:hover": {
-    backgroundColor: "green", // Change background color on hover
+    backgroundColor: "green",
   },
 });
 
@@ -32,6 +33,9 @@ const StyledLoginButton = styled(Button)({
     backgroundColor: "var(--secondary)",
     color: "var(--white)",
   },
+  textDecoration: 'none', // Maintaining no text decoration from the main branch
+  marginTop: '3px',
+  marginBottom: '3px',
 });
 
 const DonateButton = styled(Button)({
@@ -52,31 +56,35 @@ const DonateButton = styled(Button)({
 
 export default function DesktopAppBar() {
   return (
-    <AppbarContainer>
-      <Logo>
-        <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
-      </Logo>
-      <MyList type="row">
-        <StyledListItemText>Home</StyledListItemText>
-        <StyledListItemText>About</StyledListItemText>
-        <StyledListItemText>Complaints</StyledListItemText>
-        <StyledListItemText>NGO</StyledListItemText>
-        <StyledListItemText>Resources</StyledListItemText>
-        <StyledListItemText>Donate</StyledListItemText>
-      </MyList>
-      <Link to="/login" style={{ textDecoration: "none" }}>
-        <StyledLoginButton variant="outlined" color="secondary">
-          Login
-        </StyledLoginButton>
-      </Link>
-      <Link to="../complaintform" style={{ textDecoration: "none" }}>
-        {/* Update the to prop to the route path */}{" "}
-        <ElevatedButton variant="contained" color="secondary">
-          File a complaint{" "}
-        </ElevatedButton>{" "}
-      </Link>
-    </AppbarContainer>
+    <>
+      <TopbarContainer>
+        <div style={{ marginLeft: 'auto', display: 'flex' }}>
+          <StyledLoginButton variant="outlined" color="secondary">Login</StyledLoginButton>
+          <DonateButton variant="contained" startIcon={<FavoriteIcon />}>Donate</DonateButton>
+        </div>
+      </TopbarContainer>
+      <AppbarContainer>
+        <Logo>
+          <img src={logoImage} alt="Logo" style={{ width: '100%' }} />
+        </Logo>
+        <MyList type="row">
+          <Link to="home" style={{ textDecoration: 'none' }}>
+            <StyledListItemText>Home</StyledListItemText>
+          </Link>
+          <Link to="about" style={{ textDecoration: 'none' }}>
+            <StyledListItemText>About</StyledListItemText>
+          </Link>
+          <StyledListItemText>Complaints</StyledListItemText>  // Kept from HomePagesection
+          <StyledListItemText>NGO</StyledListItemText>
+          <StyledListItemText>Resources</StyledListItemText>
+          <StyledListItemText>Donate</StyledListItemText>
+        </MyList>
+        <div style={{ marginLeft: 'auto' }}>
+          <Link to="file-complaint" style={{ textDecoration: "none" }}>
+            <ElevatedButton variant="contained" color="secondary">File a complaint</ElevatedButton>
+          </Link>
+        </div>
+      </AppbarContainer>
+    </>
   );
 }
-
-//

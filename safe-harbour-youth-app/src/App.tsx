@@ -11,8 +11,8 @@ import Footer from "./components/Footer/footer";
 import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
-import NGOLists from "./components/NGOLists";
-import TrackComplaint from "./components/trackComplaint.tsx";
+import NGOLists from "./components/NGOLists";  // Retaining this line since both branches include it
+import TrackComplaint from "./components/trackComplaint.tsx"; // Added from the HomePagesection branch
 
 function App() {
   console.log("App component is rendering");
@@ -24,17 +24,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth={false}  sx={{ background: "#fff" }} disableGutters>
+      <Container maxWidth={false} sx={{ background: "#fff" }} disableGutters>
         <UIProvider>
           <Appbar />
           <AppDrawer />
-          <Outlet></Outlet>
+          <Outlet />
         </UIProvider>
         <Slider />
         <AboutUs />
         <CampaignSection />
-        <NGOLists />
-        <TrackComplaint />
+        <NGOLists />  // Component included as per both branches
+        <TrackComplaint />  // Additional component from HomePagesection
         <Footer />
       </Container>
     </ThemeProvider>
@@ -42,60 +42,3 @@ function App() {
 }
 
 export default App;
-
-// import { ThemeProvider } from "@mui/system";
-// import "./App.css";
-// import { useEffect } from "react";
-// import { Container } from "@mui/material";
-// import theme from "./styles/themes";
-// import Appbar from "./components/header/appbar";
-// import AppDrawer from "./components/header/drawer";
-// import { UIProvider } from "./components/header/ui-context";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Footer from "./components/Footer/footer";
-// import Slider from "./components/Slider/hero-slider";
-// import AboutUs from "./components/AboutUs/about-us";
-// import CampaignSection from "./components/campaignsec";
-// import NGOLists from "./components/NGOLists";
-// import TrackComplaint from "./components/trackComplaint";
-// import ComplaintForm from "./components/complaintform";
-
-// function App() {
-//   useEffect(() => {
-//     document.title = "SafeHarbourYouth";
-//   }, []);
-
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <Router>
-//         <Container maxWidth="xl" sx={{ background: "#fff" }}>
-//           <Appbar />
-//           <Routes>
-//             <Route
-//               path="./components/Slider/hero-slider"
-//               element={<Slider />}
-//             />
-//             <Route path="./components/AboutUs/about-us" element={<AboutUs />} />
-//             <Route
-//               path="./components/campaignsec"
-//               element={<CampaignSection />}
-//             />
-//             <Route path="./components/NGOLists" element={<NGOLists />} />
-//             <Route
-//               path="./components/trackComplaint"
-//               element={<TrackComplaint />}
-//             />
-//             <Route
-//               path="./components/complaintform"
-//               element={<ComplaintForm />}
-//             />
-//             {/* Define more routes as needed */}
-//           </Routes>
-//           <Footer />
-//         </Container>
-//       </Router>
-//     </ThemeProvider>
-//   );
-// }
-
-// export default App;
