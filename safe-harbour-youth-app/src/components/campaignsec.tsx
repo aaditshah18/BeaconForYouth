@@ -74,9 +74,12 @@ const CampaignSection: React.FC = () => {
 
   return (
     <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "var(--secondary)" }}>
-      <Typography variant="h4" component="h1" gutterBottom 
-          sx={{ color: "var(--white)", textAlign: "center" , fontWeight:'bold'}}
-        >
+      <Typography
+        variant="h4"
+        component="h1"
+        gutterBottom
+        sx={{ color: "var(--white)", textAlign: "center", fontWeight: "bold" }}
+      >
         Our Campaigns
       </Typography>
       {/* Slider */}
@@ -95,8 +98,13 @@ const CampaignSection: React.FC = () => {
       <Box textAlign="center" mb={2}>
         <Link to="/campaigns" style={{ textDecoration: "none" }}>
           <Typography
-            variant="h6"            
-            sx={{ color: "var(--primary)", display: "inline-flex", alignItems: "center", mt: 4 }}
+            variant="h6"
+            sx={{
+              color: "var(--primary)",
+              display: "inline-flex",
+              alignItems: "center",
+              mt: 4,
+            }}
           >
             See all campaigns -&gt;
           </Typography>

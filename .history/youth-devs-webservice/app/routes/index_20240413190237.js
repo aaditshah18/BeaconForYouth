@@ -1,8 +1,7 @@
-import webServiceRouter from './web-service-routes.js';
-
+import webServiceRouter from "./web-service-routes.js";
 
 const initializeRoutes = (app) => {
-  app.use('/api/v1', webServiceRouter);
-}
+  app.use("/api/v1", webServiceRouter);
+};
 
 export default initializeRoutes;

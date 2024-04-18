@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: The SafeHarbourYouth Admin Website API
   description: REST API for managing NGOs and complaints for the admin of SafeHarbourYouth website.
-  version: 'v1.0'
+  version: "v1.0"
 servers:
   - url: http://safeharbouryouth.com/api/v1
 paths:
@@ -11,14 +11,14 @@ paths:
       summary: List NGOs
       description: Retrieves a list of NGOs.
       responses:
-        '200':
+        "200":
           description: Successful retrieval of NGOs
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ngo'
+                  $ref: "#/components/schemas/Ngo"
 
   /ngos/{ngoId}/status:
     patch:
@@ -31,7 +31,7 @@ paths:
           required: true
           schema:
             type: integer
-            examples: 
+            examples:
               - 111
       requestBody:
         required: true
@@ -43,16 +43,16 @@ paths:
                 status:
                   type: string
                   enum: [active, inactive]
-                  examples: 
+                  examples:
                     - active
       responses:
-        '200':
+        "200":
           description: NGO status updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ngo'
-        '404':
+                $ref: "#/components/schemas/Ngo"
+        "404":
           description: NGO not found
           content:
             application/json:
@@ -65,10 +65,8 @@ paths:
                       - NGO does not exist
                   code:
                     type: integer
-                    examples: 
+                    examples:
                       - 404
-
-
 
 components:
   schemas:
@@ -77,35 +75,35 @@ components:
       properties:
         id:
           type: integer
-          examples: 
+          examples:
             - 111
         name:
           type: string
-          examples: 
+          examples:
             - ABC NGO
         streetAddress:
-            type: string
-            examples: 
-              - Fenway 74
+          type: string
+          examples:
+            - Fenway 74
         city:
-         type: string
-         examples: 
+          type: string
+          examples:
             - Boston
         state:
           type: string
-          examples: 
+          examples:
             - Masachusetts
         country:
           type: string
-          examples: 
+          examples:
             - USA
         zipCode:
           type: string
-          examples: 
+          examples:
             - 02115
         phone:
           type: string
-          examples: 
+          examples:
             - 987654321
         email:
           type: string
@@ -115,5 +113,5 @@ components:
         status:
           type: string
           enum: [active, inactive]
-          examples: 
+          examples:
             - active

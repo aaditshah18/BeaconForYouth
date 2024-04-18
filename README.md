@@ -1,6 +1,6 @@
 ## Project Title: **SafeHarbourYouth**
 
-## Description  
+## Description
 
 1. **Youth Connect Portal:**
    Welcome to our Youth Connect Portal, a safe and confidential space for young individuals to reach out, seek support, and lodge complaints regarding any form of abuse or violence they may have experienced. Through this platform, youth can connect with our trusted partner NGOs who are dedicated to providing assistance, guidance, and resources to help navigate through challenging situations. Your voice matters, and here, you will find a community ready to listen, support, and advocate for your well-being.
@@ -13,10 +13,10 @@
 
 ## Team Member Emails
 
-   Sohni Rais: <rais.s@northeastern.edu>
-   Vinay Shivram Sathe: <sathe.v@northeastern.edu>
-   Sushma Kunjangada Arun: <kunjangadaarun.s@northeastern.edu>
-   Aadit Samir Shah: <shah.aadit1@northeastern.edu>
+Sohni Rais: <rais.s@northeastern.edu>
+Vinay Shivram Sathe: <sathe.v@northeastern.edu>
+Sushma Kunjangada Arun: <kunjangadaarun.s@northeastern.edu>
+Aadit Samir Shah: <shah.aadit1@northeastern.edu>
 
 # Object Model
 
@@ -26,12 +26,12 @@ Object Model for SafeHarbourYouth
 ---
 classDiagram
     class Person{
- 
+
     }
     class Admin{
         + int ID
         + String username
-        + String password                           
+        + String password
     }
     class Ngo{
         + int ID
@@ -46,11 +46,11 @@ classDiagram
         + String contactNumber
         + String email
     }
-    class ComplainRegister{                        
+    class ComplainRegister{
         + User user
         + Ngo ngo
         + Address address
-        + String description                        
+        + String description
     }
     class Address{
         + String streetAddress
@@ -59,20 +59,20 @@ classDiagram
         + String country
         + String postalCode
     }
-    
-    Person <|-- Admin 
-    Person <|-- Ngo 
-    Person <|-- User  
-    
-    ComplainRegister "*" --> "1" Ngo 
-    ComplainRegister "*" --> "1" User 
-    ComplainRegister "*" --> "1" Address 
-    
-    Admin "1" --> "*" Ngo 
-    Admin "*" --> "*" ComplainRegister 
-    
-    Ngo "1" *-- "1" Address 
-    User "*" --> "1" Address 
 
- 
+    Person <|-- Admin
+    Person <|-- Ngo
+    Person <|-- User
+
+    ComplainRegister "*" --> "1" Ngo
+    ComplainRegister "*" --> "1" User
+    ComplainRegister "*" --> "1" Address
+
+    Admin "1" --> "*" Ngo
+    Admin "*" --> "*" ComplainRegister
+
+    Ngo "1" *-- "1" Address
+    User "*" --> "1" Address
+
+
 ```

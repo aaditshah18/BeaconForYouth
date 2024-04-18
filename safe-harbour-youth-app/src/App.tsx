@@ -11,7 +11,7 @@ import Footer from "./components/Footer/footer";
 import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
-import NGOLists from "./components/NGOLists";  // Retaining this line since both branches include it
+import NGOLists from "./components/NGOLists"; // Retaining this line since both branches include it
 import TrackComplaint from "./components/trackComplaint.tsx"; // Added from the HomePagesection branch
 
 function App() {
@@ -33,8 +33,8 @@ function App() {
         <Slider />
         <AboutUs />
         <CampaignSection />
-        <NGOLists />  // Component included as per both branches
-        <TrackComplaint />  // Additional component from HomePagesection
+        <NGOLists />
+        <TrackComplaint />
         <Footer />
       </Container>
     </ThemeProvider>
