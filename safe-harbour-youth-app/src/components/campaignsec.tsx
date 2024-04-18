@@ -34,7 +34,14 @@ const campaigns = [
     readMoreText: "Learn How to Help",
     // joinCampaignText: "Join Campaign",
   },
-  // ... Add more campaigns as needed
+  {
+    imageUrl: "../images/campban2.jpeg",
+    title:
+      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
+    description: "Help us bring awareness and support to those in need.",
+    readMoreText: "Learn How to Help",
+    // joinCampaignText: "Join Campaign",
+  },
 ];
 
 const CampaignSection: React.FC = () => {
