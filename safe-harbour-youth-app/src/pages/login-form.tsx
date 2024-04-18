@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 
-interface Props {
-
-}
+interface Props {}
 
 const LoginForm = (props: Props) => {
   return (

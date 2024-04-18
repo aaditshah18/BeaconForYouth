@@ -4,7 +4,7 @@ info:
   description: API for submitting complaints to NGOs. This endpoint is specifically designed to capture the complaints from youths, store them, and forward them to the relevant NGO based on the user's location.
   version: "1.0.0"
 servers:
-  - url: 'https://safeharbouryouth.com/api/v1'
+  - url: "https://safeharbouryouth.com/api/v1"
     description: Main server that hosts the Complaint Submission API
 paths:
   /submit-Complaint/:
@@ -20,7 +20,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ComplaintForm'
+              $ref: "#/components/schemas/ComplaintForm"
             examples:
               ComplaintFormExample:
                 value:
@@ -36,12 +36,12 @@ paths:
                   descriptionOfComplaint: "Description of the issue faced by the youth."
                   ngoId: 42
       responses:
-        '200':
+        "200":
           description: Complaint submitted successfully with the details of the complaint returned, including a unique complaint ID and the initial status.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ComplaintResponse'
+                $ref: "#/components/schemas/ComplaintResponse"
               examples:
                 ComplaintResponseExample:
                   value:
@@ -58,23 +58,23 @@ paths:
                     ngoId: 42
                     complaintId: "12345"
                     status: "Pending"
-        '400':
+        "400":
           description: Invalid input provided in the request body.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 MissingFieldExample:
                   value:
                     message: "Missing required field: lastName"
                     code: 400
-        '500':
+        "500":
           description: An error occurred on the server while processing the complaint submission.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 InternalServerErrorExample:
                   value:
@@ -112,7 +112,7 @@ components:
           type: string
           format: email
           example: "jane.doe@google.com"
-        street: 
+        street:
           type: string
           example: "Park drive st."
         city:
@@ -147,7 +147,7 @@ components:
           type: string
         street:
           type: string
-        city: 
+        city:
           type: string
         state:
           type: string

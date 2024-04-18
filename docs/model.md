@@ -1,18 +1,17 @@
-# Object Model 
- 
- 
+# Object Model
+
 ```mermaid
 ---
 Object Model for SafeHarbourYouth
 ---
 classDiagram
     class Person{
- 
+
     }
     class Admin{
         + int ID
         + String username
-        + String password                           
+        + String password
     }
     class Ngo{
         + int ID
@@ -27,11 +26,11 @@ classDiagram
         + String contactNumber
         + String email
     }
-    class ComplainRegister{                        
+    class ComplainRegister{
         + User user
         + Ngo ngo
         + Address address
-        + String description                        
+        + String description
     }
     class Address{
         + String streetAddress
@@ -40,20 +39,20 @@ classDiagram
         + String country
         + String postalCode
     }
-    
-    Person <|-- Admin 
-    Person <|-- Ngo 
-    Person <|-- User  
-    
-    ComplainRegister "*" --> "1" Ngo 
-    ComplainRegister "*" --> "1" User 
-    ComplainRegister "*" --> "1" Address 
-    
-    Admin "1" --> "*" Ngo 
-    Admin "*" --> "*" ComplainRegister 
-    
-    Ngo "1" *-- "1" Address 
-    User "*" --> "1" Address 
 
- 
+    Person <|-- Admin
+    Person <|-- Ngo
+    Person <|-- User
+
+    ComplainRegister "*" --> "1" Ngo
+    ComplainRegister "*" --> "1" User
+    ComplainRegister "*" --> "1" Address
+
+    Admin "1" --> "*" Ngo
+    Admin "*" --> "*" ComplainRegister
+
+    Ngo "1" *-- "1" Address
+    User "*" --> "1" Address
+
+
 ```

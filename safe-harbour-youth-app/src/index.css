@@ -1,12 +1,12 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Colors and styling */
-:root{ 
+:root {
   --primary: #f8b864;
   --secondary: #82b440;
   --blue: #007bff;
@@ -30,10 +30,8 @@
   --dark: #343a40;
 }
 
-body{
+body {
   background-color: var(--white);
   width: 100%;
   overflow-x: hidden; /* This hides the horizontal overflow */
 }
-
-
