@@ -10,6 +10,7 @@ import { styled } from "@mui/system";
 import { useUIContext } from "./ui-context";
 import { DrawerCloseButton } from "../../styles/appbar-styles";
 import CloseIcon from "@mui/icons-material/Close";
+import { Link } from "react-router-dom";
 
 const MiddleDivider = styled((props) => (
   <Divider variant="middle" {...props} />
@@ -66,23 +67,25 @@ export default function AppDrawer() {
             Donate
           </Button>
           <MiddleDivider />
-          <Button
-            variant="contained"
-            sx={{
-              color: "primary",
-              backgroundColor: "var(--white)",
-              "&:hover": {
-                backgroundColor: "var(--orange)",
-                color: "var(--white)",
-              },
-              marginTop: "10px",
-              marginBottom: "10px",
-              marginLeft: "10px",
-              paddingLeft: "15px",
-            }}
-          >
-            Login
-          </Button>
+          <Link to="../login">
+            <Button
+              variant="contained"
+              sx={{
+                color: "primary",
+                backgroundColor: "var(--white)",
+                "&:hover": {
+                  backgroundColor: "var(--orange)",
+                  color: "var(--white)",
+                },
+                marginTop: "10px",
+                marginBottom: "10px",
+                marginLeft: "10px",
+                paddingLeft: "15px",
+              }}
+            >
+              Login
+            </Button>
+          </Link>
           <MiddleDivider />
           <Button
             variant="contained"

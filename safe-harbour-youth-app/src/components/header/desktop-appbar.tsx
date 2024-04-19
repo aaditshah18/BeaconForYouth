@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
-import { Button, Dialog, DialogTitle, DialogContent, styled } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  styled,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DonationForm from '../DonationForm'; // Ensure this is correctly imported
+import DonationForm from "../DonationForm"; // Ensure this is correctly imported
 import {
   AppbarContainer,
   MyList,
   Logo,
-  TopbarContainer
+  TopbarContainer,
 } from "../../styles/appbar-styles";
 import logoImage from "../../../public/images/logo.png";
-const stripePromise = loadStripe('pk_test_51P6e09Lt7UXFQWObdOjFW2xh0kGU6fFi3MKNpa11OS29aFwlJpBiRO2G17mqNIWT6AYX9q083TpcKKgBiDjjZVcS00R0h1T9LL');
+const stripePromise = loadStripe(
+  "pk_test_51P6e09Lt7UXFQWObdOjFW2xh0kGU6fFi3MKNpa11OS29aFwlJpBiRO2G17mqNIWT6AYX9q083TpcKKgBiDjjZVcS00R0h1T9LL"
+);
 
 const ElevatedButton = styled(Button)({
   borderRadius: "20px",
@@ -21,7 +29,8 @@ const ElevatedButton = styled(Button)({
   justifyContent: "center",
   color: "var(--white)",
   marginLeft: "auto",
-  boxShadow: "0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)",
+  boxShadow:
+    "0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)",
   "&:hover": { backgroundColor: "green" },
 });
 
@@ -34,7 +43,7 @@ const StyledListItemText = styled("span")({
 const StyledLoginButton = styled(Button)({
   "&:hover": {
     backgroundColor: "var(--secondary)",
-    color: "var(--white)"
+    color: "var(--white)",
   },
   textDecoration: "none",
   marginTop: "3px",
@@ -65,22 +74,40 @@ export default function DesktopAppBar() {
     <>
       <TopbarContainer>
         <div style={{ marginLeft: "auto", display: "flex" }}>
-          <StyledLoginButton variant="outlined" color="secondary">Login</StyledLoginButton>
-          <DonateButton variant="contained" startIcon={<FavoriteIcon />} onClick={handleOpen}>Donate</DonateButton>
+          <Link to="../login">
+            <StyledLoginButton variant="outlined" color="secondary">
+              Login
+            </StyledLoginButton>
+          </Link>
+          <DonateButton
+            variant="contained"
+            startIcon={<FavoriteIcon />}
+            onClick={handleOpen}
+          >
+            Donate
+          </DonateButton>
         </div>
       </TopbarContainer>
       <AppbarContainer>
-        <Logo><img src={logoImage} alt="Logo" style={{ width: "100%" }} /></Logo>
+        <Logo>
+          <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
+        </Logo>
         <MyList type="row">
-          <Link to="home" style={{ textDecoration: "none" }}><StyledListItemText>Home</StyledListItemText></Link>
-          <Link to="about" style={{ textDecoration: "none" }}><StyledListItemText>About</StyledListItemText></Link>
+          <Link to="home" style={{ textDecoration: "none" }}>
+            <StyledListItemText>Home</StyledListItemText>
+          </Link>
+          <Link to="about" style={{ textDecoration: "none" }}>
+            <StyledListItemText>About</StyledListItemText>
+          </Link>
           <StyledListItemText>Complaints</StyledListItemText>
           <StyledListItemText>NGO</StyledListItemText>
           <StyledListItemText>Resources</StyledListItemText>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <Link to="../complaintform" style={{ textDecoration: "none" }}>
-            <ElevatedButton variant="contained" color="secondary">File a complaint</ElevatedButton>
+            <ElevatedButton variant="contained" color="secondary">
+              File a complaint
+            </ElevatedButton>
           </Link>
         </div>
       </AppbarContainer>
