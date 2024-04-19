@@ -8,11 +8,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: App,
-    children: [
-      { path: "login", Component: LoginForm },
-      { path: "register", Component: Register },
-      { path: "complaintform", Component: ComplaintForm },
-    ],
+  },
+  {
+    path: "/login",
+    Component: LoginForm,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
+    path: "/complaintform",
+    Component: ComplaintForm,
   },
 ]);
 
