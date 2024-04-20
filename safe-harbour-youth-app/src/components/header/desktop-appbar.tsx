@@ -99,29 +99,27 @@ export default function DesktopAppBar() {
           </ScrollLink>
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
-
-          </Link>
+          </ScrollLink>
           <StyledListItemText>Complaints</StyledListItemText>
-          {/* <StyledListItemText>NGO</StyledListItemText> */}
 
-          <Link
+          <RouterLink
             to="../ngoInnerpage/ngodetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>NGO</StyledListItemText>
-          </Link>
+          </RouterLink>
 
 
           <StyledListItemText>Resources</StyledListItemText>
 
           {/* <StyledListItemText>Resources</StyledListItemText> */}
 
-          <Link
+          <RouterLink
             to="../resource/campaingdetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>Resource</StyledListItemText>
-          </Link>
+          </RouterLink>
 
         </MyList>
         <div style={{ marginLeft: "auto" }}>
