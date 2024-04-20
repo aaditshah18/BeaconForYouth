@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Link as RouterLink } from 'react-router-dom';
@@ -99,6 +99,7 @@ export default function DesktopAppBar() {
           </ScrollLink>
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
+
           </Link>
           <StyledListItemText>Complaints</StyledListItemText>
           {/* <StyledListItemText>NGO</StyledListItemText> */}
