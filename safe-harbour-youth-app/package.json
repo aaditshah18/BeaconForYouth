@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.15",
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "^3.3.0",
+    "antd": "^5.16.2",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "formik": "^2.4.5",
