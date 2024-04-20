@@ -13,11 +13,6 @@ export const closeDbConnection = async () => {
   process.exit(0);
 };
 
-export const generateMongoId = (raw) => {
-  const { ObjectId } = mongoose.Types;
-  return new ObjectId(raw);
-};
-
-const checkPassword = (password1, password2) => {
+export const checkPassword = (password1, password2) => {
   return bcrypt.compareSync(password1, password2);
 };

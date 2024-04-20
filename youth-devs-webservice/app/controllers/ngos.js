@@ -9,7 +9,6 @@ import { handleCreateUser } from "../services/users.js";
 
 export const search = async (request, response) => {
   try {
-    const queryParams = { ...request.query };
     const searchQuery = {};
     const ngos = await NgoModel.find(searchQuery);
     setResponse(ngos, response);
@@ -25,6 +24,7 @@ export const post = async (request, response) => {
     const result = await handleCreateUser(ngoData);
     setCreateResponse(result, response);
   } catch (error) {
+    console.log(error);
     setError(response);
   }
 };
