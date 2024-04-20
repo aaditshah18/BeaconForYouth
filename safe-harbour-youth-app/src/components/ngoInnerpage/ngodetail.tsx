@@ -17,6 +17,8 @@ import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MapComponent from "./../MapComponent"; //
+import TopbarContainer from "../header/desktop-appbar.tsx";
+import AppbarContainer from "../header/desktop-appbar.tsx";
 
 interface NGO {
   key: string;
@@ -101,7 +103,7 @@ const NGOPage: React.FC = () => {
   );
 
   return (
-    <div>
+    <Box>
       <Card sx={{ marginBottom: 2 }}>
         <CardMedia
           component="img"
@@ -171,7 +173,7 @@ const NGOPage: React.FC = () => {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 

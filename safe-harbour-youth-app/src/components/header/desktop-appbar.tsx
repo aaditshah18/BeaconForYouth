@@ -122,6 +122,9 @@ export default function DesktopAppBar() {
           >
             <StyledListItemText>Resource</StyledListItemText>
           </RouterLink>
+          <Link to="../ngodashboard/ngohome" style={{ textDecoration: "none" }}>
+            <StyledListItemText>NGODashboard</StyledListItemText>
+          </Link>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
