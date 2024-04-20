@@ -100,7 +100,14 @@ export default function DesktopAppBar() {
             <StyledListItemText>About</StyledListItemText>
           </Link>
           <StyledListItemText>Complaints</StyledListItemText>
-          <StyledListItemText>NGO</StyledListItemText>
+          {/* <StyledListItemText>NGO</StyledListItemText> */}
+
+          <Link
+            to="../ngoInnerpage/ngodetail"
+            style={{ textDecoration: "none" }}
+          >
+            <StyledListItemText>NGO</StyledListItemText>
+          </Link>
           <StyledListItemText>Resources</StyledListItemText>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
