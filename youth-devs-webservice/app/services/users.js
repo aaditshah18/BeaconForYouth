@@ -7,7 +7,7 @@ const NAME_REGEX = /^[a-z ,.'-]+$/i;
 import { generateMongoId, checkPassword } from "../utils.js";
 import NgoModel from "../models/ngos.js";
 
-const handleCreateUser = async (payload) => {
+export const handleCreateUser = async (payload) => {
   if (payload.name === undefined) {
     throw new Error("Name cannot be undefined");
   }
@@ -50,7 +50,7 @@ const handleCreateUser = async (payload) => {
     userId: newUser._id,
   });
 
-  return User.find({ email: payload.email }).select("-password");
+  return NgoModel.find({ userId: newUser._id }).select("-password");
 };
 
 export const handleLogin = async (payload) => {
