@@ -71,8 +71,9 @@ export const ActionIconContainerMobile = styled(Box)(() => ({
 }));
 
 export const DrawerCloseButton = styled(IconButton)(() => ({
-  position: "absolute",
+  position: "fixed",
   top: 10,
   right: "250px",
-  zIndex: 1999,
+  zIndex: 2999,
+  color: 'white',
 }));
