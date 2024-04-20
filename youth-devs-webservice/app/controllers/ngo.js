@@ -20,8 +20,8 @@ export const search = async (request, response) => {
 export const post = async (request, response) => {
   try {
     const ngoData = { ...request.body };
-    const newNgo = new NgoModel(ngoData);
-    const savedNgo = await newNgo.save();
+    // Add handle create user logic here
+
     setCreateResponse(savedNgo, response);
   } catch (error) {
     setError(response);
