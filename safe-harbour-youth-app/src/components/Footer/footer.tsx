@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useState } from "react";
 import { Box, Button, Grid, List, ListItemText, Stack, Typography, Dialog, DialogTitle, DialogContent} from "@mui/material";
 import { FooterTitle, SubscrieTF } from "../../styles/footer-styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
