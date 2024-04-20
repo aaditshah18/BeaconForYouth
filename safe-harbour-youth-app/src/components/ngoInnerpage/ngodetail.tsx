@@ -16,8 +16,6 @@ import {
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
-import TopbarContainer from "../header/desktop-appbar.tsx";
-import AppbarContainer from "../header/desktop-appbar.tsx";
 
 interface NGO {
   key: string;
@@ -54,10 +52,10 @@ const data: NGO[] = [
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.augmentColor({
-      color: { main: "#343A40" },
+      color: { main: "#FFCC80" },
       name: "lightOrange",
     }).main, // Use the 'main' property instead of 'lightOrange'
-    color: theme.palette.common.white, // Adjusted for better contrast with light background
+    color: theme.palette.common.black, // Adjusted for better contrast with light background
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 20,
@@ -88,7 +86,7 @@ const NGOPage: React.FC = () => {
   );
 
   return (
-    <Box>
+    <div>
       <Card sx={{ marginBottom: 2 }}>
         <CardMedia
           component="img"
@@ -157,7 +155,7 @@ const NGOPage: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Box>
+    </div>
   );
 };
 
