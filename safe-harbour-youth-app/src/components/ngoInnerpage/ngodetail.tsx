@@ -52,10 +52,10 @@ const data: NGO[] = [
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.augmentColor({
-      color: { main: "#FFCC80" },
+      color: { main: "#343A40" },
       name: "lightOrange",
     }).main, // Use the 'main' property instead of 'lightOrange'
-    color: theme.palette.common.black, // Adjusted for better contrast with light background
+    color: theme.palette.common.white, // Adjusted for better contrast with light background
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 20,
@@ -100,7 +100,8 @@ const NGOPage: React.FC = () => {
         sx={{
           p: 2,
           marginBottom: 2,
-          backgroundColor: " green",
+          backgroundColor: "#82B440",
+          fontWeight: "bold",
           color: "white",
           textAlign: "center", // This aligns the text within the Paper component to the center
         }}
