@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 import {
   Button,
   Dialog,
@@ -10,7 +11,7 @@ import {
   styled,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DonationForm from "../DonationForm"; // Ensure this is correctly imported
+import DonationForm from "../DonationForm"; 
 import {
   AppbarContainer,
   MyList,
@@ -74,11 +75,11 @@ export default function DesktopAppBar() {
     <>
       <TopbarContainer>
         <div style={{ marginLeft: "auto", display: "flex" }}>
-          <Link to="../login">
+          <RouterLink to="/login" style={{ textDecoration: "none" }}>
             <StyledLoginButton variant="outlined" color="secondary">
               Login
             </StyledLoginButton>
-          </Link>
+          </RouterLink>
           <DonateButton
             variant="contained"
             startIcon={<FavoriteIcon />}
@@ -93,25 +94,23 @@ export default function DesktopAppBar() {
           <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
         </Logo>
         <MyList type="row">
-          <Link to="home" style={{ textDecoration: "none" }}>
+          <ScrollLink to="carouselExampleIndicators" style={{ textDecoration: "none" }}>
             <StyledListItemText>Home</StyledListItemText>
-          </Link>
-          <Link to="about" style={{ textDecoration: "none" }}>
+          </ScrollLink>
+          <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
-          </Link>
-          <StyledListItemText>Complaints</StyledListItemText>
-          <StyledListItemText>NGO</StyledListItemText>
+          </ScrollLink>
+          <StyledListItemText>NGOs</StyledListItemText>
           <StyledListItemText>Resources</StyledListItemText>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
-          <Link to="../complaintform" style={{ textDecoration: "none" }}>
+          <RouterLink  to="/complaintform" style={{ textDecoration: "none" }}>
             <ElevatedButton variant="contained" color="secondary">
               File a complaint
             </ElevatedButton>
-          </Link>
+          </RouterLink >
         </div>
       </AppbarContainer>
-      <DonateButton onClick={handleOpen}>Donate</DonateButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Donate to Our Cause</DialogTitle>
         <DialogContent>

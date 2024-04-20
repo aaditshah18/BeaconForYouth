@@ -11,8 +11,8 @@ import Footer from "./components/Footer/footer";
 import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
-import NGOLists from "./components/NGOLists"; // Retaining this line since both branches include it
-import TrackComplaint from "./components/trackComplaint.tsx"; // Added from the HomePagesection branch
+import NGOLists from "./components/NGOLists"; 
+import TrackComplaint from "./components/trackComplaint.tsx"; 
 
 function App() {
   console.log("App component is rendering");
