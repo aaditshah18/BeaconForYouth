@@ -5,6 +5,8 @@ import {
 } from "./response-handler.js";
 import NgoModel from "../models/ngos.js";
 
+import { handleCreateUser } from "../services/users.js";
+
 export const search = async (request, response) => {
   try {
     const queryParams = { ...request.query };
