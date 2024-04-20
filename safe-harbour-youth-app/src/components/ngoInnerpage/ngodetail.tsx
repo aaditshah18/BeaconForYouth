@@ -16,6 +16,8 @@ import {
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
+import TopbarContainer from "../header/desktop-appbar.tsx";
+import AppbarContainer from "../header/desktop-appbar.tsx";
 
 interface NGO {
   key: string;
@@ -86,7 +88,7 @@ const NGOPage: React.FC = () => {
   );
 
   return (
-    <div>
+    <Box>
       <Card sx={{ marginBottom: 2 }}>
         <CardMedia
           component="img"
@@ -95,7 +97,6 @@ const NGOPage: React.FC = () => {
           alt="NGO Banner"
         />
       </Card>
-
       <Paper
         sx={{
           p: 2,
@@ -110,7 +111,6 @@ const NGOPage: React.FC = () => {
           NGOs Associated with Safe Harbour
         </Typography>
       </Paper>
-
       <TextField
         label="Search NGOs by Name or Location"
         variant="outlined"
@@ -157,7 +157,7 @@ const NGOPage: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   );
 };
 

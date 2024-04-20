@@ -5,6 +5,7 @@ import Register from "./pages/register";
 import ComplaintForm from "./components/complaintform";
 import ngodetail from "./components/ngoInnerpage/ngodetail";
 import CampaignsPage from "./components/resource/campaingdetail";
+import NGOAdminPanel from "./components/ngodashboard/ngohome";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
 {
   path: "resource/campaingdetail",
   Component: CampaignsPage,
-}
+},
+{
+  path: "ngodashboard/ngohome",
+  Component: NGOAdminPanel,
+},
+
 ]);
 
 export default router;

@@ -180,7 +180,18 @@ const CampaignsPage: React.FC = () => {
         fullWidth
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        sx={{ marginBottom: 4 }}
+        // sx={{ marginBottom: 4 }}
+        sx={{
+          marginBottom: 2,
+          "& label.Mui-focused": {
+            color: "orange",
+          },
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: "orange",
+            },
+          },
+        }}
       />
 
       <Typography
