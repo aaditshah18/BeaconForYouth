@@ -44,6 +44,10 @@ const UserSchema = new Schema({
     required: true,
     default: "pending",
   },
+  type: {
+    type: String,
+    required: true,
+  },
 });
 
 const UserModel = mongoose.model("User", UserSchema);
