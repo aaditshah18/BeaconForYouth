@@ -3,6 +3,7 @@ import App from "./App";
 import LoginForm from "./pages/login-form";
 import Register from "./pages/register";
 import ComplaintForm from "./components/complaintform";
+import ngodetail from "./components/ngoInnerpage/ngodetail";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/complaintform",
     Component: ComplaintForm,
   },
+{
+    path: "ngoInnerpage/ngodetail",
+    Component: ngodetail,
+}
 ]);
 
 export default router;
