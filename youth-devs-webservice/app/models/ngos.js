@@ -12,6 +12,16 @@ const ngoSchema = new mongoose.Schema({
     required: true,
     unique: true, // Ensure each user is associated with only one NGO
   },
+  createdTs: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
+  updatedTs: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 const NgoModel = UserModel.discriminator("Ngo", ngoSchema);
