@@ -70,7 +70,7 @@ const NGOLists: React.FC = () => {
   };
 
   return (
-    <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "green.100" }}>
+    <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "green.100" }} id="NGO">
       <Typography variant="h4" component="h1" gutterBottom align="center">
         NGOs Associated
       </Typography>
