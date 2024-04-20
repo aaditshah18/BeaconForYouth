@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Typography,
   Paper,
@@ -14,15 +13,18 @@ import {
   Box,
   tableCellClasses,
 } from "@mui/material";
-
+import React, { useState } from "react";
+import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import MapComponent from "./../MapComponent"; //
 
 interface NGO {
   key: string;
   ngoName: string;
   location: string;
   description: string;
-  map: string;
+  lat: number; // Latitude for the map
+  lng: number; // Longitude for the map
 }
 
 const data: NGO[] = [
@@ -31,37 +33,37 @@ const data: NGO[] = [
     ngoName: "NGO 1",
     location: "Location 1",
     description: "Description 1",
-    map: "Map URL 1",
+    lat: 40.712776,
+    lng: -74.005974,
   },
   {
     key: "2",
     ngoName: "NGO 2",
     location: "Location 2",
     description: "Description 2",
-    map: "Map URL 2",
+    lat: 34.052235,
+    lng: -118.243683,
   },
   {
     key: "3",
     ngoName: "NGO 3",
     location: "Location 3",
     description: "Description 3",
-    map: "Map URL 3",
+    lat: 37.774929,
+    lng: -122.419418,
   },
 ];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.augmentColor({
-      color: { main: "#FFCC80" },
-      name: "lightOrange",
-    }).main, // Use the 'main' property instead of 'lightOrange'
-    color: theme.palette.common.black, // Adjusted for better contrast with light background
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 18,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "center",
   },
 }));
@@ -70,7 +72,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -78,6 +79,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const NGOPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [mapOpen, setMapOpen] = useState(false);
+  const [selectedNGOLocation, setSelectedNGOLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+
+  const handleMapOpen = (lat: number, lng: number) => {
+    setSelectedNGOLocation({ lat, lng });
+    setMapOpen(true);
+  };
+
+  const handleMapClose = () => {
+    setMapOpen(false);
+  };
 
   const filteredNGOs = data.filter(
     (ngo) =>
@@ -91,7 +106,7 @@ const NGOPage: React.FC = () => {
         <CardMedia
           component="img"
           height="400"
-          image="../public/images/campaignban1.jpeg" // Specify the path to your banner image
+          image="/images/campaignban1.jpeg" // Specify the path to your banner image
           alt="NGO Banner"
         />
       </Card>
@@ -99,15 +114,13 @@ const NGOPage: React.FC = () => {
         sx={{
           p: 2,
           marginBottom: 2,
-          backgroundColor: "#82B440",
+          backgroundColor: "lightblue",
           fontWeight: "bold",
           color: "white",
-          textAlign: "center", // This aligns the text within the Paper component to the center
+          textAlign: "center",
         }}
       >
-        <Typography variant="h5" component="h3" sx={{ fontWeight: "bold" }}>
-          NGOs Associated with Safe Harbour
-        </Typography>
+        <Typography variant="h5">NGOs Associated with Safe Harbour</Typography>
       </Paper>
       <TextField
         label="Search NGOs by Name or Location"
@@ -115,20 +128,11 @@ const NGOPage: React.FC = () => {
         fullWidth
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        sx={{
-          marginBottom: 2,
-          "& label.Mui-focused": {
-            color: "orange",
-          },
-          "& .MuiOutlinedInput-root": {
-            "&.Mui-focused fieldset": {
-              borderColor: "orange",
-            },
-          },
-        }}
+        sx={{ marginBottom: 2 }}
       />
+
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }}>
+        <Table>
           <TableHead>
             <StyledTableRow>
               <StyledTableCell>NGO Name</StyledTableCell>
@@ -146,15 +150,27 @@ const NGOPage: React.FC = () => {
                 <StyledTableCell>{ngo.location}</StyledTableCell>
                 <StyledTableCell>{ngo.description}</StyledTableCell>
                 <StyledTableCell>
-                  <a href={ngo.map} target="_blank" rel="noopener noreferrer">
+                  <button onClick={() => handleMapOpen(ngo.lat, ngo.lng)}>
                     View Map
-                  </a>
+                  </button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Dialog open={mapOpen} onClose={handleMapClose}>
+        <DialogTitle>NGO Location</DialogTitle>
+        <DialogContent>
+          {selectedNGOLocation && (
+            <MapComponent
+              lat={selectedNGOLocation.lat}
+              lng={selectedNGOLocation.lng}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
