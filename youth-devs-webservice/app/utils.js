@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-// if (process.env.NODE_ENV !== "production") {
-//   require("dotenv").config();
-// }
-
 export const createDbConnection = async () => {
   await mongoose.connect(process.env.MONGODB_URI, {
     serverSelectionTimeoutMS: 5000,
@@ -22,6 +18,6 @@ export const generateMongoId = (raw) => {
   return new ObjectId(raw);
 };
 
-export const checkPassword = (password1, password2) => {
-  return password1 === password2;
+const checkPassword = (password1, password2) => {
+  return bcrypt.compareSync(password1, password2);
 };
