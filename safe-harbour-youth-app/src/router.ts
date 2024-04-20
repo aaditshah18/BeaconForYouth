@@ -4,6 +4,7 @@ import LoginForm from "./pages/login-form";
 import Register from "./pages/register";
 import ComplaintForm from "./components/complaintform";
 import ngodetail from "./components/ngoInnerpage/ngodetail";
+import CampaignsPage from "./components/resource/campaingdetail";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 {
     path: "ngoInnerpage/ngodetail",
     Component: ngodetail,
+},
+{
+  path: "resource/campaingdetail",
+  Component: CampaignsPage,
 }
 ]);
 

@@ -110,7 +110,18 @@ export default function DesktopAppBar() {
             <StyledListItemText>NGO</StyledListItemText>
           </Link>
 
+
           <StyledListItemText>Resources</StyledListItemText>
+
+          {/* <StyledListItemText>Resources</StyledListItemText> */}
+
+          <Link
+            to="../resource/campaingdetail"
+            style={{ textDecoration: "none" }}
+          >
+            <StyledListItemText>Resource</StyledListItemText>
+          </Link>
+
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <RouterLink  to="/complaintform" style={{ textDecoration: "none" }}>
