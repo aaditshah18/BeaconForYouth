@@ -5,9 +5,10 @@ import {
 } from "./response-handler.js";
 import NgoModel from "../models/ngos.js";
 
+import { handleCreateUser } from "../services/users.js";
+
 export const search = async (request, response) => {
   try {
-    const queryParams = { ...request.query };
     const searchQuery = {};
     const ngos = await NgoModel.find(searchQuery);
     setResponse(ngos, response);
@@ -20,10 +21,10 @@ export const search = async (request, response) => {
 export const post = async (request, response) => {
   try {
     const ngoData = { ...request.body };
-    const newNgo = new NgoModel(ngoData);
-    const savedNgo = await newNgo.save();
-    setCreateResponse(savedNgo, response);
+    const result = await handleCreateUser(ngoData);
+    setCreateResponse(result, response);
   } catch (error) {
+    console.log(error);
     setError(response);
   }
 };

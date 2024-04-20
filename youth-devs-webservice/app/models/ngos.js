@@ -1,19 +1,68 @@
 import mongoose from "mongoose";
-import UserModel from "./users.js";
+import { NgoModel } from './index'
 
-// We need to import Schema from mongoose to use it in the discriminator
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
-// Define NgoModel, inheriting properties from UserModel and adding NgoID
-const ngoSchema = new mongoose.Schema({
-  NgoID: {
-    type: Schema.Types.ObjectId,
-    ref: "Ngo",
+// Define User/NGO model
+const ngoSchema = new Schema({
+  name: {
+    type: String,
     required: true,
-    unique: false,
   },
+  address: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  createdTs: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
+  updatedTs: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    default: "pending",
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  lat: {
+    type: Number,
+    required: true
+  },
+  lng: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: false
+  }
 });
 
-const NgoModel = UserModel.discriminator("Ngo", ngoSchema);
+const NgoModel = mongoose.model("Ngo", ngoSchema);
 
 export default NgoModel;
