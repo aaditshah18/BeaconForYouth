@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import { NgoModel } from './index'
 
 const Schema = mongoose.Schema;
 
 // Define User/NGO model
-const NgoSchema = new Schema({
+const ngoSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -48,8 +49,20 @@ const NgoSchema = new Schema({
     type: String,
     required: true,
   },
+  lat: {
+    type: Number,
+    required: true
+  },
+  lng: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: false
+  }
 });
 
-const UserModel = mongoose.model("Ngo", NgoSchema);
+const NgoModel = mongoose.model("Ngo", ngoSchema);
 
-export default UserModel;
+export default NgoModel;
