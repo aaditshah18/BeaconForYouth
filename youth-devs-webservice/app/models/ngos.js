@@ -6,11 +6,11 @@ const { Schema } = mongoose;
 
 // Define NgoModel, inheriting properties from UserModel and adding NgoID
 const ngoSchema = new mongoose.Schema({
-  NgoID: {
-    type: Schema.Types.ObjectId,
-    ref: "Ngo",
+  userId: {
+    type: Schema.Types.ObjectId, // Assuming user's ID is stored as ObjectId
+    ref: "User", // Reference to the User model
     required: true,
-    unique: false,
+    unique: true, // Ensure each user is associated with only one NGO
   },
 });
 
