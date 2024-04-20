@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import LoginForm from "./pages/login-form";
-import Register from "./pages/register";
+import Login from "./pages/login";
 import ComplaintForm from "./components/complaintform";
 import ngodetail from "./components/ngoInnerpage/ngodetail";
 import CampaignsPage from "./components/resource/campaingdetail";
@@ -14,11 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    Component: LoginForm,
-  },
-  {
-    path: "/register",
-    Component: Register,
+    Component: Login,
   },
   {
     path: "/complaintform",
