@@ -16,7 +16,7 @@ import {
 import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import MapComponent from './../MapComponent'; // 
+import MapComponent from "./../MapComponent"; //
 
 interface NGO {
   key: string;
@@ -83,7 +83,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const NGOPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [mapOpen, setMapOpen] = useState(false);
-  const [selectedNGOLocation, setSelectedNGOLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [selectedNGOLocation, setSelectedNGOLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
 
   const handleMapOpen = (lat: number, lng: number) => {
     setSelectedNGOLocation({ lat, lng });
@@ -95,7 +98,9 @@ const NGOPage: React.FC = () => {
   };
 
   const filteredNGOs = data.filter(
-    ngo => ngo.ngoName.toLowerCase().includes(searchTerm.toLowerCase()) || ngo.location.toLowerCase().includes(searchTerm.toLowerCase())
+    (ngo) =>
+      ngo.ngoName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ngo.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -127,7 +132,7 @@ const NGOPage: React.FC = () => {
         variant="outlined"
         fullWidth
         value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)}
         sx={{
           marginBottom: 2,
           "& label.Mui-focused": {
@@ -160,7 +165,9 @@ const NGOPage: React.FC = () => {
                 <StyledTableCell>{ngo.location}</StyledTableCell>
                 <StyledTableCell>{ngo.description}</StyledTableCell>
                 <StyledTableCell>
-                  <button onClick={() => handleMapOpen(ngo.lat, ngo.lng)}>View Map</button>
+                  <button onClick={() => handleMapOpen(ngo.lat, ngo.lng)}>
+                    View Map
+                  </button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
@@ -171,7 +178,12 @@ const NGOPage: React.FC = () => {
       <Dialog open={mapOpen} onClose={handleMapClose}>
         <DialogTitle>NGO Location</DialogTitle>
         <DialogContent>
-          {selectedNGOLocation && <MapComponent lat={selectedNGOLocation.lat} lng={selectedNGOLocation.lng} />}
+          {selectedNGOLocation && (
+            <MapComponent
+              lat={selectedNGOLocation.lat}
+              lng={selectedNGOLocation.lng}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </div>
@@ -179,9 +191,6 @@ const NGOPage: React.FC = () => {
 };
 
 export default NGOPage;
-
-
-
 
 // import React, { useState } from "react";
 // import {

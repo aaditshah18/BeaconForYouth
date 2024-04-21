@@ -23,14 +23,14 @@ const router = createBrowserRouter([
     path: "/complaintform",
     Component: ComplaintForm,
   },
-{
+  {
     path: "ngoInnerpage/ngodetail",
     Component: ngodetail,
-},
-{
-  path: "resource/campaingdetail",
-  Component: CampaignsPage,
-}
+  },
+  {
+    path: "resource/campaingdetail",
+    Component: CampaignsPage,
+  },
 ]);
 
 export default router;

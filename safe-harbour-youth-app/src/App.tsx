@@ -11,8 +11,8 @@ import Footer from "./components/Footer/footer";
 import Slider from "./components/Slider/hero-slider";
 import AboutUs from "./components/AboutUs/about-us";
 import CampaignSection from "./components/campaignsec";
-import NGOLists from "./components/NGOLists"; 
-import TrackComplaint from "./components/trackComplaint.tsx"; 
+import NGOLists from "./components/NGOLists";
+import TrackComplaint from "./components/trackComplaint.tsx";
 
 function App() {
   console.log("App component is rendering");

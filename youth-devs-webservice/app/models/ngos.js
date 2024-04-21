@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 // Define User/NGO model
-const NgoSchema = new Schema({
+const ngoSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -50,18 +50,18 @@ const NgoSchema = new Schema({
   },
   lat: {
     type: Number,
-    required: true
+    required: true,
   },
   lng: {
     type: Number,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 });
 
-const UserModel = mongoose.model("Ngo", NgoSchema);
+const ngoModel = mongoose.model("Ngo", ngoSchema);
 
-export default UserModel;
+export default ngoModel;
