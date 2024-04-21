@@ -63,6 +63,37 @@ const ComplaintForm: React.FC = () => {
     // Submit form logic here
   };
 
+  const onWhatsAppClick = () => {
+    const message = `Name: ${form.firstName} ${form.lastName}\nDescription: ${form.description}`;
+
+    fetch("https://graph.facebook.com/v18.0/310816992110840/messages", {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Bearer EAAKP9dVmIiUBOwZAzU9BJiTUm6mScbGW63tV4jPMF4UmvVGXZByQJ6c6X5fymL6CQdVF5IYnpZBFgZAYmDb1hh22Q3ngCt98pFzUA95RJ0UXpS3gjA8mFT2IWE9y50OwpHsAMSZAhbRaiAMRXcB2LWBf6AEZBp0WNYniFBsdhs4HWeYcfZBTZAaqQHyzS5FZCpW7m9B24SyM4G70zRkw91GuZCZBBHm5yAZD",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        messaging_product: "whatsapp",
+        to: "+18578004079", // You need to provide the recipient's phone number here
+        type: "template",
+        template: {
+          name: "send_complaint_id",
+          language: {
+            code: "en_US",
+          },
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    // window.open(url, "_blank");
+  };
+
   const handleCancel = () => {
     setForm({
       firstName: "",
@@ -192,6 +223,9 @@ const ComplaintForm: React.FC = () => {
         </Button>
         <Button variant="outlined" color="primary" onClick={handleCancel}>
           Cancel
+        </Button>
+        <Button variant="outlined" color="primary" onClick={onWhatsAppClick}>
+          Share on Whatsapp
         </Button>
       </Box>
     </Box>
