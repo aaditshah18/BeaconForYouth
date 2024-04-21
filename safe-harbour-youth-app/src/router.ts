@@ -62,6 +62,15 @@ const router = createBrowserRouter([
     path: "resource/campaingdetail",
     Component: CampaignsPage,
   },
+  {
+    path: "ngodashboard/ngohome",
+    Component: NGOAdminPanel,
+  },
+
+  {
+    path: "ngodashboard/ngocampaign",
+    Component: CampaignMenu,
+  },
 ]);
 
 export default router;

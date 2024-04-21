@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Link, Link as RouterLink } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Button,
   Dialog,
@@ -11,7 +10,9 @@ import {
   styled,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DonationForm from "../DonationForm";
+import DonationForm from "../DonationForm"; // Ensure this is correctly imported
+
+import { Link as ScrollLink } from "react-scroll";
 import {
   AppbarContainer,
   MyList,
@@ -100,9 +101,11 @@ export default function DesktopAppBar() {
           >
             <StyledListItemText>Home</StyledListItemText>
           </ScrollLink>
+
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
           </ScrollLink>
+
           <StyledListItemText>Complaints</StyledListItemText>
 
           <RouterLink
@@ -111,7 +114,6 @@ export default function DesktopAppBar() {
           >
             <StyledListItemText>NGO</StyledListItemText>
           </RouterLink>
-
 
           <StyledListItemText>Resources</StyledListItemText>
 
