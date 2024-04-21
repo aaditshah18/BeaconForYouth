@@ -42,6 +42,8 @@ export const handleCreateUser = async (payload) => {
     phone: payload.phone,
     description: payload.description,
     type: "NGO",
+    lat: payload.lat,
+    lng: payload.lng,
   });
 
   return NgoModel.find({ email: payload.email }).select("-password");
