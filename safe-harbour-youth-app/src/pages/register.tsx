@@ -1,20 +1,21 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { ThemeProvider } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import InputAdornment from "@mui/material/InputAdornment";
-import MenuItem from "@mui/material/MenuItem";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import InputAdornment from '@mui/material/InputAdornment';
+import MenuItem from '@mui/material/MenuItem';
 import theme from "../styles/themes";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
 import "../index.css";
 
 type CountryCode = {
@@ -23,9 +24,11 @@ type CountryCode = {
 };
 
 const countryCodes: CountryCode[] = [
+
   { code: "+1", label: "USA (+1)" },
   { code: "+44", label: "UK (+44)" },
   { code: "+61", label: "AUS (+61)" },
+
   // Add more country codes here
 ];
 
@@ -43,6 +46,7 @@ function Copyright(props: any) {
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
+
     </Typography>
   );
 }
@@ -59,6 +63,7 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+
       name: data.get("name"),
       address: data.get("address"),
       email: data.get("email"),
@@ -85,6 +90,7 @@ export default function Register() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh",
+
         }}
       >
         <Container component="main" maxWidth="xs">
@@ -92,6 +98,7 @@ export default function Register() {
           <Box
             sx={{
               marginTop: 10,
+
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -114,6 +121,7 @@ export default function Register() {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
+
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -187,6 +195,7 @@ export default function Register() {
                           {countryCode}
                         </InputAdornment>
                       ),
+
                     }}
                   />
                 </Grid>
@@ -204,6 +213,7 @@ export default function Register() {
                     control={
                       <Checkbox value="allowExtraEmails" color="primary" />
                     }
+
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
