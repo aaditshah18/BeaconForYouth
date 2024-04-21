@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Button, Grid, List, ListItemText, Stack, Typography, Dialog, DialogTitle, DialogContent} from "@mui/material";
+import { useState } from "react";
+import { Box, Button, Grid, List, ListItemText, Stack, Typography, Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { FooterTitle, SubscrieTF } from "../../styles/footer-styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -66,13 +66,13 @@ export default function Footer() {
             Explore
           </FooterTitle>
           <List>
-          <ScrollLink to="about" style={{ textDecoration: "none" }}>
-            <ListItemText>
-              <Typography lineHeight={2} variant="caption">
-                About
-              </Typography>
-            </ListItemText>
-          </ScrollLink>
+            <ScrollLink to="about" style={{ textDecoration: "none" }}>
+              <ListItemText>
+                <Typography lineHeight={2} variant="caption">
+                  About
+                </Typography>
+              </ListItemText>
+            </ScrollLink>
             <ListItemText>
               <Typography lineHeight={2} variant="caption">
                 NGOs
@@ -89,18 +89,18 @@ export default function Footer() {
               </Typography>
             </ListItemText>
             <RouterLink to="/login" style={{ textDecoration: "none" }}>
-            <ListItemText>
-              <Typography lineHeight={2} variant="caption">
-                Login
-              </Typography>
-            </ListItemText>
+              <ListItemText>
+                <Typography lineHeight={2} variant="caption">
+                  Login
+                </Typography>
+              </ListItemText>
             </RouterLink>
-            <RouterLink  to="/complaintform" style={{ textDecoration: "none" }}>
-            <ListItemText>
-              <Typography lineHeight={2} variant="caption">
-                File a Complaint
-              </Typography>
-            </ListItemText>
+            <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
+              <ListItemText>
+                <Typography lineHeight={2} variant="caption">
+                  File a Complaint
+                </Typography>
+              </ListItemText>
             </RouterLink>
           </List>
         </Grid>
@@ -140,6 +140,6 @@ export default function Footer() {
         </DialogContent>
       </Dialog>
     </Box>
-    
+
   );
 }
