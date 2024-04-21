@@ -71,6 +71,8 @@ export default function Register() {
       password: formData.get("password") as string,
       phone: countryCode + (formData.get("phone") as string),
       description: formData.get("description") as string,
+      lat: formData.get("latitude") as string,
+      lng: formData.get("longitude") as string,
     };
 
     try {

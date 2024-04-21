@@ -6,6 +6,8 @@ export type registrationPayload = {
   phone: string;
   description: string;
   type: string;
+  lat: string;
+  lng: string;
 };
 
 export const registerNgo = async (body: registrationPayload) => {
