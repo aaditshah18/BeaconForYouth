@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 
-const UNPROTECTED_PATH = ["/api/v1/login/"];
+const UNPROTECTED_PATH = ["/api/v1/login/", "/api/v1/ngos/list/"];
 
 const isPathUnprotected = (path) => {
   return UNPROTECTED_PATH.includes(path);
 };
 
 const authMiddleware = (req, res, next) => {
+  console.log(req.path);
   if (isPathUnprotected(req.path)) {
     next();
     return;

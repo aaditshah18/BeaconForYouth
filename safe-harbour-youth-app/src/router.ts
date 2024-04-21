@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         path: "resource/campaingdetail",
         Component: CampaignsPage,
       },
-    ]
+    ],
   },
   {
     path: "/login",
@@ -45,19 +45,15 @@ const router = createBrowserRouter([
     path: "/complaintform",
     Component: ComplaintForm,
   },
+  {
+    path: "/home/ngodashboard/ngohome",
+    Component: NGOAdminPanel,
+  },
 
- 
-{
-  path: "/home/ngodashboard/ngohome",
-  Component: NGOAdminPanel,
-},
-
-{
-  path: "ngodashboard/ngocampaign",
-  Component: CampaignMenu,
-},
-
-=======
+  {
+    path: "ngodashboard/ngocampaign",
+    Component: CampaignMenu,
+  },
   {
     path: "ngoInnerpage/ngodetail",
     Component: ngodetail,
@@ -66,7 +62,6 @@ const router = createBrowserRouter([
     path: "resource/campaingdetail",
     Component: CampaignsPage,
   },
-
 ]);
 
 export default router;
