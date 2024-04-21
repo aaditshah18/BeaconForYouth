@@ -6,11 +6,32 @@ import ComplaintForm from "./components/complaintform";
 import ngodetail from "./components/ngoInnerpage/ngodetail";
 import CampaignsPage from "./components/resource/campaingdetail";
 import NGOAdminPanel from "./components/ngodashboard/ngohome";
+import CampaignMenu from "./components/ngodashboard/ngocampaign";
+import HomeLayout from "./pages/home-layout";
+import Home from "./pages/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: App,
+  },
+  {
+    path: "/home",
+    Component: HomeLayout,
+    children: [
+      {
+        path: "",
+        Component: Home,
+      },
+      {
+        path: "ngoInnerpage/ngodetail",
+        Component: ngodetail,
+      },
+      {
+        path: "resource/campaingdetail",
+        Component: CampaignsPage,
+      },
+    ]
   },
   {
     path: "/login",
@@ -24,17 +45,22 @@ const router = createBrowserRouter([
     path: "/complaintform",
     Component: ComplaintForm,
   },
+  // {
+  //     path: "ngoInnerpage/ngodetail",
+  //     Component: ngodetail,
+  // },
+// {
+//   path: "resource/campaingdetail",
+//   Component: CampaignsPage,
+// },
 {
-    path: "ngoInnerpage/ngodetail",
-    Component: ngodetail,
-},
-{
-  path: "resource/campaingdetail",
-  Component: CampaignsPage,
-},
-{
-  path: "ngodashboard/ngohome",
+  path: "/home/ngodashboard/ngohome",
   Component: NGOAdminPanel,
+},
+
+{
+  path: "ngodashboard/ngocampaign",
+  Component: CampaignMenu,
 },
 
 ]);

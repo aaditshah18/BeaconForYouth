@@ -15,15 +15,12 @@
 //   Paper,
 // } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
 
-// //i have static data to test the pie chart
-// //{  "totalComplaints": 10,  "totalPending": 5,  "totalCompleted": 3,  "totalInProgress": 2 }
-// import PieChart from "./PieChart";
-// import { PieChartContainer } from "./styles";
+// import { Pie } from "react-chartjs-2";
+// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-// // Mock data and types
+// ChartJS.register(ArcElement, Tooltip, Legend);
+
 // interface Complaint {
 //   id: string;
 //   firstName: string;
@@ -49,7 +46,7 @@
 // const NGOAdminPanel = () => {
 //   const navigate = useNavigate();
 //   const [complaints, setComplaints] = useState<Complaint[]>([]);
-//   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+//   //   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
 
 //   useEffect(() => {
 //     // Simulate fetching data
@@ -62,31 +59,20 @@
 //     fetchComplaints();
 //   }, []);
 
-//   const formik = useFormik({
-//     initialValues: {
-//       name: "",
-//       description: "",
-//       date: "",
-//       location: "",
-//     },
-//     validationSchema: Yup.object({
-//       name: Yup.string().required("Required"),
-//       description: Yup.string().required("Required"),
-//       date: Yup.string().required("Required"),
-//       location: Yup.string().required("Required"),
-//     }),
-//     onSubmit: (values) => {
-//       const newCampaign = {
-//         id: (Math.random() * 1000).toString(),
-//         name: values.name,
-//         description: values.description,
-//         date: values.date,
-//         location: values.location,
-//       };
-//       setCampaigns([...campaigns, newCampaign]);
-//       formik.resetForm();
-//     },
-//   });
+//   // Static data for Pie Chart
+//   const pieData = {
+//     labels: ["Total", "Pending", "Complete", "In Progress"],
+//     datasets: [
+//       {
+//         data: [10, 5, 3, 2], // Total, Pending, Complete, In Progress
+//         backgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0", "#FFCE56"],
+//         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0", "#FFCE56"],
+//         //adjust the size of the pie chart
+//         width: 30, // width of the chart
+//         height: 30, // height of the chart
+//       },
+//     ],
+//   };
 
 //   return (
 //     <Box sx={{ flexGrow: 1 }}>
@@ -98,15 +84,21 @@
 //           <Button color="inherit" onClick={() => navigate("/home")}>
 //             Home
 //           </Button>
-//           <Button color="inherit" onClick={() => navigate("/campaign")}>
+//           <Button
+//             color="inherit"
+//             onClick={() => navigate("../ngodashboard/ngocampaign")}
+//           >
 //             Campaign
 //           </Button>
 //         </Toolbar>
 //       </AppBar>
-//       {/* Complaint Overview */}
 //       <Typography variant="h4" sx={{ my: 2 }}>
 //         Complaint Overview
 //       </Typography>
+//       {/* <Pie data={pieData} /> */}
+//       <div style={{ width: "500px", height: "500px" }}>
+//         <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+//       </div>
 //       <TableContainer component={Paper}>
 //         <Table>
 //           <TableHead>
@@ -145,20 +137,6 @@
 //           </TableBody>
 //         </Table>
 //       </TableContainer>
-
-//       {/* Campaign Form */}
-//       <Typography variant="h4" sx={{ mt: 4, mb: 2 }}>
-//         Manage Campaigns
-//       </Typography>
-//       <form onSubmit={formik.handleSubmit}>
-//         {/* Fields for campaign form */}
-//         {/* Additional fields and buttons */}
-//       </form>
-
-//       {/* List of campaigns */}
-//       <TableContainer component={Paper} sx={{ mt: 4 }}>
-//         <Table>{/* Table for displaying campaigns */}</Table>
-//       </TableContainer>
 //     </Box>
 //   );
 // };
@@ -182,9 +160,11 @@ import {
   Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+// Registering ChartJS plugins
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Complaint {
   id: string;
@@ -200,62 +180,44 @@ interface Complaint {
   status: string;
 }
 
-interface Campaign {
-  id: string;
-  name: string;
-  description: string;
-  date: string;
-  location: string;
-}
-
 const NGOAdminPanel = () => {
   const navigate = useNavigate();
-  const [complaints, setComplaints] = useState<Complaint[]>([]);
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
-
-  useEffect(() => {
-    // Simulate fetching data
-    const fetchComplaints = async () => {
-      // Replace with actual fetch code
-      setComplaints([
-        /* simulated data */
-      ]);
-    };
-    fetchComplaints();
-  }, []);
-
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      description: "",
-      date: "",
-      location: "",
+  const [complaints, setComplaints] = useState<Complaint[]>([
+    // Adding dummy data
+    {
+      id: "C001",
+      firstName: "John",
+      lastName: "Doe",
+      city: "New York",
+      state: "NY",
+      country: "USA",
+      zipCode: "10001",
+      email: "john.doe@example.com",
+      mobile: "1234567890",
+      description: "Complaint about service delay.",
+      status: "Pending",
     },
-    validationSchema: Yup.object({
-      name: Yup.string().required("Required"),
-      description: Yup.string().required("Required"),
-      date: Yup.string().required("Required"),
-      location: Yup.string().required("Required"),
-    }),
-    onSubmit: (values) => {
-      const newCampaign = {
-        id: (Math.random() * 1000).toString(),
-        name: values.name,
-        description: values.description,
-        date: values.date,
-        location: values.location,
-      };
-      setCampaigns([...campaigns, newCampaign]);
-      formik.resetForm();
+    {
+      id: "C002",
+      firstName: "Jane",
+      lastName: "Smith",
+      city: "San Francisco",
+      state: "CA",
+      country: "USA",
+      zipCode: "94102",
+      email: "jane.smith@example.com",
+      mobile: "2345678901",
+      description: "Issue with product quality.",
+      status: "In Progress",
     },
-  });
+  ]);
 
   // Static data for Pie Chart
   const pieData = {
     labels: ["Total", "Pending", "Complete", "In Progress"],
     datasets: [
       {
-        data: [10, 5, 3, 2], // Total, Pending, Complete, In Progress
+        data: [complaints.length, 1, 0, 1], // Dynamically calculated data based on complaints array
         backgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0", "#FFCE56"],
         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0", "#FFCE56"],
       },
@@ -272,7 +234,10 @@ const NGOAdminPanel = () => {
           <Button color="inherit" onClick={() => navigate("/home")}>
             Home
           </Button>
-          <Button color="inherit" onClick={() => navigate("/campaign")}>
+          <Button
+            color="inherit"
+            onClick={() => navigate("../ngodashboard/ngocampaign")}
+          >
             Campaign
           </Button>
         </Toolbar>
@@ -280,10 +245,11 @@ const NGOAdminPanel = () => {
       <Typography variant="h4" sx={{ my: 2 }}>
         Complaint Overview
       </Typography>
-      pieData.des
-      <Pie data={pieData} />
-      <TableContainer component={Paper}>
-        <Table>
+      <div style={{ width: "300px", height: "300px" }}>
+        <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+      </div>
+      <TableContainer component={Paper} sx={{ mt: 4 }}>
+        <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
               <TableCell>Sr. No</TableCell>
@@ -315,84 +281,6 @@ const NGOAdminPanel = () => {
                 <TableCell>{comp.mobile}</TableCell>
                 <TableCell>{comp.description}</TableCell>
                 <TableCell>{comp.status}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Typography variant="h4" sx={{ mt: 4, mb: 2 }}>
-        Manage Campaigns
-      </Typography>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          label="Campaign Name"
-          name="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Description"
-          name="description"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.description && Boolean(formik.errors.description)
-          }
-          helperText={formik.touched.description && formik.errors.description}
-          multiline
-          rows={3}
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          fullWidth
-          type="date"
-          label="Date"
-          name="date"
-          value={formik.values.date}
-          onChange={formik.handleChange}
-          error={formik.touched.date && Boolean(formik.errors.date)}
-          helperText={formik.touched.date && formik.errors.date}
-          InputLabelProps={{ shrink: true }}
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Location"
-          name="location"
-          value={formik.values.location}
-          onChange={formik.handleChange}
-          error={formik.touched.location && Boolean(formik.errors.location)}
-          helperText={formik.touched.location && formik.errors.location}
-          sx={{ mb: 2 }}
-        />
-        <Button color="primary" variant="contained" type="submit">
-          Add Campaign
-        </Button>
-      </form>
-      <TableContainer component={Paper} sx={{ mt: 4 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Sr. No</TableCell>
-              <TableCell>Campaign Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Location</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {campaigns.map((campaign, index) => (
-              <TableRow key={campaign.id}>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell>{campaign.name}</TableCell>
-                <TableCell>{campaign.description}</TableCell>
-                <TableCell>{campaign.date}</TableCell>
-                <TableCell>{campaign.location}</TableCell>
               </TableRow>
             ))}
           </TableBody>

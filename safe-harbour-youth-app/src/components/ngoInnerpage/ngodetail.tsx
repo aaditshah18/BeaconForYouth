@@ -108,7 +108,7 @@ const NGOPage: React.FC = () => {
         <CardMedia
           component="img"
           height="400"
-          image="/images/campaignban1.jpeg" // Specify the path to your banner image
+          image="../../public/images/campaignban1.jpeg" // Specify the path to your banner image
           alt="NGO Banner"
         />
       </Card>

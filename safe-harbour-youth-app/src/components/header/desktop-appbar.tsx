@@ -94,35 +94,35 @@ export default function DesktopAppBar() {
           <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
         </Logo>
         <MyList type="row">
-          <ScrollLink
-            to="carouselExampleIndicators"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/home" style={{ textDecoration: "none" }}>
             <StyledListItemText>Home</StyledListItemText>
-          </ScrollLink>
-          <ScrollLink to="about" style={{ textDecoration: "none" }}>
+          </Link>
+          <a href="#about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
-          </ScrollLink>
+          </a>
           <StyledListItemText>Complaints</StyledListItemText>
 
-          <RouterLink
-            to="../ngoInnerpage/ngodetail"
+          <Link
+            to="/home/ngoInnerpage/ngodetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>NGO</StyledListItemText>
-          </RouterLink>
+          </Link>
 
           <StyledListItemText>Resources</StyledListItemText>
 
           {/* <StyledListItemText>Resources</StyledListItemText> */}
 
-          <RouterLink
-            to="../resource/campaingdetail"
+          <Link
+            to="/home/resource/campaingdetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>Resource</StyledListItemText>
-          </RouterLink>
-          <Link to="../ngodashboard/ngohome" style={{ textDecoration: "none" }}>
+          </Link>
+          <Link
+            to="/home/ngodashboard/ngohome"
+            style={{ textDecoration: "none" }}
+          >
             <StyledListItemText>NGODashboard</StyledListItemText>
           </Link>
         </MyList>
