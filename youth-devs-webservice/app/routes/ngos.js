@@ -1,6 +1,5 @@
 import express from "express";
 import * as ngoController from "../controllers/ngos.js";
-import * as ngoController from "../controllers/ngo.js";
 import NGO from '../models/ngos.js'; // Importing the NGO model
 
 const router = express.Router();

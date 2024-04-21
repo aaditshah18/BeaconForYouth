@@ -1,3 +1,94 @@
+// import React, { useEffect, useRef } from 'react';
+// import { Loader } from '@googlemaps/js-api-loader';
+
+// interface MapComponentProps {
+//     origin: { lat: number; lng: number }; // Starting point coordinates
+//     destination: { lat: number; lng: number }; // Ending point coordinates
+// }
+
+// const containerStyle = {
+//     width: '400px',
+//     height: '400px'
+// };
+
+// const MapComponent: React.FC<MapComponentProps> = ({ origin, destination }) => {
+//     const mapContainerRef = useRef<HTMLDivElement>(null);
+
+//     useEffect(() => {
+//         const loader = new Loader({
+//             apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Use environment variable for API key
+//             version: "weekly",
+//         });
+
+//         loader.load().then(() => {
+//             if (mapContainerRef.current) {
+//                 const google = window.google;
+//                 const map = new google.maps.Map(mapContainerRef.current, {
+//                     center: origin,
+//                     zoom: 8,
+//                 });
+
+//                 const directionsService = new google.maps.DirectionsService();
+//                 const directionsRenderer = new google.maps.DirectionsRenderer();
+//                 directionsRenderer.setMap(map); // Bind the directionsRenderer to the map
+
+//                 directionsService.route({
+//                     origin: origin, // Use state or props for dynamic origin
+//                     destination: destination, // Use state or props for dynamic destination
+//                     travelMode: google.maps.TravelMode.DRIVING, // Or walking, biking, etc.
+//                 }, (result, status) => {
+//                     if (status === google.maps.DirectionsStatus.OK) {
+//                         directionsRenderer.setDirections(result);
+//                     } else {
+//                         console.error(`Failed to load directions: ${status}`);
+//                     }
+//                 });
+//             }
+//         }).catch(e => {
+//             console.error("Error loading the Google Maps script", e);
+//         });
+
+//     }, [origin, destination]); // React to changes in origin or destination
+
+//     return <div ref={mapContainerRef} style={containerStyle} />;
+// }
+
+// export default React.memo(MapComponent);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
@@ -81,41 +172,41 @@ export default React.memo(MapComponent);
 
 
 
-// import React from 'react';
-// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+// // import React from 'react';
+// // import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-// // Define the type for the component props
-// interface MapComponentProps {
-//     lat: number;
-//     lng: number;
-// }
+// // // Define the type for the component props
+// // interface MapComponentProps {
+// //     lat: number;
+// //     lng: number;
+// // }
 
-// // Styles for the container of the map
-// const containerStyle = {
-//     width: '400px',
-//     height: '400px'
-// };
+// // // Styles for the container of the map
+// // const containerStyle = {
+// //     width: '400px',
+// //     height: '400px'
+// // };
 
-// const MapComponent: React.FC<MapComponentProps> = ({ lat, lng }) => {
-//     // Center of the map using props
-//     const center = {
-//         lat: lat,
-//         lng: lng
-//     };
+// // const MapComponent: React.FC<MapComponentProps> = ({ lat, lng }) => {
+// //     // Center of the map using props
+// //     const center = {
+// //         lat: lat,
+// //         lng: lng
+// //     };
 
-//     return (
-//         <LoadScript
-//             googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyC0qO_hLYNHpbLqeguPaBI1_wh-NtDvvlo'}
-//         >
-//             <GoogleMap
-//                 mapContainerStyle={containerStyle}
-//                 center={center}
-//                 zoom={10}
-//             >
-//                 <Marker position={center} />
-//             </GoogleMap>
-//         </LoadScript>
-//     );
-// }
+// //     return (
+// //         <LoadScript
+// //             googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyC0qO_hLYNHpbLqeguPaBI1_wh-NtDvvlo'}
+// //         >
+// //             <GoogleMap
+// //                 mapContainerStyle={containerStyle}
+// //                 center={center}
+// //                 zoom={10}
+// //             >
+// //                 <Marker position={center} />
+// //             </GoogleMap>
+// //         </LoadScript>
+// //     );
+// // }
 
-// export default React.memo(MapComponent);
+// // export default React.memo(MapComponent);

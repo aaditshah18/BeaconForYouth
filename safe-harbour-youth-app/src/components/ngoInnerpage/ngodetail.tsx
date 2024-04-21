@@ -56,14 +56,17 @@ const data: NGO[] = [
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.augmentColor({
+      color: { main: "#343A40" },
+      name: "lightOrange",
+    }).main, // Use the 'main' property instead of 'lightOrange'
+    color: theme.palette.common.white, // Adjusted for better contrast with light background
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 20,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "center",
   },
 }));
@@ -110,7 +113,7 @@ const NGOPage: React.FC = () => {
         sx={{
           p: 2,
           marginBottom: 2,
-          backgroundColor: "lightblue",
+          backgroundColor: "#82B440",
           fontWeight: "bold",
           color: "white",
           textAlign: "center",
@@ -125,7 +128,17 @@ const NGOPage: React.FC = () => {
         fullWidth
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{
+          marginBottom: 2,
+          "& label.Mui-focused": {
+            color: "orange",
+          },
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: "orange",
+            },
+          },
+        }}
       />
 
       <TableContainer component={Paper}>
@@ -166,3 +179,174 @@ const NGOPage: React.FC = () => {
 };
 
 export default NGOPage;
+
+
+
+
+// import React, { useState } from "react";
+// import {
+//   Typography,
+//   Paper,
+//   Table,
+//   TableBody,
+//   TableCell,
+//   TableContainer,
+//   TableHead,
+//   TableRow,
+//   TextField,
+//   Card,
+//   CardMedia,
+//   Button,
+//   Dialog,
+//   DialogTitle,
+//   DialogContent,
+//   tableCellClasses,
+// } from "@mui/material";
+// import { styled } from "@mui/material/styles";
+// import MapComponent from './../MapComponent'; // Adjust the import path as necessary
+
+// interface NGO {
+//   key: string;
+//   ngoName: string;
+//   location: string;
+//   description: string;
+//   lat: number;
+//   lng: number;
+// }
+
+// const data: NGO[] = [
+//   {
+//     key: "1",
+//     ngoName: "NGO 1",
+//     location: "Location 1",
+//     description: "Description 1",
+//     lat: 40.712776,
+//     lng: -74.005974,
+//   },
+//   // Additional NGO data...
+// ];
+
+// const StyledTableCell = styled(TableCell)(({ theme }) => ({
+//   [`&.${tableCellClasses.head}`]: {
+//     backgroundColor: theme.palette.augmentColor({
+//       color: { main: "#343A40" },
+//       name: "lightOrange",
+//     }).main, // Use the 'main' property instead of 'lightOrange'
+//     color: theme.palette.common.white, // Adjusted for better contrast with light background
+//     textAlign: "center",
+//     fontWeight: "bold",
+//     fontSize: 20,
+//   },
+//   [`&.${tableCellClasses.body}`]: {
+//     fontSize: 14,
+//     textAlign: "center",
+//   },
+// }));
+
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({
+//   "&:nth-of-type(odd)": {
+//     backgroundColor: theme.palette.action.hover,
+//   },
+//   "&:last-child td, &:last-child th": {
+//     border: 0,
+//   },
+// }));
+// const NGOPage: React.FC = () => {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [mapOpen, setMapOpen] = useState(false);
+//   const [selectedNGOLocation, setSelectedNGOLocation] = useState<{ lat: number; lng: number } | null>(null);
+
+//   const handleMapOpen = (ngo: NGO) => {
+//     setSelectedNGOLocation({ lat: ngo.lat, lng: ngo.lng });
+//     setMapOpen(true);
+//   };
+
+//   const handleMapClose = () => {
+//     setMapOpen(false);
+//   };
+
+//   const filteredNGOs = data.filter(
+//     ngo => ngo.ngoName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//       ngo.location.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   return (
+//     <div>
+//       <Card sx={{ marginBottom: 2 }}>
+//         <CardMedia
+//           component="img"
+//           height="400"
+//           image="/images/campaignban1.jpeg"
+//           alt="NGO Banner"
+//         />
+//       </Card>
+
+//       <Paper sx={{
+//         p: 2,
+//         marginBottom: 2,
+//         backgroundColor: "#82B440",
+//         fontWeight: "bold",
+//         color: "white",
+//         textAlign: "center",
+//       }}>
+//         <Typography variant="h5">NGOs Associated with Safe Harbour</Typography>
+//       </Paper>
+
+//       <TextField
+//         label="Search NGOs by Name or Location"
+//         variant="outlined"
+//         fullWidth
+//         value={searchTerm}
+//         onChange={e => setSearchTerm(e.target.value)}
+//         sx={{
+//           marginBottom: 2,
+//           "& label.Mui-focused": {
+//             color: "orange",
+//           },
+//           "& .MuiOutlinedInput-root": {
+//             "&.Mui-focused fieldset": {
+//               borderColor: "orange",
+//             },
+//           },
+//         }}
+//       />
+
+//       <TableContainer component={Paper}>
+//         <Table>
+//           <TableHead>
+//             <StyledTableRow>
+//               <StyledTableCell>NGO Name</StyledTableCell>
+//               <StyledTableCell>Location</StyledTableCell>
+//               <StyledTableCell>Description</StyledTableCell>
+//               <StyledTableCell>Map</StyledTableCell>
+//             </StyledTableRow>
+//           </TableHead>
+//           <TableBody>
+//             {filteredNGOs.map((ngo) => (
+//               <StyledTableRow key={ngo.key}>
+//                 <StyledTableCell component="th" scope="row">{ngo.ngoName}</StyledTableCell>
+//                 <StyledTableCell>{ngo.location}</StyledTableCell>
+//                 <StyledTableCell>{ngo.description}</StyledTableCell>
+//                 <StyledTableCell>
+//                   <Button onClick={() => handleMapOpen(ngo)}>View Map</Button>
+//                 </StyledTableCell>
+//               </StyledTableRow>
+//             ))}
+//           </TableBody>
+//         </Table>
+//       </TableContainer>
+
+//       <Dialog open={mapOpen} onClose={handleMapClose} maxWidth="lg" fullWidth>
+//         <DialogTitle>NGO Location</DialogTitle>
+//         <DialogContent>
+//           {selectedNGOLocation && <MapComponent
+//             origin={{ lat: 34.052235, lng: -118.243683 }} // This could be the user's current location
+//             destination={selectedNGOLocation}
+//           />}
+//         </DialogContent>
+//       </Dialog>
+//     </div>
+//   );
+// };
+
+// export default NGOPage;
