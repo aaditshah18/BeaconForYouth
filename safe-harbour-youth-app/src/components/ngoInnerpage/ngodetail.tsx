@@ -17,8 +17,6 @@ import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MapComponent from "./../MapComponent"; //
-import TopbarContainer from "../header/desktop-appbar.tsx";
-import AppbarContainer from "../header/desktop-appbar.tsx";
 
 interface NGO {
   key: string;
@@ -173,9 +171,7 @@ const NGOPage: React.FC = () => {
           )}
         </DialogContent>
       </Dialog>
-
     </Box>
-
   );
 };
 
