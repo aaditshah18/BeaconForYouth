@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const UNPROTECTED_PATH = ["/users/login"];
+const UNPROTECTED_PATH = ["/api/v1/login/"];
 
 const isPathUnprotected = (path) => {
   return UNPROTECTED_PATH.includes(path);
