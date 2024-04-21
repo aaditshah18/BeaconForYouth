@@ -17,6 +17,8 @@ import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MapComponent from "./../MapComponent"; //
+import TopbarContainer from "../header/desktop-appbar.tsx";
+import AppbarContainer from "../header/desktop-appbar.tsx";
 
 interface NGO {
   key: string;
@@ -56,17 +58,14 @@ const data: NGO[] = [
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.augmentColor({
-      color: { main: "#343A40" },
-      name: "lightOrange",
-    }).main, // Use the 'main' property instead of 'lightOrange'
-    color: theme.palette.common.white, // Adjusted for better contrast with light background
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 18,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "center",
   },
 }));
@@ -104,21 +103,20 @@ const NGOPage: React.FC = () => {
   );
 
   return (
-    <div>
+    <Box>
       <Card sx={{ marginBottom: 2 }}>
         <CardMedia
           component="img"
           height="400"
-          image="/images/campaignban1.jpeg" // Specify the path to your banner image
+          image="../../public/images/campaignban1.jpeg" // Specify the path to your banner image
           alt="NGO Banner"
         />
       </Card>
-
       <Paper
         sx={{
           p: 2,
           marginBottom: 2,
-          backgroundColor: "#82B440",
+          backgroundColor: "lightblue",
           fontWeight: "bold",
           color: "white",
           textAlign: "center",
@@ -126,24 +124,13 @@ const NGOPage: React.FC = () => {
       >
         <Typography variant="h5">NGOs Associated with Safe Harbour</Typography>
       </Paper>
-
       <TextField
         label="Search NGOs by Name or Location"
         variant="outlined"
         fullWidth
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        sx={{
-          marginBottom: 2,
-          "& label.Mui-focused": {
-            color: "orange",
-          },
-          "& .MuiOutlinedInput-root": {
-            "&.Mui-focused fieldset": {
-              borderColor: "orange",
-            },
-          },
-        }}
+        sx={{ marginBottom: 2 }}
       />
 
       <TableContainer component={Paper}>
@@ -186,7 +173,9 @@ const NGOPage: React.FC = () => {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+
+    </Box>
+
   );
 };
 
