@@ -1,8 +1,8 @@
-import express from 'express';
-import { createPaymentIntent } from '../controllers/donation.js';
+import express from "express";
+import { createPaymentIntent } from "../controllers/donation.js";
 
 const router = express.Router();
 
-router.post('/create-payment-intent', createPaymentIntent);
+router.post("/create-payment-intent", createPaymentIntent);
 
-export default router
+export default router;

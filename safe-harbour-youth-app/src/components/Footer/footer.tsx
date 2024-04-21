@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { Box, Button, Grid, List, ListItemText, Stack, Typography, Dialog, DialogTitle, DialogContent } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  List,
+  ListItemText,
+  Stack,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
 import { FooterTitle, SubscrieTF } from "../../styles/footer-styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import SendIcon from "@mui/icons-material/Send";
-import { Link as RouterLink } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import DonationForm from "../DonationForm";
-
 
 const stripePromise = loadStripe(
   "pk_test_51P6e09Lt7UXFQWObdOjFW2xh0kGU6fFi3MKNpa11OS29aFwlJpBiRO2G17mqNIWT6AYX9q083TpcKKgBiDjjZVcS00R0h1T9LL"
@@ -140,6 +150,5 @@ export default function Footer() {
         </DialogContent>
       </Dialog>
     </Box>
-
   );
 }

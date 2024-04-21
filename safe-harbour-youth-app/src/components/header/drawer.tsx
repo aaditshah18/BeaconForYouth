@@ -15,8 +15,8 @@ import { useUIContext } from "./ui-context";
 import { DrawerCloseButton } from "../../styles/appbar-styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
-import { Link as RouterLink } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import DonationForm from "../DonationForm";
@@ -46,22 +46,25 @@ export default function AppDrawer() {
       )}
       <Drawer anchor="right" open={drawerOpen}>
         <List>
-        <ScrollLink to="carouselExampleIndicators" style={{ textDecoration: "none" }}>
-          <ListItemButton>
-            <ListItemText primary="Home" />
-          </ListItemButton>
+          <ScrollLink
+            to="carouselExampleIndicators"
+            style={{ textDecoration: "none" }}
+          >
+            <ListItemButton>
+              <ListItemText primary="Home" />
+            </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
-          <ListItemButton>
-            <ListItemText primary="About" />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="About" />
+            </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ScrollLink to="NGO" style={{ textDecoration: "none" }}>
-          <ListItemButton>
-            <ListItemText primary="NGOs" />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="NGOs" />
+            </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ListItemButton>
@@ -107,24 +110,24 @@ export default function AppDrawer() {
             </Button>
           </Link>
           <MiddleDivider />
-          <RouterLink  to="/complaintform" style={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            sx={{
-              color: "primary",
-              backgroundColor: "var(--white)",
-              "&:hover": {
-                backgroundColor: "var(--orange)",
-                color: "var(--white)",
-              },
-              marginTop: "10px",
-              marginBottom: "10px",
-              marginLeft: "10px",
-              paddingLeft: "15px",
-            }}
-          >
-            File a Complaint
-          </Button>
+          <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              sx={{
+                color: "primary",
+                backgroundColor: "var(--white)",
+                "&:hover": {
+                  backgroundColor: "var(--orange)",
+                  color: "var(--white)",
+                },
+                marginTop: "10px",
+                marginBottom: "10px",
+                marginLeft: "10px",
+                paddingLeft: "15px",
+              }}
+            >
+              File a Complaint
+            </Button>
           </RouterLink>
           <MiddleDivider />
         </List>

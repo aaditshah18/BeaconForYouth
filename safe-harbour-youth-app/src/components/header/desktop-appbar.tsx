@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Link, Link as RouterLink } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { Link, Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import {
   Button,
   Dialog,
@@ -94,7 +94,10 @@ export default function DesktopAppBar() {
           <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
         </Logo>
         <MyList type="row">
-          <ScrollLink to="carouselExampleIndicators" style={{ textDecoration: "none" }}>
+          <ScrollLink
+            to="carouselExampleIndicators"
+            style={{ textDecoration: "none" }}
+          >
             <StyledListItemText>Home</StyledListItemText>
           </ScrollLink>
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
@@ -109,7 +112,6 @@ export default function DesktopAppBar() {
             <StyledListItemText>NGO</StyledListItemText>
           </RouterLink>
 
-
           <StyledListItemText>Resources</StyledListItemText>
 
           {/* <StyledListItemText>Resources</StyledListItemText> */}
@@ -120,14 +122,13 @@ export default function DesktopAppBar() {
           >
             <StyledListItemText>Resource</StyledListItemText>
           </RouterLink>
-
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
             <ElevatedButton variant="contained" color="secondary">
               File a complaint
             </ElevatedButton>
-          </RouterLink >
+          </RouterLink>
         </div>
       </AppbarContainer>
       <Dialog open={open} onClose={handleClose}>

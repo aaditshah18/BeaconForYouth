@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { NgoModel } from './index'
 
 const Schema = mongoose.Schema;
 
@@ -51,18 +50,18 @@ const ngoSchema = new Schema({
   },
   lat: {
     type: Number,
-    required: true
+    required: true,
   },
   lng: {
     type: Number,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 });
 
-const NgoModel = mongoose.model("Ngo", ngoSchema);
+const ngoModel = mongoose.model("Ngo", ngoSchema);
 
-export default NgoModel;
+export default ngoModel;
