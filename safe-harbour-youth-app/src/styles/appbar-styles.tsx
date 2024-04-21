@@ -75,5 +75,6 @@ export const DrawerCloseButton = styled(IconButton)(() => ({
   top: 10,
   right: "250px",
   zIndex: 2999,
-  color: 'white',
+  color: "white",
+
 }));

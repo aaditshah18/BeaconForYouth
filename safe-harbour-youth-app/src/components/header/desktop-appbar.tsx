@@ -94,37 +94,35 @@ export default function DesktopAppBar() {
           <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
         </Logo>
         <MyList type="row">
-          <Link to="/home" style={{ textDecoration: "none" }}>
+          <ScrollLink
+            to="carouselExampleIndicators"
+            style={{ textDecoration: "none" }}
+          >
             <StyledListItemText>Home</StyledListItemText>
-          </Link>
-          <a href="#about" style={{ textDecoration: "none" }}>
+          </ScrollLink>
+          <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <StyledListItemText>About</StyledListItemText>
-          </a>
+          </ScrollLink>
           <StyledListItemText>Complaints</StyledListItemText>
 
-          <Link
-            to="/home/ngoInnerpage/ngodetail"
+          <RouterLink
+            to="../ngoInnerpage/ngodetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>NGO</StyledListItemText>
-          </Link>
+          </RouterLink>
+
 
           <StyledListItemText>Resources</StyledListItemText>
 
           {/* <StyledListItemText>Resources</StyledListItemText> */}
 
-          <Link
-            to="/home/resource/campaingdetail"
+          <RouterLink
+            to="../resource/campaingdetail"
             style={{ textDecoration: "none" }}
           >
             <StyledListItemText>Resource</StyledListItemText>
-          </Link>
-          <Link
-            to="/home/ngodashboard/ngohome"
-            style={{ textDecoration: "none" }}
-          >
-            <StyledListItemText>NGODashboard</StyledListItemText>
-          </Link>
+          </RouterLink>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>

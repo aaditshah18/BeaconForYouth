@@ -15,6 +15,7 @@ import { useUIContext } from "./ui-context";
 import { DrawerCloseButton } from "../../styles/appbar-styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { loadStripe } from "@stripe/stripe-js";
@@ -107,24 +108,24 @@ export default function AppDrawer() {
             </Button>
           </Link>
           <MiddleDivider />
-          <RouterLink  to="/complaintform" style={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            sx={{
-              color: "primary",
-              backgroundColor: "var(--white)",
-              "&:hover": {
-                backgroundColor: "var(--orange)",
-                color: "var(--white)",
-              },
-              marginTop: "10px",
-              marginBottom: "10px",
-              marginLeft: "10px",
-              paddingLeft: "15px",
-            }}
-          >
-            File a Complaint
-          </Button>
+ <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              sx={{
+                color: "primary",
+                backgroundColor: "var(--white)",
+                "&:hover": {
+                  backgroundColor: "var(--orange)",
+                  color: "var(--white)",
+                },
+                marginTop: "10px",
+                marginBottom: "10px",
+                marginLeft: "10px",
+                paddingLeft: "15px",
+              }}
+            >
+              File a Complaint
+            </Button>
           </RouterLink>
           <MiddleDivider />
         </List>

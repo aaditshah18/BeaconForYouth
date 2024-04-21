@@ -45,6 +45,7 @@ const router = createBrowserRouter([
     path: "/complaintform",
     Component: ComplaintForm,
   },
+
  
 {
   path: "/home/ngodashboard/ngohome",
@@ -55,6 +56,16 @@ const router = createBrowserRouter([
   path: "ngodashboard/ngocampaign",
   Component: CampaignMenu,
 },
+
+=======
+  {
+    path: "ngoInnerpage/ngodetail",
+    Component: ngodetail,
+  },
+  {
+    path: "resource/campaingdetail",
+    Component: CampaignsPage,
+  },
 
 ]);
 

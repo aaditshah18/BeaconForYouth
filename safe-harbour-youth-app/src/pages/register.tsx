@@ -15,6 +15,7 @@ import theme from "../styles/themes";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
 import "../index.css";
 
 type CountryCode = {
@@ -23,21 +24,29 @@ type CountryCode = {
 };
 
 const countryCodes: CountryCode[] = [
-  { code: '+1', label: 'USA (+1)' },
-  { code: '+44', label: 'UK (+44)' },
-  { code: '+61', label: 'AUS (+61)' },
+
+  { code: "+1", label: "USA (+1)" },
+  { code: "+44", label: "UK (+44)" },
+  { code: "+61", label: "AUS (+61)" },
+
   // Add more country codes here
 ];
 
 function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="/">
         SafeHarbourYouth
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
+
     </Typography>
   );
 }
@@ -54,12 +63,13 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      name: data.get('name'),
-      address: data.get('address'),
-      email: data.get('email'),
-      password: data.get('password'),
-      phone: countryCode + data.get('phone'), // Concatenate country code and phone number
-      description: data.get('description'),
+
+      name: data.get("name"),
+      address: data.get("address"),
+      email: data.get("email"),
+      password: data.get("password"),
+      phone: countryCode + data.get("phone"), // Concatenate country code and phone number
+      description: data.get("description"),
     });
   };
 
@@ -73,13 +83,14 @@ export default function Register() {
         className="background-image"
         sx={{
           marginTop: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '100vh',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+
         }}
       >
         <Container component="main" maxWidth="xs">
@@ -87,14 +98,15 @@ export default function Register() {
           <Box
             sx={{
               marginTop: 10,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              backdropFilter: 'blur(5px)',
-              borderRadius: '10px',
+
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              backdropFilter: "blur(5px)",
+              borderRadius: "10px",
               p: 4,
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: theme.palette.secondary.main }}>
@@ -103,7 +115,13 @@ export default function Register() {
             <Typography component="h1" variant="h6">
               Register
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
+            >
+
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -172,7 +190,12 @@ export default function Register() {
                     name="phone"
                     autoComplete="tel"
                     InputProps={{
-                      startAdornment: <InputAdornment position="start">{countryCode}</InputAdornment>,
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {countryCode}
+                        </InputAdornment>
+                      ),
+
                     }}
                   />
                 </Grid>
@@ -187,7 +210,10 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    control={
+                      <Checkbox value="allowExtraEmails" color="primary" />
+                    }
+
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
