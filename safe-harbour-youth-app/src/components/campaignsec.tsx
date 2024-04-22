@@ -96,7 +96,10 @@ const CampaignSection: React.FC = () => {
       </Slider>
       {/* See All Campaigns Link */}
       <Box textAlign="center" mb={2}>
-        <Link to="/campaigns" style={{ textDecoration: "none" }}>
+        <Link
+          to="../resource/campaingdetail"
+          style={{ textDecoration: "none" }}
+        >
           <Typography
             variant="h6"
             sx={{

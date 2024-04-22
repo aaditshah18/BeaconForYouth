@@ -23,7 +23,7 @@ const Slider = () => {
               violence. Your feedback helps us improve our services and support
               for those in need.
             </p>
-            <a href="#" className="btn btn-primary">
+            <a href="../../complaintform" className="btn btn-primary">
               File a Complaint
             </a>
           </div>
@@ -41,7 +41,7 @@ const Slider = () => {
               raise awareness and support for victims of violence. Join us in
               making a difference.
             </p>
-            <a href="#" className="btn btn-primary">
+            <a href="../resource/campaingdetail" className="btn btn-primary">
               Explore
             </a>
           </div>
@@ -59,7 +59,10 @@ const Slider = () => {
               violence and create a safer community for everyone. Every
               contribution makes a difference.
             </p>
-            <a href="#" className="btn btn-primary">
+            <a
+              href="https://buy.stripe.com/test_5kA7wl8E20n33dK4gg"
+              className="btn btn-primary"
+            >
               Donate
             </a>
           </div>

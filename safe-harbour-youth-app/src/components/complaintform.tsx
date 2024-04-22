@@ -10,6 +10,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
+import axios from "axios";
 
 interface FormState {
   firstName: string;
@@ -60,7 +61,21 @@ const ComplaintForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Form data:", form);
-    // Submit form logic here
+
+    // Endpoint where your backend API is listening
+    const apiEndpoint = "http://localhost:3005/api/complaints"; // Change this URL to where your server is hosted
+
+    axios
+      .post(apiEndpoint, form)
+      .then((response) => {
+        console.log("Complaint submitted successfully:", response.data);
+        alert("Complaint submitted successfully!");
+        handleCancel(); // Reset the form after successful submission
+      })
+      .catch((error) => {
+        console.error("Error submitting complaint:", error);
+        alert("Failed to submit complaint. Please try again.");
+      });
   };
 
   const onWhatsAppClick = () => {

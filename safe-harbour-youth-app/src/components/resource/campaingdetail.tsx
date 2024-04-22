@@ -79,18 +79,38 @@ const pastCampaigns: Campaign[] = [
 const videos: Video[] = [
   {
     id: 1,
-    src: "https://www.youtube.com/embed/first_video_id",
-    title: "First Campaign",
+    src: "https://www.youtube.com/embed/FnpAsWHQPTQ",
+    title:
+      "Saprea's Mission to Eradicate Child Sexual Abuse & Its Traumatic Effects",
   },
   {
     id: 2,
-    src: "https://www.youtube.com/embed/second_video_id",
-    title: "Second Campaign",
+    src: "https://www.youtube.com/embed/UbtSJCw_lqw",
+    title: "Preventing Child Sexual Abuse",
   },
   {
     id: 3,
-    src: "https://www.youtube.com/embed/third_video_id",
-    title: "Third Campaign",
+    src: "https://www.youtube.com/embed/ACvqz9Ws9-w",
+    title: "7 Ways to Protect Kids from Sexual Abuse | AAP",
+  },
+
+  {
+    id: 4,
+    src: "https://www.youtube.com/embed/M1SQue6khBA",
+    title:
+      "What Is Child Abuse and Neglect? Types, Symptoms, Treatment and Diagnosis",
+  },
+
+  {
+    id: 5,
+    src: "https://www.youtube.com/embed/i-FRmFBsJxQ",
+    title: "Not Our Kids: Child Sexual Abuse Prevention ",
+  },
+
+  {
+    id: 6,
+    src: "https://www.youtube.com/embed/0I2gVdBmA-s",
+    title: "How to Talk with Kids About Sexual Abuse",
   },
 ];
 
