@@ -19,7 +19,7 @@ import {
 import { styled } from "@mui/material/styles";
 import MapComponent from "../MapComponent";
 import { fetchAllNgos, NgoDetails } from "../../api/ngo"; // Adjust the import path as needed
-
+ 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   "&.MuiTableCell-head": {
     backgroundColor: theme.palette.common.black,
@@ -33,7 +33,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     textAlign: "center",
   },
 }));
-
+ 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
@@ -42,7 +42,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
+ 
 const NGOPage: React.FC = () => {
   const [ngos, setNgos] = useState<NgoDetails[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,7 +51,7 @@ const NGOPage: React.FC = () => {
     lat: number;
     lng: number;
   } | null>(null);
-
+ 
   useEffect(() => {
     const loadNgos = async () => {
       try {
@@ -61,25 +61,25 @@ const NGOPage: React.FC = () => {
         console.error("Failed to fetch NGOs:", error);
       }
     };
-
+ 
     loadNgos();
   }, []);
-
+ 
   const handleMapOpen = (lat: number, lng: number) => {
     setSelectedNGOLocation({ lat, lng });
     setMapOpen(true);
   };
-
+ 
   const handleMapClose = () => {
     setMapOpen(false);
   };
-
+ 
   const filteredNGOs = ngos.filter(
     (ngo) =>
       ngo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ngo.address.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+ 
   return (
     <Box>
       <Card sx={{ marginBottom: 2 }}>
@@ -110,7 +110,7 @@ const NGOPage: React.FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-
+ 
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -139,7 +139,7 @@ const NGOPage: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
+ 
       <Dialog open={mapOpen} onClose={handleMapClose}>
         <DialogTitle>NGO Location</DialogTitle>
         <DialogContent>
@@ -154,5 +154,5 @@ const NGOPage: React.FC = () => {
     </Box>
   );
 };
-
+ 
 export default NGOPage;
