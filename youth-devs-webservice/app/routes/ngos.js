@@ -10,11 +10,6 @@ router.route("/list").get(ngoController.search).post(ngoController.post);
 router
   .route("/:id")
   .put(ngoController.put) // Assuming this handles full updates
-  .patch(ngoController.patch) // Assuming this handles partial updates
-  
-
-router
-  .route("/:id/complaint/dashboard")
-  .get(ngoController.get);
+  .patch(ngoController.patch); // Assuming this handles partial updates
 
 export default router;
