@@ -48,7 +48,9 @@ export default function Footer() {
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={7} md={3}>
           <FooterTitle variant="body1" sx={{ fontWeight: "bold" }}>
-            About
+            <ScrollLink to="about" style={{ textDecoration: "none" }}>
+              About
+            </ScrollLink>
           </FooterTitle>
           <Typography
             variant="caption"
@@ -85,17 +87,32 @@ export default function Footer() {
             </ScrollLink>
             <ListItemText>
               <Typography lineHeight={2} variant="caption">
-                NGOs
+                <RouterLink
+                  to="../ngoInnerpage/ngodetail"
+                  style={{ textDecoration: "none" }}
+                >
+                  NGOs
+                </RouterLink>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption">
-                Resources
+                <RouterLink
+                  to="../resource/campaingdetail"
+                  style={{ textDecoration: "none" }}
+                >
+                  Resources
+                </RouterLink>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption" onClick={handleOpen}>
-                Donation
+                <RouterLink
+                  to="https://buy.stripe.com/test_5kA7wl8E20n33dK4gg"
+                  style={{ textDecoration: "none" }}
+                >
+                  Donation
+                </RouterLink>
               </Typography>
             </ListItemText>
             <RouterLink to="/login" style={{ textDecoration: "none" }}>
@@ -108,7 +125,12 @@ export default function Footer() {
             <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
               <ListItemText>
                 <Typography lineHeight={2} variant="caption">
-                  File a Complaint
+                  <RouterLink
+                    to="/complaintform"
+                    style={{ textDecoration: "none" }}
+                  >
+                    File a Complaint
+                  </RouterLink>
                 </Typography>
               </ListItemText>
             </RouterLink>
