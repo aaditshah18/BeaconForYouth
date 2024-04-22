@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { getCampaigns } from "../../api/campaignService";
 
 interface Campaign {
   id: string;
@@ -44,6 +45,18 @@ const CampaignMenu: React.FC = () => {
   ]);
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    // Use the campaignService to fetch campaigns from the server
+    getCampaigns()
+      .then((data) => {
+        console.log(data);
+        setCampaigns(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching campaigns:", error);
+      });
+  });
+
   // Formik for form handling
   const formik = useFormik({
     initialValues: {
@@ -71,6 +84,11 @@ const CampaignMenu: React.FC = () => {
       setShowForm(false); // Hide the form after submission
     },
   });
+
+  const onCampaignDelete = (id: string) => {
+    const updatedCampaigns = campaigns.filter((campaign) => campaign.id !== id);
+    setCampaigns(updatedCampaigns);
+  };
 
   return (
     <Box sx={{ p: 2 }}>
@@ -150,6 +168,7 @@ const CampaignMenu: React.FC = () => {
               <TableCell>Description</TableCell>
               <TableCell>Date</TableCell>
               <TableCell>Location</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -160,6 +179,11 @@ const CampaignMenu: React.FC = () => {
                 <TableCell>{campaign.description}</TableCell>
                 <TableCell>{campaign.date}</TableCell>
                 <TableCell>{campaign.location}</TableCell>
+                <TableCell>
+                  <Button onClick={() => onCampaignDelete(campaign.id)}>
+                    Delete
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
