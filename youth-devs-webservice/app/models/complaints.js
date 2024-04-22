@@ -4,17 +4,11 @@ const Schema = mongoose.Schema;
 
 // Define Complaints model
 const ComplaintsSchema = new Schema({
-  userData: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-    unique: false,
-  },
   description: {
     type: String,
     required: true,
   },
-  NgoID: {
+  ngoId: {
     type: Schema.Types.ObjectId,
     ref: "Ngo",
     required: true,
