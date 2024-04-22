@@ -14,7 +14,6 @@ const isPathUnprotected = (path) => {
       return true;
     }
   }
-  // return UNPROTECTED_PATH.includes(path);
 };
 
 const authMiddleware = (req, res, next) => {
