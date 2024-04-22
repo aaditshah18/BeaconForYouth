@@ -31,7 +31,10 @@ export default function Footer() {
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={7} md={3}>
           <FooterTitle variant="body1" sx={{ fontWeight: "bold" }}>
+            
+            <ScrollLink to="about" style={{ textDecoration: "none" }}>
             {t('About')}
+            </ScrollLink>
           </FooterTitle>
           <Typography variant="caption" sx={{ fontSize: { xs: "0.7rem", sm: "0.8rem" } }}>
             {t('Safe Harbour Youth is committed to empowering youth and preventing violence. Join us in creating a safer future for all.')}
@@ -49,23 +52,33 @@ export default function Footer() {
                 </Typography>
               </ListItemText>
             </ScrollLink>
-            <RouterLink to="/ngos" style={{ textDecoration: "none" }}>
-              <ListItemText>
-                <Typography lineHeight={2} variant="caption">
-                  {t('NGOs')}
-                </Typography>
-              </ListItemText>
-            </RouterLink>
-            <RouterLink to="/resources" style={{ textDecoration: "none" }}>
-              <ListItemText>
-                <Typography lineHeight={2} variant="caption">
-                  {t('Resource')}
-                </Typography>
-              </ListItemText>
-            </RouterLink>
-            <ListItemText onClick={handleOpen}>
+            <ListItemText>
               <Typography lineHeight={2} variant="caption">
-                {t('Donation')}
+                <RouterLink
+                  to="../ngoInnerpage/ngodetail"
+                  style={{ textDecoration: "none" }}>
+                  {t('NGOs')}
+                </RouterLink>
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption">
+                <RouterLink
+                  to="../resource/campaingdetail"
+                  style={{ textDecoration: "none" }}
+                >
+                 {t('Resource')}
+                </RouterLink>
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption" onClick={handleOpen}>
+                <RouterLink
+                  to="https://buy.stripe.com/test_5kA7wl8E20n33dK4gg"
+                  style={{ textDecoration: "none" }}
+                >
+                  {t('Donation')}
+                </RouterLink>
               </Typography>
             </ListItemText>
             <RouterLink to="/login" style={{ textDecoration: "none" }}>
@@ -75,13 +88,17 @@ export default function Footer() {
                 </Typography>
               </ListItemText>
             </RouterLink>
-            <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
               <ListItemText>
                 <Typography lineHeight={2} variant="caption">
-                  {t('File a Complaint')}
+
+                  <RouterLink
+                    to="/complaintform"
+                    style={{ textDecoration: "none" }}
+                  >
+                    {t('File a Complaint')}
+                  </RouterLink>
                 </Typography>
               </ListItemText>
-            </RouterLink>
           </List>
         </Grid>
         <Grid item xs={12} sm={7} md={3}>
