@@ -1,6 +1,5 @@
 import React from "react";
-import {
-  Card,
+import {Card,
   CardMedia,
   CardContent,
   Typography,
@@ -31,7 +30,7 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
     <Box display="flex" justifyContent="center">
       <Card
         sx={{
-          maxWidth: 345,
+          maxWidth: 350,
           m: 2,
           background: theme.palette.background.paper, // Use a theme color for the background or a custom one
           boxShadow: 2,
@@ -46,7 +45,7 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
           image={imageUrl}
           alt={title}
         />
-        <CardContent sx={{ minHeight: 220 }}>
+        <CardContent sx={{ minHeight: 300 }}>
           <Typography gutterBottom variant="subtitle1" component="div">
             {title}
           </Typography>
