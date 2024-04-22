@@ -21,8 +21,8 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/ngos/, ""),
       },
-      "/complaints": {
-        target: `${domain}/api/v1/complaints/`,
+      "/complaintform": {
+        target: `${domain}/api/v1//complaints/`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/complaints/, ""),
       },

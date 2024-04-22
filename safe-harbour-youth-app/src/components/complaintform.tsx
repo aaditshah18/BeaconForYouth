@@ -10,7 +10,8 @@ import {
   InputLabel,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { submitComplaint, ComplaintDetails } from "../api/complaints"; // Ensure this path matches your project structure
 
 interface FormState {
   firstName: string;
@@ -45,6 +46,7 @@ const ComplaintForm: React.FC = () => {
     ngo: "",
     description: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -58,55 +60,22 @@ const ComplaintForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form data:", form);
-
-    // Endpoint where your backend API is listening
-    const apiEndpoint = "http://localhost:3005/api/complaints"; // Change this URL to where your server is hosted
-
-    axios
-      .post(apiEndpoint, form)
-      .then((response) => {
-        console.log("Complaint submitted successfully:", response.data);
-        alert("Complaint submitted successfully!");
-        handleCancel(); // Reset the form after successful submission
-      })
-      .catch((error) => {
-        console.error("Error submitting complaint:", error);
-        alert("Failed to submit complaint. Please try again.");
-      });
+    try {
+      await submitComplaint(form as ComplaintDetails);
+      alert("Complaint submitted successfully!");
+      navigate("/home"); // Redirect to home page upon successful submission
+    } catch (error) {
+      console.error("Failed to submit complaint:", error);
+      alert("Failed to submit complaint. Please try again.");
+    }
   };
 
   const onWhatsAppClick = () => {
     const message = `Name: ${form.firstName} ${form.lastName}\nDescription: ${form.description}`;
-
-    fetch("https://graph.facebook.com/v18.0/310816992110840/messages", {
-      method: "POST",
-      headers: {
-        Authorization:
-          "Bearer EAAKP9dVmIiUBOwZAzU9BJiTUm6mScbGW63tV4jPMF4UmvVGXZByQJ6c6X5fymL6CQdVF5IYnpZBFgZAYmDb1hh22Q3ngCt98pFzUA95RJ0UXpS3gjA8mFT2IWE9y50OwpHsAMSZAhbRaiAMRXcB2LWBf6AEZBp0WNYniFBsdhs4HWeYcfZBTZAaqQHyzS5FZCpW7m9B24SyM4G70zRkw91GuZCZBBHm5yAZD",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to: "+18578004079", // You need to provide the recipient's phone number here
-        type: "template",
-        template: {
-          name: "send_complaint_id",
-          language: {
-            code: "en_US",
-          },
-        },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    // window.open(url, "_blank");
+    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   };
 
   const handleCancel = () => {
@@ -122,6 +91,7 @@ const ComplaintForm: React.FC = () => {
       ngo: "",
       description: "",
     });
+    navigate("/home"); // Optionally redirect to home on cancel
   };
 
   return (
@@ -240,7 +210,7 @@ const ComplaintForm: React.FC = () => {
           Cancel
         </Button>
         <Button variant="outlined" color="primary" onClick={onWhatsAppClick}>
-          Share on Whatsapp
+          Share on WhatsApp
         </Button>
       </Box>
     </Box>
