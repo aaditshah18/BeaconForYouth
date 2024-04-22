@@ -6,7 +6,7 @@ import {
   } from "./response-handler.js";
 
 export const createCampaign = async (req, res) => {
-    try {
+    try {        
         const campaign = await CampaignsService.createCampaign(req.body);
         setCreateResponse(campaign, res);
     } catch (error) {
@@ -18,8 +18,9 @@ export const createCampaign = async (req, res) => {
 export const getCampaigns = async (req, res) => {
     try {
         const campaigns = await CampaignsService.getAllCampaigns();
-        return setResponse(res, campaigns);
+        return setResponse(campaigns, res);
     } catch (error) {
+        console.log(error);
         return setError(res, error);
     }
 };
