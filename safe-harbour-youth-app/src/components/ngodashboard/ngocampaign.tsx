@@ -11,14 +11,17 @@ import {
   TableHead,
   TableRow,
   Paper,
-  AppBar,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getCampaigns } from "../../api/campaignService";
+import {
+  getCampaigns,
+  deleteCampaign,
+  createCampaign,
+} from "../../api/campaignService";
 
 interface Campaign {
-  id: string;
+  _id?: string;
   name: string;
   description: string;
   date: string;
@@ -26,23 +29,7 @@ interface Campaign {
 }
 
 const CampaignMenu: React.FC = () => {
-  const [campaigns, setCampaigns] = useState<Campaign[]>([
-    // Demo content
-    {
-      id: "1",
-      name: "Tree Plantation Drive",
-      description: "A campaign to plant 5000 trees in urban areas.",
-      date: "2024-04-22",
-      location: "Central Park",
-    },
-    {
-      id: "2",
-      name: "Beach Cleanup",
-      description: "Cleanup event at local beaches.",
-      date: "2024-05-05",
-      location: "Long Beach",
-    },
-  ]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -55,7 +42,7 @@ const CampaignMenu: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching campaigns:", error);
       });
-  });
+  }, []);
 
   // Formik for form handling
   const formik = useFormik({
@@ -73,21 +60,38 @@ const CampaignMenu: React.FC = () => {
     }),
     onSubmit: (values) => {
       const newCampaign = {
-        id: (Math.random() * 1000).toString(),
         name: values.name,
         description: values.description,
         date: values.date,
         location: values.location,
       };
-      setCampaigns([...campaigns, newCampaign]);
-      formik.resetForm();
-      setShowForm(false); // Hide the form after submission
+
+      createCampaign(newCampaign)
+        .then((data) => {
+          console.log(data);
+          setCampaigns([...campaigns, newCampaign]);
+          formik.resetForm();
+          setShowForm(false); // Hide the form after submission
+        })
+        .catch((error) => {
+          console.error("Error adding the campaign:", error);
+        });
     },
   });
 
   const onCampaignDelete = (id: string) => {
-    const updatedCampaigns = campaigns.filter((campaign) => campaign.id !== id);
-    setCampaigns(updatedCampaigns);
+    const updatedCampaigns = campaigns.filter(
+      (campaign) => campaign._id !== id
+    );
+
+    deleteCampaign(id)
+      .then(() => {
+        console.log(updatedCampaigns);
+        setCampaigns(updatedCampaigns);
+      })
+      .catch((error) => {
+        console.error("Error deleting the campaign:", error);
+      });
   };
 
   return (
@@ -172,20 +176,24 @@ const CampaignMenu: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {campaigns.map((campaign, index) => (
-              <TableRow key={campaign.id}>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell>{campaign.name}</TableCell>
-                <TableCell>{campaign.description}</TableCell>
-                <TableCell>{campaign.date}</TableCell>
-                <TableCell>{campaign.location}</TableCell>
-                <TableCell>
-                  <Button onClick={() => onCampaignDelete(campaign.id)}>
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {campaigns.map((campaign, index) => {
+              return (
+                <TableRow key={campaign._id}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{campaign.name}</TableCell>
+                  <TableCell>{campaign.description}</TableCell>
+                  <TableCell>{campaign.date}</TableCell>
+                  <TableCell>{campaign.location}</TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => onCampaignDelete(campaign._id ?? "")}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
