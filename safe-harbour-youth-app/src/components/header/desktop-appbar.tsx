@@ -1,16 +1,6 @@
-import { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import { Link as RouterLink } from "react-router-dom";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  styled,
-} from "@mui/material";
+import { Button, styled } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DonationForm from "../DonationForm"; // Ensure this is correctly imported
 
 import { Link as ScrollLink } from "react-scroll";
 import {
@@ -20,9 +10,6 @@ import {
   TopbarContainer,
 } from "../../styles/appbar-styles";
 import logoImage from "../../../public/images/logo.png";
-const stripePromise = loadStripe(
-  "pk_test_51P6e09Lt7UXFQWObdOjFW2xh0kGU6fFi3MKNpa11OS29aFwlJpBiRO2G17mqNIWT6AYX9q083TpcKKgBiDjjZVcS00R0h1T9LL"
-);
 
 const ElevatedButton = styled(Button)({
   borderRadius: "20px",
@@ -67,10 +54,11 @@ const DonateButton = styled(Button)({
 });
 
 export default function DesktopAppBar() {
-  const [open, setOpen] = useState(false);
+  const stripeLink = "https://buy.stripe.com/test_5kA7wl8E20n33dK4gg"; // Stripe payment link URL here
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleDonateClick = () => {
+    window.open(stripeLink, "_blank"); // Opens the Stripe payment link in a new tab
+  };
 
   return (
     <>
@@ -84,7 +72,7 @@ export default function DesktopAppBar() {
           <DonateButton
             variant="contained"
             startIcon={<FavoriteIcon />}
-            onClick={handleOpen}
+            onClick={handleDonateClick} // Redirects to Stripe on click
           >
             Donate
           </DonateButton>
@@ -134,15 +122,6 @@ export default function DesktopAppBar() {
           </RouterLink>
         </div>
       </AppbarContainer>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Donate to Our Cause</DialogTitle>
-        <DialogContent>
-          {/* Ensure Elements wraps DonationForm */}
-          <Elements stripe={stripePromise}>
-            <DonationForm onClose={handleClose} />
-          </Elements>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
