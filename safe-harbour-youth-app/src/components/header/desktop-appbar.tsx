@@ -1,7 +1,8 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from "react-router-dom";
 import { Button, styled } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
 import { Link as ScrollLink } from "react-scroll";
 import {
   AppbarContainer,
@@ -54,6 +55,7 @@ const DonateButton = styled(Button)({
 });
 
 export default function DesktopAppBar() {
+  const { t } = useTranslation();
   const stripeLink = "https://buy.stripe.com/test_5kA7wl8E20n33dK4gg"; // Stripe payment link URL here
 
   const handleDonateClick = () => {
@@ -66,51 +68,40 @@ export default function DesktopAppBar() {
         <div style={{ marginLeft: "auto", display: "flex" }}>
           <RouterLink to="/login" style={{ textDecoration: "none" }}>
             <StyledLoginButton variant="outlined" color="secondary">
-              Login
+              {t('Login')}
             </StyledLoginButton>
           </RouterLink>
           <DonateButton
             variant="contained"
             startIcon={<FavoriteIcon />}
-            onClick={handleDonateClick} // Redirects to Stripe on click
+            onClick={handleDonateClick}
           >
-            Donate
+            {t('Donate')}
           </DonateButton>
         </div>
       </TopbarContainer>
       <AppbarContainer>
         <Logo>
-          <img src={logoImage} alt="Logo" style={{ width: "100%" }} />
+          <img src={logoImage} alt={t('Logo')} style={{ width: "100%" }} />
         </Logo>
         <MyList type="row">
-          <ScrollLink
-            to="carouselExampleIndicators"
-            style={{ textDecoration: "none" }}
-          >
-            <StyledListItemText>Home</StyledListItemText>
+          <ScrollLink to="carouselExampleIndicators" style={{ textDecoration: "none" }}>
+            <StyledListItemText>{t('Home')}</StyledListItemText>
           </ScrollLink>
-
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
-            <StyledListItemText>About</StyledListItemText>
+            <StyledListItemText>{t('About')}</StyledListItemText>
           </ScrollLink>
-          <RouterLink
-            to="../ngoInnerpage/ngodetail"
-            style={{ textDecoration: "none" }}
-          >
-            <StyledListItemText>NGO</StyledListItemText>
+          <RouterLink to="../ngoInnerpage/ngodetail" style={{ textDecoration: "none", color: "inherit" }}>
+            <StyledListItemText>{t('NGO')}</StyledListItemText>
           </RouterLink>
-
-          <RouterLink
-            to="../resource/campaingdetail"
-            style={{ textDecoration: "none" }}
-          >
-            <StyledListItemText>Resource</StyledListItemText>
+          <RouterLink to="../resource/campaingdetail" style={{ textDecoration: "none", color: "inherit" }}>
+            <StyledListItemText>{t('Resource')}</StyledListItemText>
           </RouterLink>
         </MyList>
         <div style={{ marginLeft: "auto" }}>
           <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
             <ElevatedButton variant="contained" color="secondary">
-              File a complaint
+              {t('File a Complaint')}
             </ElevatedButton>
           </RouterLink>
         </div>

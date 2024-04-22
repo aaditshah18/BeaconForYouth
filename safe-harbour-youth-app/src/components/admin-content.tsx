@@ -1,7 +1,5 @@
 import React from 'react';
-import { TableHead } from '@mui/material';
-
-import { Box, Grid, Paper, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
+import { Box, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import PieChart from '../components/admin-piechart';
 
 export default function AdminContent() {
@@ -25,6 +23,10 @@ export default function AdminContent() {
     ...sectionStyle,
     display: 'flex',
     justifyContent: 'space-between',
+  };
+  const tableHeaderStyle = {
+    backgroundColor: 'blue', // Blue background color
+    color: '#fff', // White text color
   };
 
   const leftSummaryContainerStyle = {
@@ -54,10 +56,19 @@ export default function AdminContent() {
     margin: '0 0.25rem',
   };
 
-  const coloredSummaryItemStyle = {
+  const summaryItemStylePending = {
     ...summaryItemStyle,
-    backgroundColor: '#f44336', // Light color for total and approval boxes
-    color: '#fff', // White text color
+    backgroundColor: 'rgba(255, 183, 178, 0.5)', // Replace with the exact color of "Pending" in the pie chart
+  };
+
+  const summaryItemStyleInProgress = {
+    ...summaryItemStyle,
+    backgroundColor: 'rgba(178, 223, 255, 0.5)', // Replace with the exact color of "In Progress" in the pie chart
+  };
+
+  const summaryItemStyleCompleted = {
+    ...summaryItemStyle,
+    backgroundColor: 'rgba(178, 255, 193, 0.5)', // Replace with the exact color of "Completed" in the pie chart
   };
 
   return (
@@ -68,16 +79,16 @@ export default function AdminContent() {
           <Paper sx={leftSummaryContainerStyle}>
             {/* NGO Summary */}
             <Box sx={summaryItemContainerStyle}>
-              <Paper sx={coloredSummaryItemStyle}>
+              <Paper sx={summaryItemStyle}>
                 <Typography variant="h6">Total</Typography>
                 <Typography>120</Typography>
               </Paper>
-              <Paper sx={coloredSummaryItemStyle}>
+              <Paper sx={summaryItemStyleCompleted}>
                 <Typography variant="h6">Approved</Typography>
                 <Typography>90</Typography>
               </Paper>
             </Box>
-            <Paper sx={summaryItemStyle}>
+            <Paper sx={summaryItemStyleInProgress}>
               <Typography variant="h6">Pending Approval</Typography>
               <Typography>30</Typography>
             </Paper>
@@ -92,17 +103,17 @@ export default function AdminContent() {
                 <Typography variant="h6">Total</Typography>
                 <Typography>70</Typography>
               </Paper>
-              <Paper sx={summaryItemStyle}>
+              <Paper sx={summaryItemStylePending}>
                 <Typography variant="h6">Pending</Typography>
                 <Typography>20</Typography>
               </Paper>
             </Box>
             <Box sx={summaryItemContainerStyle}>
-              <Paper sx={summaryItemStyle}>
+              <Paper sx={summaryItemStyleInProgress}>
                 <Typography variant="h6">In Progress</Typography>
                 <Typography>30</Typography>
               </Paper>
-              <Paper sx={summaryItemStyle}>
+              <Paper sx={summaryItemStyleCompleted}>
                 <Typography variant="h6">Completed</Typography>
                 <Typography>20</Typography>
               </Paper>
@@ -120,11 +131,10 @@ export default function AdminContent() {
           </Paper>
         </Grid>
 
-        {/* NGOs Table */}
         <Grid item xs={12}>
           <Paper sx={tableSectionStyle}>
             <Table>
-              <TableHead>
+              <TableHead sx={{ ...tableHeaderStyle }}>
                 <TableRow>
                   <TableCell>NGO Name</TableCell>
                   <TableCell>Status</TableCell>
