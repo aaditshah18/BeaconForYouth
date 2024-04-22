@@ -10,11 +10,6 @@ import {
 import { content, Section } from "../../content/about-us-content";
 import { useTranslation } from 'react-i18next';
 
-interface ContentStructure {
-  img: string;
-  text: string;
-}
-
 const AboutUs: React.FC = () => {
   const { t } = useTranslation();
   const [checked, setChecked] = useState<boolean>(false);
@@ -24,25 +19,10 @@ const AboutUs: React.FC = () => {
   }, []);
 
   const sections: Section[] = [
-    t("Our Mission"),
-    t("Our Vision"),
-    t("Core Values That Guide Us"),
+    "Our Mission",
+    "Our Vision",
+    "Core Values That Guide Us",
   ];
-
-  const contents: { [key: string]: ContentStructure } = {
-    [t("Our Mission")]: {
-      img: "/path/to/mission.jpg",
-      text: t("Mission Description")
-    },
-    [t("Our Vision")]: {
-      img: "/path/to/vision.jpg",
-      text: t("Vision Description")
-    },
-    [t("Core Values That Guide Us")]: {
-      img: "/path/to/values.jpg",
-      text: t("Values Description")
-    }
-  };
 
   return (
     <Root>
@@ -59,12 +39,15 @@ const AboutUs: React.FC = () => {
             >
               <Grid item xs={12} sm={6} md={4}>
                 <StyledCard>
-                  <StyledMedia image={contents[section].img} title={section} />
+                  {/* Handle cases where the image might not be provided */}
+                  {content[section].img && (
+                    <StyledMedia image={content[section].img} title={t(section)} />
+                  )}
                   <CardContent style={{ textAlign: "center", padding: "1rem" }}>
                     <SectionTitle variant="h5" gutterBottom>
-                      {section}
+                      {t(section)}
                     </SectionTitle>
-                    <Typography>{contents[section].text}</Typography>
+                    <Typography>{t(content[section].text)}</Typography>
                   </CardContent>
                 </StyledCard>
               </Grid>

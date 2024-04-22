@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, Icon } from "@mui/material";
+import { EmojiEmotions } from "@mui/icons-material";
 
 export const TrackComplaint: React.FC = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
@@ -10,13 +11,13 @@ export const TrackComplaint: React.FC = () => {
     // Placeholder function for now
     // Replace this with the logic to fetch the status message based on the tracking number
     setStatusMessage("Complaint status: In progress");
-    setStatusMessage("Complaint status: In progress");
   };
 
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         p: 2,
@@ -36,7 +37,7 @@ export const TrackComplaint: React.FC = () => {
         sx={{
           fontWeight: "bold",
           color: "secondary.main",
-          mr: 2,
+          mb: 2,
         }}
       >
         TRACK COMPLAINT
@@ -46,20 +47,21 @@ export const TrackComplaint: React.FC = () => {
         variant="outlined"
         value={trackingNumber}
         onChange={(e) => setTrackingNumber(e.target.value)}
-        sx={{ mr: 2 }}
+        sx={{ mb: 2 }}
       />
       <Button variant="contained" color="secondary" onClick={handleTrackClick}>
         TRACK NOW!
       </Button>
       {statusMessage && (
-        <Typography variant="body1" sx={{ color: "red", marginTop: 2 }}>
-          {statusMessage}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+          <Typography variant="body1" sx={{ color: "red", mr: 1 }}>
+            {statusMessage}
+          </Typography>
+          <Icon component={EmojiEmotions} sx={{ color: "green" }} />
+        </Box>
       )}
     </Box>
-
   );
-  
 };
 
 export default TrackComplaint;
