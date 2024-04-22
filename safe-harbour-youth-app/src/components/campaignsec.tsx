@@ -11,36 +11,34 @@ import { Link } from "react-router-dom";
 
 const campaigns = [
   {
-    imageUrl: "../images/campaignban1.jpeg",
+    imageUrl: "../images/uytc-annual-campaign.png",
     title:
-      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
-    description: "Help us bring awareness and support to those in need.",
-    readMoreText: "Learn How to Help",
-    // joinCampaignText: "Join Campaign",
+      "2017 Public Awareness Campaign",
+    description: "Youth Voices and Verses for Violence Prevention: Lessons in the Cycle In honor of National Youth Violence Prevention Awareness Week in April 2017, UYTC hosted an event with the purpose of encouraging members of the community to celebrate the important role of the arts in sustaining and supporting positive youth development.",
+    learnMoreUrl: "https://example.com/link1",
   },
   {
-    imageUrl: "../images/campban2.jpeg",
-    title:
-      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
-    description: "Help us bring awareness and support to those in need.",
+    imageUrl: "../images/talk.jpg",
+    title:"Talk. They Hear You",
+    description: "The “Talk. They Hear You.” campaign aims to reduce underage drinking and other substance use among youths under the age of 21 by providing parents and caregivers with information and resources they need to address these issues with their children early and often.",
     readMoreText: "Learn How to Help",
-    // joinCampaignText: "Join Campaign",
+
   },
   {
-    imageUrl: "../images/campban2.jpeg",
+    imageUrl: "../images/free.png",
     title:
-      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
-    description: "Help us bring awareness and support to those in need.",
+      "Hi Anxiety",
+    description: "Creating Social Media Campaigns that Promote Awareness and Support Adolescents’ Mental Health",
     readMoreText: "Learn How to Help",
-    // joinCampaignText: "Join Campaign",
+
   },
   {
-    imageUrl: "../images/campban2.jpeg",
+    imageUrl: "../images/black-youth.jpg",
     title:
-      "CHILDREN AND FAMILIES IN NORTHERN GAZA ARE JUST WEEKS AWAY FROM FAMINE",
-    description: "Help us bring awareness and support to those in need.",
+      "Protecting Black Youths’ Emotional Lives",
+    description: "Exposure to community violence, which disproportionately affects Black youth, erodes mental health. Mentoring programs help teens cope.",
     readMoreText: "Learn How to Help",
-    // joinCampaignText: "Join Campaign",
+
   },
 ];
 
@@ -85,34 +83,17 @@ const CampaignSection: React.FC = () => {
       {/* Slider */}
       <Slider {...settings}>
         {campaigns.map((campaign, index) => (
+          
           <CampaignItem
             key={index}
             imageUrl={campaign.imageUrl}
             title={campaign.title}
             description={campaign.description}
-            readMoreText={campaign.readMoreText}
+            readMoreText="Learn More"
           />
         ))}
       </Slider>
       {/* See All Campaigns Link */}
-      <Box textAlign="center" mb={2}>
-        <Link
-          to="../resource/campaingdetail"
-          style={{ textDecoration: "none" }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              color: "var(--primary)",
-              display: "inline-flex",
-              alignItems: "center",
-              mt: 4,
-            }}
-          >
-            See all campaigns -&gt;
-          </Typography>
-        </Link>
-      </Box>
     </Box>
   );
 };
