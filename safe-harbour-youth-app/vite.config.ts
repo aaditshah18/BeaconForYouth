@@ -27,9 +27,9 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/complaints/, ""),
       },
       "/admin/dashboard": {
-        target: `${domain}/api/v1/complaints/`,
+        target: `${domain}/api/v1/admins/complaints/dashboard/`,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/complaints/, ""),
+        rewrite: (path) => path.replace(/^\/admin\/dashboard/, ""),
       },
     },
   },
