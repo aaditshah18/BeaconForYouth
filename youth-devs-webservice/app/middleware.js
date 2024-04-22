@@ -1,9 +1,16 @@
 import jwt from "jsonwebtoken";
 
-const UNPROTECTED_PATH = ["/api/v1/login/", "/api/v1/ngos/list/"];
+// TODO: Remove campaigns from unprotected paths
+const UNPROTECTED_PATH = ["/api/v1/login/", "/api/v1/ngos/list/", "/api/v1/campaigns"];
 
 const isPathUnprotected = (path) => {
-  return UNPROTECTED_PATH.includes(path);
+  // Check for a regex match
+  for (const unprotectedPath of UNPROTECTED_PATH) {
+    if (path.match(unprotectedPath)) {
+      return true;
+    }
+  }
+  // return UNPROTECTED_PATH.includes(path);
 };
 
 const authMiddleware = (req, res, next) => {
