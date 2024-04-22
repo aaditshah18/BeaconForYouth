@@ -21,7 +21,7 @@ export const TrackComplaint: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         p: 2,
-        height: "150px",
+        height: "200px",
         bgcolor: "background.default",
         boxShadow: 3,
         borderRadius: 1,
