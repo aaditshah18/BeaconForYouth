@@ -3,13 +3,14 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 
 export const TrackComplaint: React.FC = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
-  // const history = useHistory(); // Uncomment this when you add routing
+  const [statusMessage, setStatusMessage] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
 
   const handleTrackClick = () => {
     // Placeholder function for now
-    // This will be replaced with the logic to redirect to the tracking information page
-    // e.g. history.push(`/track-complaint/${trackingNumber}`);
-    console.log("Tracking Number: ", trackingNumber);
+    // Replace this with the logic to fetch the status message based on the tracking number
+    setStatusMessage("Complaint status: In progress");
+    setStatusMessage("Complaint status: In progress");
   };
 
   return (
@@ -19,15 +20,15 @@ export const TrackComplaint: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         p: 2,
-        height: "150px", // Further increased height
+        height: "150px",
         bgcolor: "background.default",
         boxShadow: 3,
         borderRadius: 1,
-        backgroundImage: "url(path-to-your-image.jpg)", // Add your background image path
-        backgroundSize: "cover", // Cover the entire box area
-        backgroundPosition: "center", // Center the image in the box
+        backgroundImage: "url(path-to-your-image.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        marginBottom: 4, // Space after the section before the footer
+        marginBottom: 4,
       }}
     >
       <Typography
@@ -50,8 +51,15 @@ export const TrackComplaint: React.FC = () => {
       <Button variant="contained" color="secondary" onClick={handleTrackClick}>
         TRACK NOW!
       </Button>
+      {statusMessage && (
+        <Typography variant="body1" sx={{ color: "red", marginTop: 2 }}>
+          {statusMessage}
+        </Typography>
+      )}
     </Box>
+
   );
+  
 };
 
 export default TrackComplaint;

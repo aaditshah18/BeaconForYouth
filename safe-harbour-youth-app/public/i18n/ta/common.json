@@ -11,5 +11,12 @@
     "Subscribe": "பதிவு செய்ய",
     "NGO": "அரசு அல்லாத அமைப்புகள்",
     "Resource": "வளங்கள்",
-    "Home": "முகப்பு"
+    "Home": "முகப்பு",
+    "About Us": "About Us",
+  "Our Mission": "Our Mission",
+  "Our Vision": "Our Vision",
+  "Core Values That Guide Us": "Core Values That Guide Us",
+  "Mission Description": "Here, describe your organization's mission...",
+  "Vision Description": "Here, detail your organization's vision...",
+  "Values Description": "Outline the core values that guide your organization..."
 }

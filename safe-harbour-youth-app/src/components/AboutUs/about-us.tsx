@@ -8,8 +8,15 @@ import {
   SectionTitle,
 } from "../../styles/aboutus-styles";
 import { content, Section } from "../../content/about-us-content";
+import { useTranslation } from 'react-i18next';
+
+interface ContentStructure {
+  img: string;
+  text: string;
+}
 
 const AboutUs: React.FC = () => {
+  const { t } = useTranslation();
   const [checked, setChecked] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,16 +24,31 @@ const AboutUs: React.FC = () => {
   }, []);
 
   const sections: Section[] = [
-    "Our Mission",
-    "Our Vision",
-    "Core Values That Guide Us",
+    t("Our Mission"),
+    t("Our Vision"),
+    t("Core Values That Guide Us"),
   ];
+
+  const contents: { [key: string]: ContentStructure } = {
+    [t("Our Mission")]: {
+      img: "/path/to/mission.jpg",
+      text: t("Mission Description")
+    },
+    [t("Our Vision")]: {
+      img: "/path/to/vision.jpg",
+      text: t("Vision Description")
+    },
+    [t("Core Values That Guide Us")]: {
+      img: "/path/to/values.jpg",
+      text: t("Values Description")
+    }
+  };
 
   return (
     <Root>
       <div id="about">
         <Heading variant="h4" gutterBottom>
-          About Us
+          {t("About Us")}
         </Heading>
         <Grid container spacing={4} justifyContent="center">
           {sections.map((section, index) => (
@@ -37,12 +59,12 @@ const AboutUs: React.FC = () => {
             >
               <Grid item xs={12} sm={6} md={4}>
                 <StyledCard>
-                  <StyledMedia image={content[section].img} title={section} />
+                  <StyledMedia image={contents[section].img} title={section} />
                   <CardContent style={{ textAlign: "center", padding: "1rem" }}>
                     <SectionTitle variant="h5" gutterBottom>
                       {section}
                     </SectionTitle>
-                    <Typography>{content[section].text}</Typography>
+                    <Typography>{contents[section].text}</Typography>
                   </CardContent>
                 </StyledCard>
               </Grid>
