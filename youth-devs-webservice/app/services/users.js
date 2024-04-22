@@ -41,7 +41,7 @@ export const handleCreateUser = async (payload) => {
     address: payload.address,
     phone: payload.phone,
     description: payload.description,
-    type: "NGO",
+    type: "ADMIN",
     lat: payload.lat,
     lng: payload.lng,
   });
