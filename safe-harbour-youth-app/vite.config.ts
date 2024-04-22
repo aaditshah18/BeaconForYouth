@@ -17,6 +17,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/ngos\/create/, ""),
       },
+      "/ngos": {
+        target: `${domain}/api/v1/ngos/list/`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ngos/, ""),
+      },
     },
   },
 });
