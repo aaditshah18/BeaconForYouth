@@ -30,20 +30,11 @@ export const search = async (request, response) => {
  */
 export const post = async (request, response) => {
   try {
-    let latestComplaintId = 1;
     const complaintData = { ...request.body };
-    const latestComplaint = await ComplaintsModel.findOne(
-      {},
-      {},
-      { sort: { noteId: -1 } }
-    );
-    if (latestComplaint) {
-      latestComplaintId = latestComplaint.noteId + 1;
-    }
-    complaintData["noteId"] = latestComplaintId;
     const newComplaint = await complaintService.save(complaintData);
     setCreateResponse(newComplaint, response);
   } catch (error) {
+    console.log(error);
     setError(response);
   }
 };
