@@ -95,7 +95,7 @@ const router = createBrowserRouter([
     Component: CampaignMenu,
   },
   {
-    path: "/admin",
+    path: "/home/admindashboard/",
     Component: Admin,
   },
 ]);
