@@ -13,9 +13,11 @@ const campaignService = {
     deleteCampaign: async (campaignId) => {
         return await Campaign.findByIdAndRemove(campaignId);
     },
+    
     getAllCampaigns: async () => {
         return await Campaign.find({});
     },
+    
     getCampaignById: async (campaignId) => {
         return await Campaign.findById(campaignId);
     }
