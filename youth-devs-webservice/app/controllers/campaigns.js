@@ -28,7 +28,7 @@ export const getCampaigns = async (req, res) => {
 export const getCampaignById = async (req, res) => {
     try {
         const campaign = await CampaignsService.getCampaignById(req.params.id);
-        return setResponse(res, campaign);
+        return setResponse(campaign, res);
     } catch (error) {
         return setError(res, error);
     }
@@ -37,7 +37,7 @@ export const getCampaignById = async (req, res) => {
 export const updateCampaign = async (req, res) => {
     try {
         const campaign = await CampaignsService.updateCampaign(req.params.id, req.body);
-        return setResponse(res, campaign);
+        return setResponse(campaign, res);
     } catch (error) {
         console.log(error);
         return setError(res, error);
@@ -47,7 +47,7 @@ export const updateCampaign = async (req, res) => {
 export const deleteCampaign = async (req, res) => {
     try {
         await CampaignsService.deleteCampaign(req.params.id);
-        return setResponse(res, {});
+        return setResponse({}, res);
     } catch (error) {
         console.log(error);
         return setError(res, error);

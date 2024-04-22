@@ -11,7 +11,7 @@ const campaignService = {
     },
 
     deleteCampaign: async (campaignId) => {
-        return await Campaign.findByIdAndRemove(campaignId);
+        return await Campaign.findOneAndDelete(campaignId).exec();
     },
     
     getAllCampaigns: async () => {
