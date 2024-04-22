@@ -1,7 +1,11 @@
 import jwt from "jsonwebtoken";
 
 // TODO: Remove campaigns from unprotected paths
-const UNPROTECTED_PATH = ["/api/v1/login/", "/api/v1/ngos/list/", "/api/v1/campaigns"];
+const UNPROTECTED_PATH = [
+  "/api/v1/login/",
+  "/api/v1/ngos/list/",
+  "/api/v1/campaigns",
+];
 
 const isPathUnprotected = (path) => {
   // Check for a regex match
@@ -10,11 +14,9 @@ const isPathUnprotected = (path) => {
       return true;
     }
   }
-  // return UNPROTECTED_PATH.includes(path);
 };
 
 const authMiddleware = (req, res, next) => {
-  console.log(req.path);
   if (isPathUnprotected(req.path)) {
     next();
     return;
