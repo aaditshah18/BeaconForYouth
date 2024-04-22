@@ -1,10 +1,10 @@
-const express = require('express');
-const campaignController = require('../controllers/campaigns');
+import express from "express";
+import { createCampaign, getCampaignById, getCampaigns} from "../controllers/campaigns.js";
 
 const router = express.Router();
 
 // Route to create a new campaign
-router.post('/campaigns', campaignController.createCampaign);
+router.post('/', createCampaign);
 
 // Route to update a campaign
 // router.put('/campaigns/:id', campaignController);
@@ -13,6 +13,6 @@ router.post('/campaigns', campaignController.createCampaign);
 // router.delete('/campaigns/:id', campaignControllerdeleteCampaign);
 
 // Route to get all campaigns
-router.get('/campaigns', campaignController.getCampaigns);
+router.get('/', getCampaigns);
 
-module.exports = router;
+export default router;

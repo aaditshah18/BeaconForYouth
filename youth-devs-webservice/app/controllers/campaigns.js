@@ -1,4 +1,4 @@
-const CampaignsService = require('../services/campaigns');
+import CampaignsService from '../services/campaigns.js';
 import {
     setResponse,
     setCreateResponse,

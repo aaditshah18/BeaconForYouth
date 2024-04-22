@@ -1,4 +1,4 @@
-const Campaign = require('../models/campaigns');
+import Campaign from '../models/campaigns.js';
 
 const campaignService = {
     createCampaign: async (campaignData) => {
@@ -21,4 +21,4 @@ const campaignService = {
     }
 };
 
-module.exports = campaignService;
+export default campaignService;
