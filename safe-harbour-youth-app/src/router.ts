@@ -9,6 +9,7 @@ import NGOAdminPanel from "./components/ngodashboard/ngohome";
 import CampaignMenu from "./components/ngodashboard/ngocampaign";
 import Home from "./pages/home";
 import HomeLayout from "./pages/home-layout";
+import Admin from "./pages/admin";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
   {
     path: "ngodashboard/ngocampaign",
     Component: CampaignMenu,
+  },
+  {
+    path: "/admin",
+    Component: Admin,
   },
 ]);
 
