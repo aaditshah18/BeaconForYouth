@@ -4,6 +4,7 @@ import {
   setError,
 } from "./response-handler.js";
 import NgoModel from "../models/ngos.js";
+import ComplaintsModel from "../models/complaints.js";
 
 import { handleCreateUser } from "../services/users.js";
 
@@ -55,43 +56,49 @@ export const patch = async (request, response) => {
   }
 };
 
-//write the express API for the get controller to fetch the complaint in the ngo dashboard 
-
+//write the express API for the get controller to fetch the complaint in the ngo dashboard
 
 export const get = async (request, response) => {
   try {
     const ngoId = request.params.id;
 
-    // Assuming 'complaints' is a reference in the NgoModel to the ComplaintsModel
-    const ngoWithComplaints = await NgoModel.findById(ngoId)
-      .populate({
-        path: 'complaints',
-        match: { ngoId: ngoId }, // Ensure you're only populating complaints related to the NGO
-      })
-      .exec();
+    // Fetch all complaints for the given NGO ID
+    console.log(ngoId);
+    const allComplaints = await ComplaintsModel.find({ ngoId: ngoId }).exec();
 
-    if (!ngoWithComplaints) {
-      return response.status(404).json({ message: 'NGO not found' });
+    console.log(allComplaints);
+    // Check if any complaints were found
+    if (allComplaints.length === 0) {
+      return response
+        .status(404)
+        .json({ message: "No Complaints found for this NGO." });
     }
 
-    // Assuming the status is a string that can be 'pending', 'completed', or 'inProgress'
-    const totalComplaints = ngoWithComplaints.complaints.length;
-    const totalPending = ngoWithComplaints.complaints.filter(c => c.status === 'pending').length;
-    const totalCompleted = ngoWithComplaints.complaints.filter(c => c.status === 'completed').length;
-    const totalInProgress = ngoWithComplaints.complaints.filter(c => c.status === 'inProgress').length;
+    // Calculate counts based on complaint status
+    const totalComplaints = allComplaints.length;
+    const totalPending = allComplaints.filter(
+      (c) => c.status === "pending"
+    ).length;
+    const totalCompleted = allComplaints.filter(
+      (c) => c.status === "completed"
+    ).length;
+    const totalInProgress = allComplaints.filter(
+      (c) => c.status === "inProgress"
+    ).length;
 
     const dashboardData = {
       totalComplaints: totalComplaints,
       totalPending: totalPending,
       totalCompleted: totalCompleted,
       totalInProgress: totalInProgress,
-      ngo_id: ngoId
+      ngo_id: ngoId,
     };
 
     response.json(dashboardData);
   } catch (error) {
     console.error(error);
-    response.status(500).json({ message: 'An error occurred while fetching the dashboard data.' });
+    response.status(500).json({
+      message: "An error occurred while fetching the dashboard data.",
+    });
   }
 };
-
