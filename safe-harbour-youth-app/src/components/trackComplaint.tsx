@@ -1,33 +1,35 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, Icon } from "@mui/material";
+import { EmojiEmotions } from "@mui/icons-material";
 
 export const TrackComplaint: React.FC = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
-  // const history = useHistory(); // Uncomment this when you add routing
+  const [statusMessage, setStatusMessage] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
 
   const handleTrackClick = () => {
     // Placeholder function for now
-    // This will be replaced with the logic to redirect to the tracking information page
-    // e.g. history.push(`/track-complaint/${trackingNumber}`);
-    console.log("Tracking Number: ", trackingNumber);
+    // Replace this with the logic to fetch the status message based on the tracking number
+    setStatusMessage("Complaint status: In progress");
   };
 
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         p: 2,
-        height: "150px", // Further increased height
+        height: "150px",
         bgcolor: "background.default",
         boxShadow: 3,
         borderRadius: 1,
-        backgroundImage: "url(path-to-your-image.jpg)", // Add your background image path
-        backgroundSize: "cover", // Cover the entire box area
-        backgroundPosition: "center", // Center the image in the box
+        backgroundImage: "url(path-to-your-image.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        marginBottom: 4, // Space after the section before the footer
+        marginBottom: 4,
       }}
     >
       <Typography
@@ -35,7 +37,7 @@ export const TrackComplaint: React.FC = () => {
         sx={{
           fontWeight: "bold",
           color: "secondary.main",
-          mr: 2,
+          mb: 2,
         }}
       >
         TRACK COMPLAINT
@@ -45,11 +47,19 @@ export const TrackComplaint: React.FC = () => {
         variant="outlined"
         value={trackingNumber}
         onChange={(e) => setTrackingNumber(e.target.value)}
-        sx={{ mr: 2 }}
+        sx={{ mb: 2 }}
       />
       <Button variant="contained" color="secondary" onClick={handleTrackClick}>
         TRACK NOW!
       </Button>
+      {statusMessage && (
+        <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+          <Typography variant="body1" sx={{ color: "red", mr: 1 }}>
+            {statusMessage}
+          </Typography>
+          <Icon component={EmojiEmotions} sx={{ color: "green" }} />
+        </Box>
+      )}
     </Box>
   );
 };
