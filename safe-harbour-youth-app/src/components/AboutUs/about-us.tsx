@@ -10,6 +10,8 @@ import {
 import { content, Section } from "../../content/about-us-content";
 import { useTranslation } from 'react-i18next';
 
+type Translated<T> = T; // Define the Translated type
+
 const AboutUs: React.FC = () => {
   const { t } = useTranslation();
   const [checked, setChecked] = useState<boolean>(false);
