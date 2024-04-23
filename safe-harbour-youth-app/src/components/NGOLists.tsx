@@ -18,31 +18,31 @@ const NGOLists: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
 
-  // Define the NGO list inside the component
+  // NGO list defined inside the component to access the `t` function
   const ListOfNGOProps: NGO[] = [
     {
       imageUrl: "../images/campaignban1.jpeg",
-      title: t("United Nations Association of Greater Boston"),
-      description: t("The United Nations Association of Greater Boston (UNAGB) is dedicated to building a strong multigenerational network of global citizens."),
-      readMoreText: t("Learn How to Help"),
+      title: t("UNAGBTitle"), // Key for translation
+      description: t("UNAGBDescription"), // Key for translation
+      readMoreText: t("learnHowToHelp"), // Key for translation
     },
     {
       imageUrl: "../images/campban2.jpeg",
-      title: t("Ceres"),
-      description: t("Ceres is a sustainability nonprofit organization leading the most influential investors and companies to build leadership and drive solutions throughout the economy."),
-      readMoreText: t("Learn How to Help"),
+      title: t("CeresTitle"), // Key for translation
+      description: t("CeresDescription"), // Key for translation
+      readMoreText: t("learnHowToHelp"), // Key for translation
     },
     {
       imageUrl: "../images/campban2.jpeg",
-      title: t("Project Hope Boston"),
-      description: t("Project Hope is a multi-service agency at the forefront of efforts in Boston to move families beyond homelessness and poverty."),
-      readMoreText: t("Learn How to Help"),
+      title: t("ProjectHopeTitle"), // Key for translation
+      description: t("ProjectHopeDescription"), // Key for translation
+      readMoreText: t("learnHowToHelp"), // Key for translation
     },
     {
       imageUrl: "../images/campban2.jpeg",
-      title: t("World Education Services"),
-      description: t("We are education development experts who believe that everyone has the right to a high-quality education. Our work is driven by the belief that education is a powerful tool to improve the quality of life and increase economic opportunities for people worldwide."),
-      readMoreText: t("Learn How to Help"),
+      title: t("WorldEducationTitle"), // Key for translation
+      description: t("WorldEducationDescription"), // Key for translation
+      readMoreText: t("learnHowToHelp"), // Key for translation
     },
   ];
 
