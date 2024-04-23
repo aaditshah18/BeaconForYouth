@@ -19,6 +19,9 @@ import {
 import { styled } from "@mui/material/styles";
 import MapComponent from "../MapComponent";
 import { fetchAllNgos, NgoDetails } from "../../api/ngo";
+import DesktopAppBar from "../header/desktop-appbar.tsx";
+import Footer from "../Footer/footer.tsx";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   "&.MuiTableCell-head": {
     backgroundColor: theme.palette.common.black,
@@ -81,6 +84,7 @@ const NGOPage: React.FC = () => {
 
   return (
     <Box>
+      <DesktopAppBar />
       <Card sx={{ marginBottom: 2 }}>
         <CardMedia
           component="img"
@@ -150,6 +154,7 @@ const NGOPage: React.FC = () => {
           )}
         </DialogContent>
       </Dialog>
+      <Footer />
     </Box>
   );
 };

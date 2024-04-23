@@ -19,7 +19,8 @@ import CampaignBannerImage from "../resource/image/resourcebanner1.jpeg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import DesktopAppBar from "../header/desktop-appbar.tsx";
+import Footer from "../Footer/footer.tsx";
 interface Campaign {
   id: number;
   title: string;
@@ -38,41 +39,42 @@ interface Video {
 const upcomingCampaigns: Campaign[] = [
   {
     id: 1,
-    title: "Reforestation Drive",
+    title: "2017 Public Awareness Campaign",
     description:
-      "Join us in planting 10,000 trees to help reforest local parks!",
-    image: "https://yourimageurl.com/upcoming1.jpg",
+      "Youth Voices and Verses for Violence Prevention: Lessons in the Cycle In honor of National Youth Violence Prevention Awareness Week in April 2017, UYTC hosted an event with the purpose of encouraging members of the community to celebrate the important role of the arts in sustaining and supporting positive youth development.",
+    image: "../images/uytc-annual-campaign.png",
     date: "June 5, 2024",
-    location: "Local Park",
+    location: "Local Park, Boston, MA",
   },
   {
     id: 2,
-    title: "Beach Cleanup",
-    description: "Help us clean up our beaches. Every hand makes a difference!",
-    image: "https://yourimageurl.com/upcoming2.jpg",
+    title: "Talk. They Hear You",
+    description:
+      "The “Talk. They Hear You.” campaign aims to reduce underage drinking and other substance use among youths under the age of 21 by providing parents and caregivers with information and resources they need to address these issues with their children early and often.",
+    image: "../images/talk.jpg",
     date: "July 12, 2024",
-    location: "Local Beach",
+    location: "Long Beach, CA",
   },
 ];
 
 const pastCampaigns: Campaign[] = [
   {
     id: 1,
-    title: "Winter Clothing Drive",
+    title: "Hi Anxiety",
     description:
-      "Thanks to everyone who donated clothes for the homeless this winter!",
-    image: "https://yourimageurl.com/past1.jpg",
+      "Creating Social Media Campaigns that Promote Awareness and Support Adolescents’ Mental Health",
+    image: "../images/free.png",
     date: "January 15, 2024",
-    location: "Community Center",
+    location: "Community Center, Boston, MA",
   },
   {
     id: 2,
-    title: "Save the Wetlands Seminar",
+    title: "Protecting Black Youths’ Emotional Lives",
     description:
-      "Our seminar on wetland preservation was a success, with over 300 attendees!",
-    image: "https://yourimageurl.com/past2.jpg",
+      "Exposure to community violence, which disproportionately affects Black youth, erodes mental health. Mentoring programs help teens cope.",
+    image: "../images/black-youth.jpg",
     date: "March 22, 2024",
-    location: "Local Seminar Hall",
+    location: "Local Seminar Hall, New Jersey, NJ",
   },
 ];
 
@@ -175,6 +177,7 @@ const CampaignsPage: React.FC = () => {
 
   return (
     <Box>
+      <DesktopAppBar />
       <Box
         component="img"
         sx={{ width: "100%", height: "50", marginBottom: 2 }}
@@ -395,6 +398,7 @@ const CampaignsPage: React.FC = () => {
           ))}
         </Slider>
       </Paper>
+      <Footer />
     </Box>
   );
 };

@@ -15,22 +15,30 @@ const CampaignSection: React.FC = () => {
     {
       imageUrl: "../images/uytc-annual-campaign.png",
       title: t("2017 Public Awareness Campaign"),
-      description: t("Youth Voices and Verses for Violence Prevention: Lessons in the Cycle In honor of National Youth Violence Prevention Awareness Week in April 2017, UYTC hosted an event with the purpose of encouraging members of the community to celebrate the important role of the arts in sustaining and supporting positive youth development."),
+      description: t(
+        "Youth Voices and Verses for Violence Prevention: Lessons in the Cycle In honor of National Youth Violence Prevention Awareness Week in April 2017, UYTC hosted an event with the purpose of encouraging members of the community to celebrate the important role of the arts in sustaining and supporting positive youth development."
+      ),
     },
     {
       imageUrl: "../images/talk.jpg",
       title: t("Talk. They Hear You"),
-      description: t("The “Talk. They Hear You.” campaign aims to reduce underage drinking and other substance use among youths under the age of 21 by providing parents and caregivers with information and resources they need to address these issues with their children early and often."),
+      description: t(
+        "The “Talk. They Hear You.” campaign aims to reduce underage drinking and other substance use among youths under the age of 21 by providing parents and caregivers with information and resources they need to address these issues with their children early and often."
+      ),
     },
     {
       imageUrl: "../images/free.png",
       title: t("Hi Anxiety"),
-      description: t("Creating Social Media Campaigns that Promote Awareness and Support Adolescents’ Mental Health"),
+      description: t(
+        "Creating Social Media Campaigns that Promote Awareness and Support Adolescents’ Mental Health"
+      ),
     },
     {
       imageUrl: "../images/black-youth.jpg",
       title: t("Protecting Black Youths’ Emotional Lives"),
-      description: t("Exposure to community violence, which disproportionately affects Black youth, erodes mental health. Mentoring programs help teens cope."),
+      description: t(
+        "Exposure to community violence, which disproportionately affects Black youth, erodes mental health. Mentoring programs help teens cope."
+      ),
     },
   ];
 
