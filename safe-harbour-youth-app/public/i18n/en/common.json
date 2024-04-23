@@ -47,7 +47,14 @@
     "core_values_description": "Core Values Description",
     "NGOs Associated": "NGOs Associated",
     "See all NGOs ->": "See all NGOs ->",
-    "NGO": "NGO"
+    "NGO": "NGO",
+ 
+        "trackComplaintTitle": "Track Your Complaint",
+        "enterComplaintNumber": "Enter Complaint Number",
+        "trackNow": "Track Now",
+        "complaintStatusInProgress": "Your complaint is being processed."
+  
+      
   
   
   }

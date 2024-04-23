@@ -5,9 +5,11 @@ import { ListOfNGO } from "../styles/ListofNGO";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fetchAllNgos, NgoDetails } from "./../api/ngo"; // Adjust the import path as necessary
 
 const NGOLists: React.FC = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   // Correctly typing the useState for ngos
   const [ngos, setNgos] = useState<NgoDetails[]>([]);
@@ -54,7 +56,7 @@ const NGOLists: React.FC = () => {
   return (
     <Box sx={{ overflow: "hidden", padding: 3, bgcolor: "green.100" }} id="NGO">
       <Typography variant="h4" component="h1" gutterBottom align="center">
-        NGOs Associated
+        {t("NGOs Associated")}
       </Typography>
 
       <Box textAlign="center" mb={2}>
@@ -64,7 +66,7 @@ const NGOLists: React.FC = () => {
             color="primary"
             sx={{ display: "inline-flex", alignItems: "center" }}
           >
-            See all NGOs -&gt;
+            {t("See all NGOs ->")}
           </Typography>
         </Link>
       </Box>

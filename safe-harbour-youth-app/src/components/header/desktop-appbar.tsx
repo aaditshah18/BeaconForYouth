@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Menu, MenuItem, styled } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import LanguageIcon from "@mui/icons-material/Language"; // Import the Language icon
 import { Link as ScrollLink } from "react-scroll";
 import {
   AppbarContainer,
@@ -94,7 +95,7 @@ export default function DesktopAppBar() {
             {t('Donate')}
           </DonateButton>
           <LanguageSelectorButton onClick={(e) => setAnchorEl(e.currentTarget)}>
-            {t('Select Language')}
+            <LanguageIcon />  {/* Using the icon instead of text */}
           </LanguageSelectorButton>
           <Menu
             anchorEl={anchorEl}

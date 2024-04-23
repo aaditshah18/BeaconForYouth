@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Box, TextField, Button, Typography, Icon } from "@mui/material";
 import { EmojiEmotions } from "@mui/icons-material";
 
-export const TrackComplaint: React.FC = () => {
+const TrackComplaint: React.FC = () => {
+  const { t } = useTranslation();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
-  const [showStatus, setShowStatus] = useState(false);
 
   const handleTrackClick = () => {
     // Placeholder function for now
     // Replace this with the logic to fetch the status message based on the tracking number
-    setStatusMessage("Complaint status: In progress");
+    setStatusMessage(t('complaintStatusInProgress'));
   };
 
   return (
@@ -40,17 +41,17 @@ export const TrackComplaint: React.FC = () => {
           mb: 2,
         }}
       >
-        TRACK COMPLAINT
+        {t('trackComplaintTitle')}
       </Typography>
       <TextField
-        label="Enter Complaint Number"
+        label={t('enterComplaintNumber')}
         variant="outlined"
         value={trackingNumber}
         onChange={(e) => setTrackingNumber(e.target.value)}
         sx={{ mb: 2 }}
       />
       <Button variant="contained" color="secondary" onClick={handleTrackClick}>
-        TRACK NOW!
+        {t('trackNow')}
       </Button>
       {statusMessage && (
         <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
