@@ -21,7 +21,7 @@ export const getCampaigns = async () => {
 
 export const createCampaign = async (campaignData: any) => {
   try {
-    const userToken = localStorage.getItem(USER_TOKEN_NAME);
+    const userToken = localStorage.getItem("Token");
 
     const response = await axios.post(`${CAMPAIGNS_BASE_URL}`, campaignData, {
       headers: {
@@ -37,7 +37,7 @@ export const createCampaign = async (campaignData: any) => {
 
 export const updateCampaign = async (id: string, updatedData: any) => {
   try {
-    const userToken = localStorage.getItem(USER_TOKEN_NAME);
+    const userToken = localStorage.getItem("Token");
 
     const response = await axios.put(
       `${CAMPAIGNS_BASE_URL}/${id}`,
@@ -57,7 +57,7 @@ export const updateCampaign = async (id: string, updatedData: any) => {
 
 export const deleteCampaign = async (id: string) => {
   try {
-    const userToken = localStorage.getItem(USER_TOKEN_NAME);
+    const userToken = localStorage.getItem("Token");
 
     const response = await axios.delete(`${CAMPAIGNS_BASE_URL}/${id}`, {
       headers: {
