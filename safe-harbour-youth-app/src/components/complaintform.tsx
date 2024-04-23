@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -10,9 +10,11 @@ import {
   InputLabel,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { fetchAllNgos, NgoDetails } from "../api/ngo"; // Adjust the import path as necessary
+import { submitComplaint, ComplaintDetails } from "../api/complaints"; // Ensure this path matches your project structure
 
-interface FormState {
+interface ComplaintFormState {
   firstName: string;
   lastName: string;
   city: string;
@@ -21,19 +23,12 @@ interface FormState {
   zipCode: string;
   email: string;
   mobile: string;
-  ngo: string;
+  ngoId: string;
   description: string;
 }
 
-// Mock data for NGOs, replace with your API data
-const ngoOptions = [
-  { label: "NGO 1", value: "ngo1" },
-  { label: "NGO 2", value: "ngo2" },
-  // ... other NGO options
-];
-
 const ComplaintForm: React.FC = () => {
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<ComplaintFormState>({
     firstName: "",
     lastName: "",
     city: "",
@@ -42,9 +37,24 @@ const ComplaintForm: React.FC = () => {
     zipCode: "",
     email: "",
     mobile: "",
-    ngo: "",
+    ngoId: "",
     description: "",
   });
+  const [ngos, setNgos] = useState<NgoDetails[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadNgos = async () => {
+      try {
+        const fetchedNgos = await fetchAllNgos();
+        setNgos(fetchedNgos);
+      } catch (error) {
+        console.error("Error fetching NGOs:", error);
+      }
+    };
+
+    loadNgos();
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -54,59 +64,30 @@ const ComplaintForm: React.FC = () => {
   const handleSelectChange = (event: SelectChangeEvent) => {
     setForm({
       ...form,
-      [event.target.name as keyof FormState]: event.target.value,
+      ngoId: event.target.value as string,
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form data:", form);
+    // Exclude server-managed properties when constructing the data object
+    const complaintData: Omit<
+      ComplaintDetails,
+      "_id" | "createdTs" | "updatedTs"
+    > = {
+      ...form,
+      ngo: form.ngoId, // Assuming the API needs 'ngo' field as an ID
+      status: "New", // Default status
+    };
 
-    // Endpoint where your backend API is listening
-    const apiEndpoint = "http://localhost:3005/api/complaints"; // Change this URL to where your server is hosted
-
-    axios
-      .post(apiEndpoint, form)
-      .then((response) => {
-        console.log("Complaint submitted successfully:", response.data);
-        alert("Complaint submitted successfully!");
-        handleCancel(); // Reset the form after successful submission
-      })
-      .catch((error) => {
-        console.error("Error submitting complaint:", error);
-        alert("Failed to submit complaint. Please try again.");
-      });
-  };
-
-  const onWhatsAppClick = () => {
-    const message = `Name: ${form.firstName} ${form.lastName}\nDescription: ${form.description}`;
-
-    fetch("https://graph.facebook.com/v18.0/310816992110840/messages", {
-      method: "POST",
-      headers: {
-        Authorization:
-          "Bearer EAAKP9dVmIiUBOwZAzU9BJiTUm6mScbGW63tV4jPMF4UmvVGXZByQJ6c6X5fymL6CQdVF5IYnpZBFgZAYmDb1hh22Q3ngCt98pFzUA95RJ0UXpS3gjA8mFT2IWE9y50OwpHsAMSZAhbRaiAMRXcB2LWBf6AEZBp0WNYniFBsdhs4HWeYcfZBTZAaqQHyzS5FZCpW7m9B24SyM4G70zRkw91GuZCZBBHm5yAZD",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to: "+18578004079", // You need to provide the recipient's phone number here
-        type: "template",
-        template: {
-          name: "send_complaint_id",
-          language: {
-            code: "en_US",
-          },
-        },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    // window.open(url, "_blank");
+    try {
+      await submitComplaint(complaintData as ComplaintDetails);
+      alert("Complaint submitted successfully!");
+      navigate("/home");
+    } catch (error) {
+      console.error("Failed to submit complaint:", error);
+      alert("Failed to submit complaint. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -119,9 +100,10 @@ const ComplaintForm: React.FC = () => {
       zipCode: "",
       email: "",
       mobile: "",
-      ngo: "",
+      ngoId: "",
       description: "",
     });
+    navigate("/home");
   };
 
   return (
@@ -210,14 +192,13 @@ const ComplaintForm: React.FC = () => {
         <InputLabel id="ngo-label">NGO</InputLabel>
         <Select
           labelId="ngo-label"
-          name="ngo"
-          value={form.ngo}
-          label="NGO"
+          name="ngoId"
+          value={form.ngoId}
           onChange={handleSelectChange}
         >
-          {ngoOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {ngos.map((ngo) => (
+            <MenuItem key={ngo._id.toString()} value={ngo._id.toString()}>
+              {ngo.name}
             </MenuItem>
           ))}
         </Select>
@@ -238,9 +219,6 @@ const ComplaintForm: React.FC = () => {
         </Button>
         <Button variant="outlined" color="primary" onClick={handleCancel}>
           Cancel
-        </Button>
-        <Button variant="outlined" color="primary" onClick={onWhatsAppClick}>
-          Share on Whatsapp
         </Button>
       </Box>
     </Box>

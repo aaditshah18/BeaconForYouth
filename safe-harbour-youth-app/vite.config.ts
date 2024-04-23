@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-const domain = process.env.REACT_APP_API_DOMAIN || "http://localhost:3005";
+const domain = process.env.REACT_APP_API_DOMAIN || "http://localhost:3009";
 
 export default defineConfig({
   plugins: [react()],
@@ -21,10 +21,15 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/ngos/, ""),
       },
-      "/complaints": {
+      "/complaintform": {
         target: `${domain}/api/v1/complaints/`,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/complaints/, ""),
+        rewrite: (path) => path.replace(/^\/complaintform/, ""),
+      },
+      "/admin/dashboard": {
+        target: `${domain}/api/v1/admins/complaints/dashboard/`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/admin\/dashboard/, ""),
       },
     },
   },
