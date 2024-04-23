@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'; // Import the useTranslation hook from your translation library
+
 export type Section =
   | "About Us"
   | "Our Mission"

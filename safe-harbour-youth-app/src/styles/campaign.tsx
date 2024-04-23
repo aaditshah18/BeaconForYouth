@@ -13,7 +13,6 @@ interface CampaignItemProps {
   imageUrl: string;
   title: string;
   description: string;
-  readMoreText: string;
   // joinCampaignText: string;
 }
 
@@ -21,7 +20,6 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
   imageUrl,
   title,
   description,
-  readMoreText,
   // joinCampaignText,
 }) => {
   const theme = useTheme();
@@ -53,9 +51,7 @@ export const CampaignItem: React.FC<CampaignItemProps> = ({
             {description}
           </Typography>
           <Stack direction="column" spacing={1}>
-            <Button variant="outlined" sx={{ justifyContent: "flex-start" }}>
-              {readMoreText}
-            </Button>
+
             <Button
               variant="contained"
               sx={{
