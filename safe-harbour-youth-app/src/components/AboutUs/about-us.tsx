@@ -1,16 +1,34 @@
+// AboutUs.jsx
 import React, { useState, useEffect } from "react";
 import { Grid, Typography, Grow, CardContent } from "@mui/material";
-import {
-  Root,
-  Heading,
-  StyledCard,
-  StyledMedia,
-  SectionTitle,
-} from "../../styles/aboutus-styles";
-import { content, Section } from "../../content/about-us-content";
+import { Root, Heading, StyledCard, StyledMedia, SectionTitle } from "../../styles/aboutus-styles";
 import { useTranslation } from 'react-i18next';
 
-type Translated<T> = T; // Define the Translated type
+// Define the structure for the content
+type SectionContent = {
+  titleKey: string;
+  descriptionKey: string;
+  img?: string;
+};
+
+// Create the content object with keys
+export const content: Record<string, SectionContent> = {
+  "Our Mission": {
+    titleKey: "our_mission_title",
+    descriptionKey: "our_mission_description",
+    img: "images/mission.png",
+  },
+  "Our Vision": {
+    titleKey: "our_vision_title",
+    descriptionKey: "our_vision_description",
+    img: "images/vision.png",
+  },
+  "Core Values That Guide Us": {
+    titleKey: "core_values_title",
+    descriptionKey: "core_values_description",
+    img: "images/core-value.png",
+  },
+};
 
 const AboutUs: React.FC = () => {
   const { t } = useTranslation();
@@ -20,36 +38,37 @@ const AboutUs: React.FC = () => {
     setChecked(true);
   }, []);
 
-  const sections: Section[] = [
-    "Our Mission",
-    "Our Vision",
-    "Core Values That Guide Us",
-  ];
+  // Convert content object into an array for mapping
+  const sections = Object.entries(content).map(([key, value]) => ({
+    key,
+    title: t(value.titleKey),
+    description: t(value.descriptionKey),
+    img: value.img,
+  }));
 
   return (
     <Root>
       <div id="about">
         <Heading variant="h4" gutterBottom>
-          {t("About Us")}
+          {t("about_us_title")}
         </Heading>
         <Grid container spacing={4} justifyContent="center">
           {sections.map((section, index) => (
             <Grow
               in={checked}
-              key={section}
+              key={section.key}
               {...(checked ? { timeout: 1000 * index } : {})}
             >
               <Grid item xs={12} sm={6} md={4}>
                 <StyledCard>
-                  {/* Handle cases where the image might not be provided */}
-                  {content[section].img && (
-                    <StyledMedia image={content[section].img} title={t(section)} />
+                  {section.img && (
+                    <StyledMedia image={section.img} title={section.title} />
                   )}
                   <CardContent style={{ textAlign: "center", padding: "1rem" }}>
                     <SectionTitle variant="h5" gutterBottom>
-                      {t(section)}
+                      {section.title}
                     </SectionTitle>
-                    <Typography>{t(content[section].text)}</Typography>
+                    <Typography>{section.description}</Typography>
                   </CardContent>
                 </StyledCard>
               </Grid>
