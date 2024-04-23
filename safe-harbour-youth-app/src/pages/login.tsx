@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ThemeProvider } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import theme from "../styles/themes";
@@ -14,28 +15,11 @@ import Typography from "@mui/material/Typography";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { useEffect, useState } from "react";
 import { login } from "../api/users";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="/">
-        SafeHarbourYouth
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 export default function Login() {
+  const navigate = useNavigate(); // Using useNavigate for navigation
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -43,25 +27,11 @@ export default function Login() {
     const password = formData.get("password") as string;
 
     try {
-      await onSubmit({ email, password }); // Call onSubmit with form data
+      await login({ email, password }); // Call login API with form data
+      navigate("/home/admindashboard/"); // Navigate using React Router
     } catch (error) {
       console.error("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-    console.log("Changing title");
-    document.title = "SafeHarbourYouth";
-  }, []);
-
-  const onSubmit = async (formData: any) => {
-    try {
-      console.log("Calling the Login API: ", formData);
-      await login(formData); // Call login API with form data
-      window.location.href = "/"; // Redirect to home page after successful login
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle login error, e.g., display error message to the user
+      // Optionally display a user-friendly error message here
     }
   };
 
@@ -102,12 +72,7 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Log in
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -146,7 +111,7 @@ export default function Login() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, color: "--var(primary)" }}
+                sx={{ mt: 3, mb: 2 }}
               >
                 Log In
               </Button>
@@ -162,7 +127,6 @@ export default function Login() {
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
