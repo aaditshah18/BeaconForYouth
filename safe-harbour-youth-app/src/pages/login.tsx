@@ -28,10 +28,13 @@ export default function Login() {
 
     try {
       await login({ email, password }); // Call login API with form data
-      navigate("/home/admindashboard/"); // Navigate using React Router
+      if (email === "admin@safeyouthharbour.com") {
+        navigate("/home/admindashboard/"); // Navigate to admin dashboard
+      } else {
+        navigate("/home/ngodashboard/ngohome"); // Navigate to NGO dashboard
+      }
     } catch (error) {
       console.error("Error:", error);
-      // Optionally display a user-friendly error message here
     }
   };
 

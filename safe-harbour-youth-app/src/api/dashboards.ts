@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 const USER_TOKEN_NAME = "Token";
 
 export type dashboardResponse = {
@@ -10,11 +9,13 @@ export type dashboardResponse = {
 
 export const fetchAllDashboards = async () => {
   try {
+    const userToken = localStorage.getItem(USER_TOKEN_NAME);
+
     const res = await fetch("/admin/dashboard", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "JWT" + Cookies.get(USER_TOKEN_NAME),
+        Authorization: `JWT ${userToken}`,
       },
     });
     const data: dashboardResponse = await res.json();
