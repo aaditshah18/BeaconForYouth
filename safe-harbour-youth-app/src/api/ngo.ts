@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 const API_BASE_URL = "/api"; // Base URL for your API, adjust as needed
 
 export type NgoDetails = {
-  _id: mongoose.Schema.Types.ObjectId;
+  // _id: mongoose.Schema.Types.ObjectId;
+  _id: string;
   name: string;
   address: string;
   email: string;

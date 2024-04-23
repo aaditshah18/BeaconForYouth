@@ -10,7 +10,26 @@ import { fetchAllNgos, NgoDetails } from "./../api/ngo"; // Adjust the import pa
 const NGOLists: React.FC = () => {
   const theme = useTheme();
   // Correctly typing the useState for ngos
-  const [ngos, setNgos] = useState<NgoDetails[]>([]);
+  const [ngos, setNgos] = useState<NgoDetails[]>([
+    {
+      id: 1,
+      name: "Green Earth",
+      // imageUrl: "../public/images/title_logo.jpg",
+      description: "Dedicated to environmental protection and sustainability.",
+    },
+    {
+      id: 2,
+      name: "Ocean Blue",
+      // imageUrl: "../public/images/title_logo.jpg",
+      description: "Focused on marine conservation and cleaning up our oceans.",
+    },
+    {
+      id: 3,
+      name: "Renewable Sources",
+      // imageUrl: "../public/images/title_logo.jpg",
+      description: "Promoting renewable energy to reduce carbon footprints.",
+    },
+  ]);
 
   useEffect(() => {
     const loadNgos = async () => {
@@ -73,7 +92,7 @@ const NGOLists: React.FC = () => {
         {ngos.map((ngo, index) => (
           <ListOfNGO
             key={index}
-            imageUrl={ngo.imageUrl || "../images/default-image.jpeg"} // Default image if none is provided
+            imageUrl={ngo.imageUrl || "../../public/images/title_logo.jpg"} // Default image if none is provided
             title={ngo.name}
             description={ngo.description}
             readMoreText={"Learn How to Help"}
