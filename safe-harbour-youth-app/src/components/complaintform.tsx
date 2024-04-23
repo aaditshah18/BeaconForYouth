@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useNavigate } from "react-router-dom";
+import { fetchAllNgos, NgoDetails } from "../api/ngo"; // Adjust the import path as necessary
 import { submitComplaint, ComplaintDetails } from "../api/complaints"; // Ensure this path matches your project structure
 
-interface FormState {
+interface ComplaintFormState {
   firstName: string;
   lastName: string;
   city: string;
@@ -22,19 +23,12 @@ interface FormState {
   zipCode: string;
   email: string;
   mobile: string;
-  ngo: string;
+  ngoId: string;
   description: string;
 }
 
-// Mock data for NGOs, replace with your API data
-const ngoOptions = [
-  { label: "NGO 1", value: "ngo1" },
-  { label: "NGO 2", value: "ngo2" },
-  // ... other NGO options
-];
-
 const ComplaintForm: React.FC = () => {
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<ComplaintFormState>({
     firstName: "",
     lastName: "",
     city: "",
@@ -43,10 +37,24 @@ const ComplaintForm: React.FC = () => {
     zipCode: "",
     email: "",
     mobile: "",
-    ngo: "",
+    ngoId: "",
     description: "",
   });
+  const [ngos, setNgos] = useState<NgoDetails[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadNgos = async () => {
+      try {
+        const fetchedNgos = await fetchAllNgos();
+        setNgos(fetchedNgos);
+      } catch (error) {
+        console.error("Error fetching NGOs:", error);
+      }
+    };
+
+    loadNgos();
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -56,26 +64,30 @@ const ComplaintForm: React.FC = () => {
   const handleSelectChange = (event: SelectChangeEvent) => {
     setForm({
       ...form,
-      [event.target.name as keyof FormState]: event.target.value,
+      ngoId: event.target.value as string,
     });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // Exclude server-managed properties when constructing the data object
+    const complaintData: Omit<
+      ComplaintDetails,
+      "_id" | "createdTs" | "updatedTs"
+    > = {
+      ...form,
+      ngo: form.ngoId, // Assuming the API needs 'ngo' field as an ID
+      status: "New", // Default status
+    };
+
     try {
-      await submitComplaint(form as ComplaintDetails);
+      await submitComplaint(complaintData as ComplaintDetails);
       alert("Complaint submitted successfully!");
-      navigate("/home"); // Redirect to home page upon successful submission
+      navigate("/home");
     } catch (error) {
       console.error("Failed to submit complaint:", error);
       alert("Failed to submit complaint. Please try again.");
     }
-  };
-
-  const onWhatsAppClick = () => {
-    const message = `Name: ${form.firstName} ${form.lastName}\nDescription: ${form.description}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
   };
 
   const handleCancel = () => {
@@ -88,10 +100,10 @@ const ComplaintForm: React.FC = () => {
       zipCode: "",
       email: "",
       mobile: "",
-      ngo: "",
+      ngoId: "",
       description: "",
     });
-    navigate("/home"); // Optionally redirect to home on cancel
+    navigate("/home");
   };
 
   return (
@@ -180,14 +192,13 @@ const ComplaintForm: React.FC = () => {
         <InputLabel id="ngo-label">NGO</InputLabel>
         <Select
           labelId="ngo-label"
-          name="ngo"
-          value={form.ngo}
-          label="NGO"
+          name="ngoId"
+          value={form.ngoId}
           onChange={handleSelectChange}
         >
-          {ngoOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {ngos.map((ngo) => (
+            <MenuItem key={ngo._id.toString()} value={ngo._id.toString()}>
+              {ngo.name}
             </MenuItem>
           ))}
         </Select>
@@ -208,9 +219,6 @@ const ComplaintForm: React.FC = () => {
         </Button>
         <Button variant="outlined" color="primary" onClick={handleCancel}>
           Cancel
-        </Button>
-        <Button variant="outlined" color="primary" onClick={onWhatsAppClick}>
-          Share on WhatsApp
         </Button>
       </Box>
     </Box>
