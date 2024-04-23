@@ -30,21 +30,19 @@ interface Campaign {
 
 const CampaignMenu: React.FC = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false); // State to toggle form visibility
 
   useEffect(() => {
-    // Use the campaignService to fetch campaigns from the server
     getCampaigns()
       .then((data) => {
-        console.log(data);
-        setCampaigns(data);
+        setCampaigns(Array.isArray(data) ? data : []);
       })
       .catch((error) => {
         console.error("Error fetching campaigns:", error);
+        setCampaigns([]);
       });
   }, []);
 
-  // Formik for form handling
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -59,19 +57,11 @@ const CampaignMenu: React.FC = () => {
       location: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      const newCampaign = {
-        name: values.name,
-        description: values.description,
-        date: values.date,
-        location: values.location,
-      };
-
-      createCampaign(newCampaign)
-        .then((data) => {
-          console.log(data);
-          setCampaigns([...campaigns, newCampaign]);
+      createCampaign(values)
+        .then((newCampaign) => {
+          setCampaigns([...campaigns, newCampaign]); // Update the campaigns list with the new campaign
           formik.resetForm();
-          setShowForm(false); // Hide the form after submission
+          setShowForm(false); // Hide form on successful submission
         })
         .catch((error) => {
           console.error("Error adding the campaign:", error);
@@ -80,14 +70,9 @@ const CampaignMenu: React.FC = () => {
   });
 
   const onCampaignDelete = (id: string) => {
-    const updatedCampaigns = campaigns.filter(
-      (campaign) => campaign._id !== id
-    );
-
     deleteCampaign(id)
       .then(() => {
-        console.log(updatedCampaigns);
-        setCampaigns(updatedCampaigns);
+        setCampaigns(campaigns.filter((campaign) => campaign._id !== id));
       })
       .catch((error) => {
         console.error("Error deleting the campaign:", error);
@@ -103,7 +88,7 @@ const CampaignMenu: React.FC = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => setShowForm(!showForm)}
+        onClick={() => setShowForm(!showForm)} // Toggle form visibility
         sx={{ mb: 2 }}
       >
         {showForm ? "Cancel" : "Add Campaign"}
@@ -176,24 +161,24 @@ const CampaignMenu: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {campaigns.map((campaign, index) => {
-              return (
-                <TableRow key={campaign._id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{campaign.name}</TableCell>
-                  <TableCell>{campaign.description}</TableCell>
-                  <TableCell>{campaign.date}</TableCell>
-                  <TableCell>{campaign.location}</TableCell>
-                  <TableCell>
-                    <Button
-                      onClick={() => onCampaignDelete(campaign._id ?? "")}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {campaigns.map((campaign, index) => (
+              <TableRow key={campaign._id}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{campaign.name}</TableCell>
+                <TableCell>{campaign.description}</TableCell>
+                <TableCell>{campaign.date}</TableCell>
+                <TableCell>{campaign.location}</TableCell>
+                <TableCell>
+                  <Button
+                    color="error"
+                    variant="outlined"
+                    onClick={() => onCampaignDelete(campaign._id ?? "")}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
