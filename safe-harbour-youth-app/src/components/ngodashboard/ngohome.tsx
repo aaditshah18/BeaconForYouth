@@ -6,7 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { fetchAllDashboards } from "../../api/dashboards";
 import { dashboardResponse } from "../../api/dashboards";
 
-// Registering ChartJS plugins
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const NGOAdminPanel = () => {

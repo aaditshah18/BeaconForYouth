@@ -6,6 +6,7 @@ const UNPROTECTED_PATH = [
   "/api/v1/ngos/list/",
   "/api/v1/campaigns/",
   "/admins/complaints/dashboard/",
+  "/api/v1/complaints/",
 ];
 
 const isPathUnprotected = (path) => {

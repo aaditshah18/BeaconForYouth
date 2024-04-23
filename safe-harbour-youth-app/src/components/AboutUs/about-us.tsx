@@ -8,8 +8,10 @@ import {
   SectionTitle,
 } from "../../styles/aboutus-styles";
 import { content, Section } from "../../content/about-us-content";
+import { useTranslation } from 'react-i18next';
 
 const AboutUs: React.FC = () => {
+  const { t } = useTranslation();
   const [checked, setChecked] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const AboutUs: React.FC = () => {
     <Root>
       <div id="about">
         <Heading variant="h4" gutterBottom>
-          About Us
+          {t("About Us")}
         </Heading>
         <Grid container spacing={4} justifyContent="center">
           {sections.map((section, index) => (
@@ -37,12 +39,15 @@ const AboutUs: React.FC = () => {
             >
               <Grid item xs={12} sm={6} md={4}>
                 <StyledCard>
-                  <StyledMedia image={content[section].img} title={section} />
+                  {/* Handle cases where the image might not be provided */}
+                  {content[section].img && (
+                    <StyledMedia image={content[section].img} title={t(section)} />
+                  )}
                   <CardContent style={{ textAlign: "center", padding: "1rem" }}>
                     <SectionTitle variant="h5" gutterBottom>
-                      {section}
+                      {t(section)}
                     </SectionTitle>
-                    <Typography>{content[section].text}</Typography>
+                    <Typography>{t(content[section].text)}</Typography>
                   </CardContent>
                 </StyledCard>
               </Grid>

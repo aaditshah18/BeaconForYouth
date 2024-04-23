@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogContent,
 } from "@mui/material";
+import { useTranslation } from 'react-i18next';
 import { styled } from "@mui/system";
 import { useUIContext } from "./ui-context";
 import { DrawerCloseButton } from "../../styles/appbar-styles";
@@ -34,6 +35,7 @@ export default function AppDrawer() {
   const { drawerOpen, setDrawerOpen } = useUIContext();
 
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,96 +49,49 @@ export default function AppDrawer() {
       )}
       <Drawer anchor="right" open={drawerOpen}>
         <List>
-          <ScrollLink
-            to="carouselExampleIndicators"
-            style={{ textDecoration: "none" }}
-          >
+          <ScrollLink to="carouselExampleIndicators" style={{ textDecoration: "none" }}>
             <ListItemButton>
-              <ListItemText primary="Home" />
+              <ListItemText primary={t('Home')} />
             </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ScrollLink to="about" style={{ textDecoration: "none" }}>
             <ListItemButton>
-              <ListItemText primary="About" />
+              <ListItemText primary={t('About')} />
             </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ScrollLink to="NGO" style={{ textDecoration: "none" }}>
             <ListItemButton>
-              <ListItemText primary="NGOs" />
+              <ListItemText primary={t('NGO')} />
             </ListItemButton>
           </ScrollLink>
           <MiddleDivider />
           <ListItemButton>
-            <ListItemText primary="Resources" />
+            <ListItemText primary={t('Resource')} />
           </ListItemButton>
           <MiddleDivider />
-          <Button
-            variant="contained"
-            sx={{
-              color: "primary",
-              backgroundColor: "var(--white)",
-              "&:hover": {
-                backgroundColor: "var(--orange)",
-                color: "var(--white)",
-              },
-              marginTop: "10px",
-              marginBottom: "10px",
-              marginLeft: "10px",
-              paddingLeft: "15px",
-            }}
-            onClick={handleOpen}
-          >
-            Donate
+          <Button variant="contained" sx={{ ...styles }} onClick={handleOpen}>
+            {t('Donate')}
           </Button>
           <MiddleDivider />
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <Button
-              variant="contained"
-              sx={{
-                color: "primary",
-                backgroundColor: "var(--white)",
-                "&:hover": {
-                  backgroundColor: "var(--orange)",
-                  color: "var(--white)",
-                },
-                marginTop: "10px",
-                marginBottom: "10px",
-                marginLeft: "10px",
-                paddingLeft: "15px",
-              }}
-            >
-              Login
+          <RouterLink to="/login" style={{ textDecoration: "none" }}>
+            <Button variant="contained" sx={{ ...styles }}>
+              {t('Login')}
             </Button>
-          </Link>
+          </RouterLink>
           <MiddleDivider />
           <RouterLink to="/complaintform" style={{ textDecoration: "none" }}>
-            <Button
-              variant="contained"
-              sx={{
-                color: "primary",
-                backgroundColor: "var(--white)",
-                "&:hover": {
-                  backgroundColor: "var(--orange)",
-                  color: "var(--white)",
-                },
-                marginTop: "10px",
-                marginBottom: "10px",
-                marginLeft: "10px",
-                paddingLeft: "15px",
-              }}
-            >
-              File a Complaint
+            <Button variant="contained" sx={{ ...styles }}>
+              {t('File a Complaint')}
             </Button>
           </RouterLink>
           <MiddleDivider />
         </List>
       </Drawer>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Donate to Our Cause</DialogTitle>
+        <DialogTitle>{t('Donate to Our Cause')}</DialogTitle>
         <DialogContent>
-          {/* Ensure Elements wraps DonationForm */}
           <Elements stripe={stripePromise}>
             <DonationForm onClose={handleClose} />
           </Elements>
@@ -145,3 +100,16 @@ export default function AppDrawer() {
     </>
   );
 }
+
+const styles = {
+  color: "primary",
+  backgroundColor: "var(--white)",
+  "&:hover": {
+    backgroundColor: "var(--orange)",
+    color: "var(--white)",
+  },
+  marginTop: "10px",
+  marginBottom: "10px",
+  marginLeft: "10px",
+  paddingLeft: "15px",
+};
