@@ -4,11 +4,13 @@ import jwt from "jsonwebtoken";
 const UNPROTECTED_PATH = [
   "/api/v1/login/",
   "/api/v1/ngos/list/",
-  "/api/v1/campaigns",
+  "/api/v1/campaigns/",
+  "/admins/complaints/dashboard/",
   "/api/v1/complaints/",
 ];
 
 const isPathUnprotected = (path) => {
+  console.log(path);
   // Check for a regex match
   for (const unprotectedPath of UNPROTECTED_PATH) {
     if (path.match(unprotectedPath)) {

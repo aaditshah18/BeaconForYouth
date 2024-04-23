@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Button, Typography, Avatar, Divider } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/ExitToApp'; // Import appropriate icons for visual aid
+import React, { useState } from "react";
+import { Box, Button, Typography, Avatar, Divider } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/ExitToApp"; // Import appropriate icons for visual aid
 
 export default function AdminDesktopAppBar() {
-  const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [adminImage, setAdminImage] = useState<string | null>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,44 +21,34 @@ export default function AdminDesktopAppBar() {
   return (
     <Box
       sx={{
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
-        width: '250px',
-        height: '100vh',
-        backgroundColor: 'blue', // Change background color to blue
-        color: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', // Align items at the center
-        justifyContent: 'space-between',
-        padding: '20px',
+        width: "250px",
+        height: "100vh",
+        backgroundColor: "blue", // Change background color to blue
+        color: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center", // Align items at the center
+        justifyContent: "space-between",
+        padding: "20px",
         zIndex: 1000, // Ensure it's above other content
       }}
     >
-      <Box sx={{ width: '100%', textAlign: 'center' }}>
+      <Box sx={{ width: "100%", textAlign: "center" }}>
         {/* Conditionally render the admin image */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-          {isEditingProfile && adminImage ? (
-            <Avatar sx={{ width: 100, height: 100 }} alt="Admin" src={adminImage} />
-          ) : (
-            <Avatar sx={{ width: 100, height: 100 }}>A</Avatar>
-          )}
-        </Box>
         <Typography variant="body1">John Doe</Typography>
         <Typography variant="body2">Administrator</Typography>
-        <Divider sx={{ margin: '1rem 0', width: '100%' }} />
-        <Button
-          variant="outlined"
-          color="inherit"
-          fullWidth
-          onClick={() => setIsEditingProfile(!isEditingProfile)}
-        >
-          {isEditingProfile ? 'Save Profile' : 'Edit Profile'}
-        </Button>
+        <Divider sx={{ margin: "1rem 0", width: "100%" }} />
       </Box>
-      <Box sx={{ width: '100%' }}>
-        <Button variant="contained" color="inherit" startIcon={<LogoutIcon />} fullWidth>
+      <Box sx={{ width: "100%" }}>
+        <Button
+          variant="contained"
+          color="inherit"
+          startIcon={<LogoutIcon />}
+          fullWidth
+        >
           Logout
         </Button>
       </Box>
