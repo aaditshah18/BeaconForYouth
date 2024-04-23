@@ -20,7 +20,7 @@ export type ComplaintDetails = {
 // Fetch all complaints
 export const fetchAllComplaints = async (): Promise<ComplaintDetails[]> => {
   try {
-    const response = await fetch(`/complaints`);
+    const response = await fetch(`/complaintform`);
     if (!response.ok) {
       throw new Error("Failed to fetch complaints");
     }
@@ -36,7 +36,7 @@ export const submitComplaint = async (
   complaintData: ComplaintDetails
 ): Promise<ComplaintDetails> => {
   try {
-    const response = await fetch(`/complaints`, {
+    const response = await fetch(`/complaintform`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
